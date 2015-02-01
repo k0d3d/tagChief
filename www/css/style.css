@@ -1,0 +1,31 @@
+/* Empty. Add your own CSS if you like */
+
+.item-complex .item-content {
+  background-color: transparent;
+}
+
+.sidebar-nav .item {
+  background-color: transparent;
+  border: none;
+}
+
+.bar-header {
+  border-bottom-color: #f2eceb;
+  border-bottom: 1px solid #eaedf1;
+  background-color: #fcfafa;
+}
+
+.search-header input {
+  color: white;
+  font-size: 16px;
+}
+
+.nav-buttons-primary {
+  width: 95px;
+}
+
+.nav-buttons-primary .button {
+  min-width: 20px;
+  color: #e74c3c !important;
+  float: left;
+}
