@@ -3,31 +3,61 @@
 var app = angular.module('controllers', []);
 
 
-app.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
+// app.config(function($stateProvider, $urlRouterProvider) {
+//   $stateProvider
 
-    .state('splash', {
-      url: "/splash",
-      abstract: true,
-      views: {
-        'noHeaderContent' : {
-          templateUrl: "full-screen.html",
-        }
-      }
-    })
+//     .state('splash', {
+//       url: "/splash",
+//       abstract: true,
+//       views: {
+//         'noHeaderContent' : {
+//           templateUrl: "full-screen.html",
+//         }
+//       }
+//     })
 
-    .state('splash.welcome', {
-      url: "/welcome",
-      views: {
-        'fullContent@splash' :{
-          templateUrl: "templates/splash-first.html",
-          controller: 'SplashCtrl'
-        }
-      }
-    });
-});
+//     .state('splash.welcome', {
+//       url: "/welcome",
+//       views: {
+//         'fullContent@splash' :{
+//           templateUrl: "templates/splash-first.html",
+//           controller: 'SplashCtrl'
+//         }
+//       }
+//     });
+// });
 
-app.controller('FilesCtrl', function($scope, $ionicModal, $timeout, cordovaServices) {
+app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServices, $cordovaGeolocation, $state) {
+
+  $scope.whoiswhere = [];
+
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+
+  $cordovaGeolocation.getCurrentPosition(posOptions)
+  .then(
+    function(position) {
+
+      $scope.position=position;
+      var c = position.coords;
+      $scope.basel = {
+        lat: c.latitude,
+        lon: c.longitude
+      };
+      // some points of interest to show on the map
+      // to be user as markers, objects should have "lat", "lon", and "name" properties
+      $scope.whoiswhere.push = {
+        "name": "My Marker",
+        "lat": $scope.basel.lat,
+        "lon": $scope.basel.lon
+      };
+    },
+    function(e) {
+      console.log("Error retrieving position " + e.code + " " + e.message);
+    }
+  );
+
+
+
 
 });
 

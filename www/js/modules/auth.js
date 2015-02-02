@@ -1,5 +1,56 @@
 (function () {
   var app = angular.module('auth', []);
+
+
+  app.config(function($stateProvider, $urlRouterProvider) {
+    $stateProvider
+
+      .state('auth', {
+        url: "/auth",
+        abstract: true,
+        views: {
+          'noHeaderContent' : {
+            templateUrl: "full-screen.html",
+            controller: 'RegisterLoginCtrl'
+          }
+        }
+      })
+
+      .state('auth.welcome', {
+        url: "/welcome",
+        views: {
+          'fullContent@splash' :{
+            templateUrl: "templates/splash-first.html",
+
+          }
+        }
+      })
+      .state('auth.forgotpw', {
+        url: "/forgotpw",
+        views: {
+          'fullContent@auth' :{
+            templateUrl: "templates/auth/forgotpw.html"
+          }
+        }
+      })
+      .state('auth.register', {
+        url: "/register",
+        views: {
+          'fullContent@auth' :{
+            templateUrl: "templates/auth/register.html"
+          }
+        }
+      })
+      .state('auth.login', {
+        url: "/login",
+        views: {
+          'fullContent@auth' :{
+            templateUrl: "templates/auth/login.html"
+          }
+        }
+      })
+      ;
+  });
   app.controller('RegisterCtrl', ['$scope', function ($scope) {
 
   }]);

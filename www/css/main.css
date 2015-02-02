@@ -27,7 +27,7 @@
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic");
 
 /* Preloader */
-body.page-loading {
+/*body.page-loading {
   overflow: hidden;
 }
 
@@ -37,7 +37,7 @@ body.page-loading .preloader {
 
 body.page-loading #page-container {
   opacity: 0;
-}
+}*/
 
 .preloader {
   display: none;
@@ -88,8 +88,8 @@ body.page-loading #page-container {
 body {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #394263;
-  font-size: 13px;
-  background-color: #222222;
+  /*  font-size: 13px;
+    background-color: #222222;*/
 }
 
 #page-container,
@@ -117,15 +117,13 @@ body {
 #sidebar-alt {
   /*width: 0;*/
   /*position: absolute;*/
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 #sidebar-alt {
   right: 0;
 }
 
-#sidebar,
-#sidebar-alt,
 #main-container,
 .header-fixed-top header,
 .header-fixed-bottom header,
@@ -1633,12 +1631,12 @@ a[data-toggle="lightbox-image"]:hover img {
 
 .media-feed > .media {
   margin-top: 0;
-  padding: 20px 20px 0;
-  border-top: 1px dotted #dbe1e8;
+  /*padding: 20px 20px 0;*/
+  border-top: 1px solid #dbe1e8;
 }
 
 .media-feed > .media:first-child {
-  border-top: none;
+  /*border-top: none;*/
 }
 
 .media-feed.media-feed-hover > .media:hover {

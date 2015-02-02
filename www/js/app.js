@@ -8,7 +8,9 @@ var app = angular.module('tcApp', [
   'ngCordova',
   'controllers',
   'tcApp.config',
-  'services'
+  'services',
+  'GoogleMapsInitializer',
+  'auth'
   ]);
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_config) {
   $stateProvider
@@ -29,7 +31,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       views: {
         'viewContent@app' :{
           templateUrl: "templates/home.html",
-          controller: 'FilesCtrl'
+          controller: 'HomeCtrl'
         }
       }
     })
@@ -37,17 +39,16 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       url: "/locations",
       views: {
         'viewContent@app' :{
-          templateUrl: "templates/locations.html",
-          controller: 'FilesCtrl'
+          templateUrl: "templates/locations.html"
+          // controller: 'FilesCtrl'
         }
       }
     })
     .state('app.location', {
-      url: "/location",
+      url: "/location/:locationId",
       views: {
         'viewContent@app' :{
-          templateUrl: "templates/location.html",
-          controller: 'FilesCtrl'
+          templateUrl: "templates/location.html"
         }
       }
     })
@@ -57,46 +58,6 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
         'viewContent@app' :{
           templateUrl: "templates/me-achievements.html",
           controller: 'FilesCtrl'
-        }
-      }
-    })
-    .state('app.forgotpw', {
-      url: "/auth/forgotpw",
-      views: {
-        'viewContent@app' :{
-          templateUrl: "templates/auth/forgotpw.html",
-          controller: 'UploaderCtrl'
-        }
-      }
-    })
-    .state('app.register', {
-      url: "/auth/register",
-      views: {
-        'viewContent@app' :{
-          templateUrl: "templates/auth/register.html",
-          controller: 'UploaderCtrl'
-        }
-      }
-    })
-    .state('app.login', {
-      url: "/auth/login",
-      views: {
-        'viewContent@app' :{
-          controller: ['$ionicModal', 'appBootStrap', function ($ionicModal, appBootStrap) {
-            $ionicModal.fromTemplateUrl('templates/auth/login.html',
-              {
-                // scope: $scope,
-                animation: 'slide-in-up',
-                focusFirstInput: true,
-                backdropClickToClose: false,
-                hardwareBackButtonClose: false
-              }
-            ).then(function (modal) {
-              appBootStrap.activeModal = modal;
-              appBootStrap.activeModal.show();
-            });
-            // appBootStrap.loginModal.show();
-          }]
         }
       }
     })
@@ -129,10 +90,12 @@ app.run(function($ionicPlatform) {
   });
 });
 
-app.controller('MainCtrl', ['$scope', function ($scope) {
+app.controller('MainCtrl', ['$scope', '$state', function ($scope, $state) {
 
 }]);
 
-app.controller('AppCtrl', ['$scope', function ($scope) {
-
+app.controller('AppCtrl', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
+  $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
+      console.log(error);
+  });
 }]);
