@@ -96,7 +96,7 @@
                   text: '<b>Login Now</b>',
                   type: 'button-positive',
                   onTap: function(e) {
-                    $state.go('app.login');
+                    $state.go('auth.login');
                   }
                 }
               ]

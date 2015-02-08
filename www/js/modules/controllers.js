@@ -30,8 +30,15 @@ var app = angular.module('controllers', []);
 app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServices, $cordovaGeolocation, $state, Messaging, $cordovaDevice) {
 
   $scope.whoiswhere = [];
-
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $scope.basel = {
+    lat: 0,
+    lon: 0
+  };
+  var posOptions = {
+    timeout: 5000,
+    enableHighAccuracy: true,
+    maximumAge: 3000
+  };
 
   $cordovaGeolocation.getCurrentPosition(posOptions)
   .then(
@@ -43,6 +50,28 @@ app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServic
         lat: c.latitude,
         lon: c.longitude
       };
+
+
+      // var watchOptions = {
+      //   frequency : 5000,
+      //   timeout : 3000,
+      //   enableHighAccuracy: true // may cause errors if true
+      // };
+
+      var watch = $cordovaGeolocation.watchPosition(posOptions);
+      watch.then(
+        null,
+        function(err) {
+          // error
+        },
+        function(position) {
+          console.log('position changed');
+          $scope.basel = {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude
+          };
+      });
+
       // some points of interest to show on the map
       // to be user as markers, objects should have "lat", "lon", and "name" properties
       $scope.whoiswhere.push = {
@@ -50,6 +79,11 @@ app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServic
         "lat": $scope.basel.lat,
         "lon": $scope.basel.lon
       };
+
+
+      $scope.$on('clearGeoWatch', function (e) {
+        watch.clearWatch();
+      });
     },
     function(e) {
       console.log("Error retrieving position " + e.code + " " + e.message);
@@ -57,14 +91,11 @@ app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServic
   );
 
   $scope.pingMsg = function () {
-          Messaging.ping($cordovaDevice.getUUID(), function (d) {
-            console.log(d);
-            alert('should be reg');
-          });
+    Messaging.ping($cordovaDevice.getUUID(), function (d) {
+      console.log(d);
+      alert('should be reg');
+    });
   };
-
-
-
 
 });
 

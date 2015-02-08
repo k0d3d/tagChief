@@ -60,7 +60,7 @@ MapApp.filter('lon', function () {
  * Handle Google Maps API V3+
  */
 // - Documentation: https://developers.google.com/maps/documentation/
-MapApp.directive("appMap", function ($window, $timeout, Initializer) {
+MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) {
     return {
         restrict: "E",
         replace: true,
@@ -82,10 +82,7 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer) {
             var currentMarkers;
             var callbackName = 'InitMapCb';
             //default map, pending when location is detected.
-            scope.center = {
-              lat: 6.5243793,
-              lon: 3.3792057
-            };
+
 
               // callback when google maps is loaded
             $window[callbackName] = function() {
@@ -96,7 +93,10 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer) {
 
 
             function createMap() {
-              // console.log("map: create map start");
+              console.log(scope.center);
+              // if (!scope.center.lat.length || !scope.center.lon.length) {
+              //   return false;
+              // }
 
               Initializer.mapsInitialized
               .then(function(){
@@ -115,11 +115,12 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer) {
                     overviewMapControl: true
                   };
                   scope.map = new google.maps.Map(element[0], mapOptions);
-                  var myLocation = new google.maps.Marker({
+                  scope.myLocation = new google.maps.Marker({
                       position: myLatLng,
                       map: scope.map,
                       title: "My Location"
                   });
+
                   google.maps.event.addDomListener(element[0], 'mousedown', function(e) {
                     e.preventDefault();
                     return false;
@@ -128,71 +129,81 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer) {
               });
             }
 
+            function refreshMeMarker () {
+              console.log('i do after 30')
+              scope.myLocation.setMap( scope.map );
+              //delayed so you can see it move
+              setTimeout( function(){
 
+                  scope.myLocation.setPosition( new google.maps.LatLng(scope.center.lat, scope.center.lon) );
+                  scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
 
-            // scope.$watch('markers', function() {
-            //   // updateMarkers();
-            // });
-
-            // Info window trigger function
-            function onItemClick(pin, label, datum, url) {
-              // Create content
-              var contentString = "Name: " + label + "<br />Time: " + datum;
-              // Replace our Info Window's content and position
-              infowindow.setContent(contentString);
-              infowindow.setPosition(pin.position);
-              infowindow.open(map);
-              google.maps.event.addListener(infowindow, 'closeclick', function() {
-                //console.log("map: info windows close listener triggered ");
-                infowindow.close();
-                });
+              }, 1500 );
             }
 
-            function markerCb(marker, member, location) {
-                return function() {
-                //console.log("map: marker listener for " + member.name);
-                var href="http://maps.apple.com/?q="+member.lat+","+member.lon;
-                map.setCenter(location);
-                onItemClick(marker, member.name, member.date, href);
-                };
-              }
+            var mapRefresh = $interval(refreshMeMarker, 30000);
+            scope.$on('$destroy', function () {
+              $interval.cancel(mapRefresh);
+            });
+
+            $timeout(createMap(), 0);
+
+            // Info window trigger function
+            // function onItemClick(pin, label, datum, url) {
+            //   // Create content
+            //   var contentString = "Name: " + label + "<br />Time: " + datum;
+            //   // Replace our Info Window's content and position
+            //   infowindow.setContent(contentString);
+            //   infowindow.setPosition(pin.position);
+            //   infowindow.open(map);
+            //   google.maps.event.addListener(infowindow, 'closeclick', function() {
+            //     //console.log("map: info windows close listener triggered ");
+            //     infowindow.close();
+            //     });
+            // }
+
+            // function markerCb(marker, member, location) {
+            //     return function() {
+            //     //console.log("map: marker listener for " + member.name);
+            //     var href="http://maps.apple.com/?q="+member.lat+","+member.lon;
+            //     map.setCenter(location);
+            //     onItemClick(marker, member.name, member.date, href);
+            //     };
+            //   }
 
             // update map markers to match scope marker collection
-            function updateMarkers() {
-              if (scope.map) {
-                // create new markers
-                //console.log("map: make markers ");
-                currentMarkers = [];
-                // var markers = scope.markers;
-                // if (angular.isString(markers)){
-                //   markers = scope.$eval(scope.markers);
-                // }
-                for (var i = 0; i < scope.markers.length; i++) {
-                  var m = scope.markers[i];
+            // function updateMarkers() {
+            //   if (scope.map) {
+            //     // create new markers
+            //     //console.log("map: make markers ");
+            //     currentMarkers = [];
+            //     // var markers = scope.markers;
+            //     // if (angular.isString(markers)){
+            //     //   markers = scope.$eval(scope.markers);
+            //     // }
+            //     for (var i = 0; i < scope.markers.length; i++) {
+            //       var m = scope.markers[i];
 
-                  var loc = new google.maps.LatLng(m.lat, m.lon);
+            //       var loc = new google.maps.LatLng(m.lat, m.lon);
 
-                  var mm = new google.maps.Marker({
-                    position: loc,
-                    map: map,
-                    title: m.name
-                  });
-                  //console.log("map: make marker for " + m.name);
-                  google.maps.event.addListener(mm, 'click', markerCb(mm, m, loc));
-                  currentMarkers.push(mm);
-                  }
-                }
-              }
+            //       var mm = new google.maps.Marker({
+            //         position: loc,
+            //         map: map,
+            //         title: m.name
+            //       });
+            //       //console.log("map: make marker for " + m.name);
+            //       google.maps.event.addListener(mm, 'click', markerCb(mm, m, loc));
+            //       currentMarkers.push(mm);
+            //       }
+            //     }
+            //   }
 
             // convert current location to Google maps location
-            function getLocation(loc) {
-              if (loc == null) return new google.maps.LatLng(40, -73);
-              if (angular.isString(loc)) loc = scope.$eval(loc);
-              return new google.maps.LatLng(loc.lat, loc.lon);
-              }
-
-            createMap();
-            // $timeout(createMap(), 0);
+            // function getLocation(loc) {
+            //   if (loc == null) return new google.maps.LatLng(40, -73);
+            //   if (angular.isString(loc)) loc = scope.$eval(loc);
+            //   return new google.maps.LatLng(loc.lat, loc.lon);
+            //   }
 
       } // end of link:
     }; // end of return
