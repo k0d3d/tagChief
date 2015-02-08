@@ -102,7 +102,7 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer) {
               .then(function(){
                   var myLatLng = new google.maps.LatLng(scope.center.lat, scope.center.lon);
                   var mapOptions = {
-                    zoom: 13,
+                    zoom: 17,
                     center: myLatLng,
                     mapTypeId: google.maps.MapTypeId.ROADMAP,
                     panControl: true,
@@ -126,13 +126,6 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer) {
                   });
                   infowindow = new google.maps.InfoWindow();
               });
-
-              // if (!(map instanceof google.maps.Map)) {
-              //     // console.log("map: create map now as not already available ");
-              //     scope.map = new google.maps.Map(element[0], mapOptions);
-              //     // EDIT Added this and it works on android now
-              //     // Stop the side bar from dragging when mousedown/tapdown on the map
-              // }
             }
 
 

@@ -1,7 +1,7 @@
 
 
-  <ion-content ng-controller="RegisterLoginCtrl" class="login-form" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
-    <img src="img/backgrounds/login_full_bg.jpg" alt="Login Full Background" class="full-bg animation-pulseSlow">
+  <ion-content class="reg-form animation-fadeInQuickInv" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
+    <img src="img/backgrounds/login_full_bg.jpg" alt="Login Full Background" class="full-bg">
     <div id="login-container" class="animation-fadeIn">
                 <!-- Login Title -->
                 <div class="login-title text-center">
@@ -14,24 +14,24 @@
                     <!-- Login Form -->
                     <div class="list">
                       <label class="item item-input item-floating-label">
-                        <span class="input-label">Username / Email</span>
-                        <input type="text" placeholder="Username / Email">
+                        <span class="input-label">Email</span>
+                        <input type="email" placeholder="Email" ng-model="form.email" required>
                       </label>
                       <label class="item item-input item-floating-label">
                         <span class="input-label">Mobile Number</span>
-                        <input type="text" placeholder="Mobile Number">
+                        <input type="text" placeholder="Mobile Number" ng-model="form.phoneNumber" required>
                       </label>
                       <label class="item item-input item-floating-label">
                         <span class="input-label">Password</span>
-                        <input type="text" placeholder="Password">
+                        <input type="password" placeholder="Password" ng-model="form.password" required>
                       </label>
                     </div>
                     <div class="form-group form-actions">
                         <div class="col-xs-12 text-right">
-                          <button type="submit" class="button button-block button-clear button-assertive">Register</button>
+                          <button type="submit" class="button button-block button-clear button-assertive" ng-click="RegisterBtn(form)" >Register</button>
                           <div class="button-bar">
-                            <button type="submit" class="button button-clear button-dark">Login</button>
-                            <button type="submit" class="button button-clear button-dark">Forgot Password?</button>
+                            <a type="submit" class="button button-clear button-dark" ui-sref="auth.login">Login</a>
+                            <a type="submit" class="button button-clear button-dark" ui-sref="auth.forgotpw">Forgot Password?</a>
                           </div>
                         </div>
                     </div>

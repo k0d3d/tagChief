@@ -62,14 +62,21 @@
     $scope.message = "";
 
     $scope.form = {
-      username: null,
-      password: null
+      email: "",
+      password: "",
+      phoneNumber: ""
     };
 
     $scope.loginBtn = function(form) {
+      if (form.email.length == 0 || form.password.length == 0) {
+        return false;
+      }
       AuthenticationService.login(form);
     };
     $scope.RegisterBtn = function(form) {
+      if (form.email.length == 0 || form.password.length == 0 || form.phoneNumber.length == 0) {
+        return false;
+      }
       AuthenticationService.register(form, function (res) {
         if (res instanceof Error) {
           // An alert dialog
@@ -82,7 +89,7 @@
           });
         } else {
           $ionicPopup.show({
-              template: '<p>We have registered your IXIT account successfully</p>',
+              template: '<p>We have registered your tagChief account successfully</p>',
               title: 'Welcome',
               buttons: [
                 {

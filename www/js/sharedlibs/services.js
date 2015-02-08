@@ -1,5 +1,31 @@
 (function () {
   var app = angular.module('services', []);
+  app.factory('Messaging', ['$http', 'api_config', function ($http, api_config) {
+    var regid = '';
+
+
+    return {
+      setRegId: function (regId) {
+        this.regid = regId;
+        return true;
+      },
+      getRegId: function () {
+        return this.regid;
+      },
+      ping: function (deviceId, cb) {
+        var self = this;
+        $http.post(api_config.CONSUMER_API_URL + '/api/v1/messaging/' + deviceId, {
+          rId: self.regid
+        })
+        .success(function (data) {
+          cb(data);
+        })
+        .error(function (err) {
+          cb(err);
+        });
+      }
+    };
+  }]);
   app.factory('AuthenticationService', [
     '$rootScope',
     '$http',

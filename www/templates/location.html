@@ -1,16 +1,75 @@
-<ion-content class="has-header view-content" style="margin-top: 44px;" scroll="true">
 
-  <div id="page-content">
-      <!-- User Profile Header -->
-      <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
-      <div class="content-header content-header-media">
-          <div class="header-section">
-              <img src="./img/placeholders/avatars/avatar2.jpg" alt="Avatar" class="pull-right img-circle">
-              <h1>John Doe <br><small>Life Explorer &amp; Traveller</small></h1>
-          </div>
-          <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
-          <img src="./img/placeholders/headers/profile_header.jpg" alt="header image" class="animation-pulseSlow">
+<ion-content class="has-header view-content" scroll="true">
+  <!-- User Profile Header -->
+  <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
+  <div class="location-profile content-header content-header-media">
+      <div class="header-section">
+          <h1>Ikeja Shopping Mall <br><small>Alausa, Ikeja, Lagos</small></h1>
       </div>
+      <img src="img/placeholders/headers/profile_header.jpg" alt="header image" class="animation-pulseSlow">
+      <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
   </div>
+  <div class="block" style="padding: 0">
+
+    <div class="row block score-bar">
+      <div class="col">
+        <div class="round-icon yellow-round-icon">
+          <i class="icon ion-trophy"></i>
+        </div>
+        0
+
+      </div>
+      <div class="col">
+        <div class="round-icon green-round-icon">
+          <i class="icon ion-thumbsup"></i>
+        </div>
+        0
+
+      </div>
+      <div class="col">
+        <div class="round-icon red-round-icon">
+          <i class="icon ion-thumbsdown"></i>
+        </div>
+        0
+
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="button-bar">
+          <a class="button icon ion-more button-calm" tooltip="Description"></a>
+          <a class="button icon ion-checkmark button-calm" tooltip="Reviews"></a>
+          <a class="button icon ion-star button-calm" tooltip="Offers"></a>
+          <a class="button icon ion-map button-calm" tooltip="Direction"></a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="list">
+          <label class="item item-input">
+            <span class="input-label">Info</span>
+            <textarea readonly="readonly">
+              Proin ac nibh rutrum lectus rhoncus eleifend. Sed porttitor pretium venenatis. Suspendisse potenti. Aliquam quis ligula elit. Aliquam at orci ac neque semper dictum. Sed tincidunt scelerisque ligula, et facilisis nulla hendrerit non.
+            </textarea>
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Category</span>
+            <input type="text" value="Music, Shopping, Cinemas" readonly="readonly">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Specials</span>
+            <input type="text" value="Open Mic Night" readonly="readonly">
+          </label>
+          <label class="item item-input">
+            <span class="input-label">Wow Factor</span>
+            <input type="text" value="Large Parking Space" readonly="readonly">
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 </ion-content>

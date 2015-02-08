@@ -102,4 +102,71 @@ a:hover.home-cta {
   text-align: left;
 }
 
-/*.location-feed li:nth;*/
+.content-header h1, .content-header h2 {
+  z-index: 200;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #ffffff;
+  /*background: url("../img/template/ie8_opacity_dark_60.png") repeat;*/
+  /*background: rgba(0, 0, 0, 0.6);*/
+}
+
+.location-profile.content-header {
+  margin: 0px;
+  margin-top: 44px;
+}
+
+.row.block {
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.row.block.score-bar {
+  height: 90px;
+  background-color: transparent;
+  border: none;
+  position: relative;
+}
+
+.row.block i {
+  font-size: 20px;
+}
+
+.round-icon {
+  border: solid 2px #fff;
+  height: 40px;
+  background-color: #ddd;
+  width: 40px;
+  border-radius: 20px;
+  margin: auto;
+  padding: 10px;
+}
+
+.round-icon.green-round-icon {
+  background-color: #17DC5F;
+  color: #fff;
+  /*border: solid 1px #fff;*/
+}
+
+.round-icon.red-round-icon {
+  background-color: #ff0000;
+  color: #fff;
+  /*border: solid 1px #fff;*/
+}
+
+.round-icon.yellow-round-icon {
+  background-color: #FCDE00;
+  color: #fff;
+  /*border: solid 1px #fff;*/
+}
+
+.block {
+  background-color: #f2eceb;
+}
+
+.block [readonly] {
+  background-color: transparent !important;
+}

@@ -1,6 +1,6 @@
 
 
-  <ion-content ng-controller="RegisterLoginCtrl" class="login-form" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
+  <ion-content class="login-form" scroll="false" has-header="false" padding="false"  ng-init="isLogin = true">
     <img src="img/backgrounds/login_full_bg.jpg" alt="Login Full Background" class="full-bg animation-pulseSlow">
     <div id="login-container" class="animation-fadeIn">
                 <!-- Login Title -->
@@ -15,19 +15,19 @@
                     <div class="list">
                       <label class="item item-input item-floating-label">
                         <span class="input-label">Username / Email</span>
-                        <input type="text" placeholder="Username / Email">
+                        <input type="text" placeholder="Username / Email" ng-model="form.email" required>
                       </label>
                       <label class="item item-input item-floating-label">
                         <span class="input-label">Password</span>
-                        <input type="text" placeholder="Password">
+                        <input type="password" placeholder="Password" ng-model="form.password" required>
                       </label>
                     </div>
                     <div class="form-group form-actions">
                         <div class="col-xs-12 text-right">
-                          <button type="submit" class="button button-block button-clear button-assertive">Login</button>
+                          <button type="submit" class="button button-block button-clear button-assertive" ng-click="loginBtn(form)" ng-disabled="(form.email.length == 0) || (form.password.length == 0) ">Login</button>
                           <div class="button-bar">
-                            <button type="submit" class="button button-clear button-stable">Register</button>
-                            <button type="submit" class="button button-clear button-stable">Forgot Password?</button>
+                            <a type="submit" class="button button-clear button-stable" ui-sref="auth.register">Register</a>
+                            <a type="submit" class="button button-clear button-stable" ui-sref="auth.forgotpw">Forgot Password?</a>
                           </div>
                         </div>
                     </div>

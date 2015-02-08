@@ -27,7 +27,7 @@ var app = angular.module('controllers', []);
 //     });
 // });
 
-app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServices, $cordovaGeolocation, $state) {
+app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServices, $cordovaGeolocation, $state, Messaging, $cordovaDevice) {
 
   $scope.whoiswhere = [];
 
@@ -55,6 +55,13 @@ app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServic
       console.log("Error retrieving position " + e.code + " " + e.message);
     }
   );
+
+  $scope.pingMsg = function () {
+          Messaging.ping($cordovaDevice.getUUID(), function (d) {
+            console.log(d);
+            alert('should be reg');
+          });
+  };
 
 
 

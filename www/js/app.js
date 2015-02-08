@@ -77,7 +77,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
 });
 
 
-app.run(function($ionicPlatform) {
+app.run(['$ionicPlatform', '$cordovaPush', function($ionicPlatform, $cordovaPush) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -87,15 +87,68 @@ app.run(function($ionicPlatform) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    var pushConfig = {
+      "senderID": "384367763163"
+    };
+
+    //register the GCM sender Id for the app
+    $cordovaPush.register(pushConfig).then(function(result) {
+      // Success
+      console.log(result);
+    }, function(err) {
+      // Error
+      console.log(err);
+    });
+
+
+    // WARNING: dangerous to unregister (results in loss of tokenID)
+    // $cordovaPush.unregister(options).then(function(result) {
+    //   // Success!
+    // }, function(err) {
+    //   // Error
+    // });
+
+
+
   });
-});
+
+}]);
 
 app.controller('MainCtrl', ['$scope', '$state', function ($scope, $state) {
 
 }]);
 
-app.controller('AppCtrl', ['$scope', '$state', '$rootScope', function ($scope, $state, $rootScope) {
+app.controller('AppCtrl', ['$scope', '$state', '$rootScope', 'Messaging', '$cordovaDevice', function ($scope, $state, $rootScope, Messaging, $cordovaDevice) {
   $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
+      evt.preventDefault();
       console.log(error);
+  });
+
+  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+    switch(notification.event) {
+      case 'registered':
+        if (notification.regid.length > 0 ) {
+          Messaging.setRegId(notification.regid);
+          Messaging.ping($cordovaDevice.getUUID(), function (d) {
+            console.log(d);
+            alert('should be reg');
+          });
+        }
+        break;
+
+      case 'message':
+        // this is the actual push notification. its format depends on the data model from the push server
+        alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+        break;
+
+      case 'error':
+        alert('GCM error = ' + notification.msg);
+        break;
+
+      default:
+        alert('An unknown GCM event has occurred');
+        break;
+    }
   });
 }]);
