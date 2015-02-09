@@ -74,6 +74,19 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
+
+  $httpProvider.interceptors.push('tokenInterceptor');
+  $httpProvider.interceptors.push(['$rootScope', '$q', function($rootScope, $q) {
+    return {
+      responseError: function(response) {
+        if (response.status === 403) {
+          $rootScope.$broadcast('auth-loginRequired');
+        }
+        // otherwise, default behaviour
+        return $q.reject(response);
+      }
+    };
+  }]);
 });
 
 
@@ -152,3 +165,15 @@ app.controller('AppCtrl', ['$scope', '$state', '$rootScope', 'Messaging', '$cord
     }
   });
 }]);
+
+app.factory('tokenInterceptor', function ($window) {
+  return {
+    request: function (config) {
+      config.headers = config.headers || {};
+      if ($window.localStorage.authorizationToken) {
+        config.headers.Authorization = $window.localStorage.authorizationToken;
+      }
+      return config;
+    }
+  };
+});

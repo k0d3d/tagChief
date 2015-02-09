@@ -107,7 +107,7 @@
 
     $scope.$on('event:auth-loginConfirmed', function() {
       $scope.username = null;
-      var url=$location.absUrl() + '#/app/files';
+      var url=$location.absUrl() + '#/app/home';
       $timeout(function() {
         $window.location.href=url;
       });

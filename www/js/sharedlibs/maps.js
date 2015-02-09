@@ -130,15 +130,16 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
             }
 
             function refreshMeMarker () {
-              console.log('i do after 30')
-              scope.myLocation.setMap( scope.map );
-              //delayed so you can see it move
-              setTimeout( function(){
+              if (scope.myLocation) {
+                scope.myLocation.setMap( scope.map );
+                //delayed so you can see it move
+                setTimeout( function(){
 
-                  scope.myLocation.setPosition( new google.maps.LatLng(scope.center.lat, scope.center.lon) );
-                  scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
+                    scope.myLocation.setPosition( new google.maps.LatLng(scope.center.lat, scope.center.lon) );
+                    scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
 
-              }, 1500 );
+                }, 1500 );
+              }
             }
 
             var mapRefresh = $interval(refreshMeMarker, 30000);
