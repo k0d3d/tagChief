@@ -36,7 +36,7 @@
     function($rootScope, $http, api_config, $window, appBootStrap) {
       var service = {
         register: function (user, cb) {
-          $http.post(api_config.CONSUMER_API_URL + '/api/v1/users', {
+          $http.post(api_config.CONSUMER_API_URL + '/api/users', {
             email: encodeURI(user.email),
             phoneNumber: user.phoneNumber,
             password: user.password
@@ -357,10 +357,26 @@
       }
     };
   }]);
-  app.factory('appBootStrap', ['$ionicModal', '$cordovaDevice', '$http', 'api_config', '$q', '$window', function ($ionicModal, $cordovaDevice, $http, api_config, $q, $window) {
+  app.factory('appBootStrap', [
+    '$ionicModal',
+    '$cordovaDevice',
+    '$http',
+    'api_config',
+    '$q',
+    '$window',
+    '$ionicPopover',
+    function ($ionicModal, $cordovaDevice, $http, api_config, $q, $window, $ionicPopover) {
     return {
       activeModal: null,
       thisDevice: $cordovaDevice.getDevice(),
+      tagPopOverinit: function (scope, cb) {
+        // .fromTemplateUrl() method
+        $ionicPopover.fromTemplateUrl('templates/inc/tag-popover.html', {
+          scope: scope,
+        }).then(function(popover) {
+          cb(popover);
+        });
+      },
       clientAuthenticationCheck: function (cb) {
         var self = this,
             deviceId = $cordovaDevice.getUUID();

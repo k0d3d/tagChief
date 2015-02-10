@@ -132,7 +132,14 @@ app.controller('MainCtrl', ['$scope', '$state', function ($scope, $state) {
 
 }]);
 
-app.controller('AppCtrl', ['$scope', '$state', '$rootScope', 'Messaging', '$cordovaDevice', function ($scope, $state, $rootScope, Messaging, $cordovaDevice) {
+app.controller('AppCtrl', [
+  '$scope',
+  '$state',
+  '$rootScope',
+  'Messaging',
+  '$cordovaDevice',
+  '$window',
+  function ($scope, $state, $rootScope, Messaging, $cordovaDevice, $window) {
   $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
       evt.preventDefault();
       console.log(error);
@@ -145,7 +152,6 @@ app.controller('AppCtrl', ['$scope', '$state', '$rootScope', 'Messaging', '$cord
           Messaging.setRegId(notification.regid);
           Messaging.ping($cordovaDevice.getUUID(), function (d) {
             console.log(d);
-            alert('should be reg');
           });
         }
         break;
@@ -163,6 +169,19 @@ app.controller('AppCtrl', ['$scope', '$state', '$rootScope', 'Messaging', '$cord
         alert('An unknown GCM event has occurred');
         break;
     }
+  });
+
+  if (!$window.localStorage.authorizationToken) {
+    $state.go('auth.welcome');
+  }
+
+  $scope.$on('auth-loginRequired', function(e, rejection) {
+    if (!$state.is('app.login')) {
+      $state.go('app.login');
+    }
+  });
+  $scope.$on('event:auth-logout-complete', function() {
+    $state.go('app.home', {}, {reload: true, inherit: false});
   });
 }]);
 

@@ -19,7 +19,7 @@
       .state('auth.welcome', {
         url: "/welcome",
         views: {
-          'fullContent@splash' :{
+          'fullContent@auth' :{
             templateUrl: "templates/splash-first.html",
 
           }
@@ -107,10 +107,11 @@
 
     $scope.$on('event:auth-loginConfirmed', function() {
       $scope.username = null;
-      var url=$location.absUrl() + '#/app/home';
-      $timeout(function() {
-        $window.location.href=url;
-      });
+      $state.go('app.home');
+      // var url=$location.absUrl() + '#/app/home';
+      // $timeout(function() {
+      //   $window.location.href=url;
+      // });
     });
 
     $scope.$on('event:auth-login-failed', function(e, status) {

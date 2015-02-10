@@ -27,7 +27,18 @@ var app = angular.module('controllers', []);
 //     });
 // });
 
-app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServices, $cordovaGeolocation, $state, Messaging, $cordovaDevice) {
+app.controller('HomeCtrl', [
+  '$scope',
+  '$ionicModal',
+  '$ionicPopup',
+  '$timeout',
+  'cordovaServices',
+  '$cordovaGeolocation',
+  '$state',
+  'Messaging',
+  '$cordovaDevice',
+  'appBootStrap',
+  function($scope, $ionicModal, $ionicPopup, $timeout, cordovaServices, $cordovaGeolocation, $state, Messaging, $cordovaDevice, appBootStrap) {
 
   $scope.whoiswhere = [];
   $scope.basel = {
@@ -97,7 +108,41 @@ app.controller('HomeCtrl', function($scope, $ionicModal, $timeout, cordovaServic
     });
   };
 
-});
+  $scope.tagPopOver = function (e) {
+  $scope.data = {}
+
+  // An elaborate, custom popup
+  var myPopup = $ionicPopup.show({
+    templateUrl: 'templates/inc/tag-popover.html',
+    title: 'Tag this Location',
+    subTitle: 'Please use normal things',
+    scope: $scope,
+    buttons: [
+      { text: 'Cancel' },
+      {
+        text: '<b>Tag</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+          if (!$scope.data.wifi) {
+            //don't allow the user to close unless he enters wifi password
+            e.preventDefault();
+          } else {
+            return $scope.data.wifi;
+          }
+        }
+      }
+    ]
+  });
+  myPopup.then(function(res) {
+    console.log('Tapped!', res);
+  });
+  };
+
+  $scope.$on('$destroy', function () {
+    $scope.tagPop.remove();
+  });
+
+}]);
 
 app.controller('UploaderCtrl', ['$scope', 'cordovaServices', function ($scope, cordovaServices) {
 
