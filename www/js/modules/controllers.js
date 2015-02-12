@@ -131,15 +131,25 @@ app.controller('HomeCtrl', [
               }, 5000);
               e.preventDefault();
             } else {
-              return locationsService.addLocation($scope.tagInput);
+              locationsService.addLocation($scope.tagInput)
+              .then(function () {
+                myPopup.close();
+              }, function (err) {
+                $scope.tagInput.errors = {
+                  badRequest: "Tagging location failed. Please try again"
+                };
+              }) ;
+              // return true;
             }
           }
         }
       ]
     });
-    myPopup.then(function(res) {
-      console.log('Tapped!', res);
-    });
+    // myPopup.then(function(res) {
+    //   if (res) {
+    //     myPopup.close();
+    //   }
+    // });
 
     $scope.$on('$destroy', function () {
       myPopup.remove();

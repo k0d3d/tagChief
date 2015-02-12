@@ -371,7 +371,13 @@ app.factory('locationsService', ['$http', function ($http) {
       return  $http.post('/api/v1/hereiam', {coords: coords});
     },
     addLocation: function (locationData) {
-      return $http.post('/api/v1/locations',  locationData);
+      locationData.lon = this.getMyLocation().longitude;
+      locationData.lat = this.getMyLocation().latitude;
+      if (locationData.lon && locationData.lat) {
+        return $http.post('/api/v1/locations',  locationData);
+      } else {
+        return false;
+      }
     },
     listUserLocation: function () {
       return $http.get('/api/vi/locations');
