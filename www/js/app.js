@@ -87,10 +87,26 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       }
     };
   }]);
+ $httpProvider.interceptors.push(['$q', 'api_config', function ($q, api_config) {
+      return {
+          'request': function (config) {
+             if (config.url.indexOf('/api/') > -1 ) {
+                config.url = api_config.CONSUMER_API_URL + '' + config.url;
+                return config || $q.when(config);
+              } else {
+               return config || $q.when(config);
+              }
+
+
+          }
+
+      };
+  }]);
+
 });
 
 
-app.run(['$ionicPlatform', '$cordovaPush', function($ionicPlatform, $cordovaPush) {
+app.run(['$ionicPlatform', '$cordovaPush', function($ionicPlatform, $cordovaPush, appBootStrap) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -113,6 +129,8 @@ app.run(['$ionicPlatform', '$cordovaPush', function($ionicPlatform, $cordovaPush
       // Error
       console.log(err);
     });
+
+    appBootStrap.strapCordovaDevice();
 
 
     // WARNING: dangerous to unregister (results in loss of tokenID)
@@ -139,7 +157,10 @@ app.controller('AppCtrl', [
   'Messaging',
   '$cordovaDevice',
   '$window',
-  function ($scope, $state, $rootScope, Messaging, $cordovaDevice, $window) {
+  'appBootStrap',
+  '$interval',
+  'locationsService',
+  function ($scope, $state, $rootScope, Messaging, $cordovaDevice, $window, appBootStrap, $interval, locationsService) {
   $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
       evt.preventDefault();
       console.log(error);
@@ -175,13 +196,28 @@ app.controller('AppCtrl', [
     $state.go('auth.welcome');
   }
 
+  $interval(function () {
+    if ($window.localStorage.authorizationToken) {
+      var l = locationsService.getMyLocation() || {};
+      if (!l.latitude && !l.longitude) {
+        return false;
+      }
+      locationsService.pingUserLocation(l);
+    }
+  }, 10000);
+
   $scope.$on('auth-loginRequired', function(e, rejection) {
     if (!$state.is('app.login')) {
-      $state.go('app.login');
+      $state.go('app.login', [], {
+        location: true
+      });
     }
   });
   $scope.$on('event:auth-logout-complete', function() {
     $state.go('app.home', {}, {reload: true, inherit: false});
+  });
+  $scope.$on('$destroy', function() {
+    appBootStrap.strapCordovaDevice().cancel();
   });
 }]);
 

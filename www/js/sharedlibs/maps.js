@@ -93,10 +93,7 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
 
 
             function createMap() {
-              console.log(scope.center);
-              // if (!scope.center.lat.length || !scope.center.lon.length) {
-              //   return false;
-              // }
+
 
               Initializer.mapsInitialized
               .then(function(){
@@ -133,7 +130,7 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
               if (scope.myLocation) {
                 scope.myLocation.setMap( scope.map );
                 //delayed so you can see it move
-                setTimeout( function(){
+                $timeout( function(){
 
                     scope.myLocation.setPosition( new google.maps.LatLng(scope.center.lat, scope.center.lon) );
                     scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
@@ -147,7 +144,8 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
               $interval.cancel(mapRefresh);
             });
 
-            $timeout(createMap(), 0);
+            angular.element(document).ready(createMap());
+            // $timeout(createMap(), 0);
 
             // Info window trigger function
             // function onItemClick(pin, label, datum, url) {

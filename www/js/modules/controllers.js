@@ -38,7 +38,8 @@ app.controller('HomeCtrl', [
   'Messaging',
   '$cordovaDevice',
   'appBootStrap',
-  function($scope, $ionicModal, $ionicPopup, $timeout, cordovaServices, $cordovaGeolocation, $state, Messaging, $cordovaDevice, appBootStrap) {
+  'locationsService',
+  function($scope, $ionicModal, $ionicPopup, $timeout, cordovaServices, $cordovaGeolocation, $state, Messaging, $cordovaDevice, appBootStrap, locationsService) {
 
   $scope.whoiswhere = [];
   $scope.basel = {
@@ -54,52 +55,47 @@ app.controller('HomeCtrl', [
   $cordovaGeolocation.getCurrentPosition(posOptions)
   .then(
     function(position) {
-
       $scope.position=position;
       var c = position.coords;
       $scope.basel = {
         lat: c.latitude,
         lon: c.longitude
       };
+      locationsService.setMyLocation(position.coords);
 
-
-      // var watchOptions = {
-      //   frequency : 5000,
-      //   timeout : 3000,
-      //   enableHighAccuracy: true // may cause errors if true
-      // };
-
-      var watch = $cordovaGeolocation.watchPosition(posOptions);
-      watch.then(
-        null,
-        function(err) {
-          // error
-        },
-        function(position) {
-          console.log('position changed');
-          $scope.basel = {
-            lat: position.coords.latitude,
-            lon: position.coords.longitude
-          };
-      });
-
-      // some points of interest to show on the map
-      // to be user as markers, objects should have "lat", "lon", and "name" properties
-      $scope.whoiswhere.push = {
-        "name": "My Marker",
-        "lat": $scope.basel.lat,
-        "lon": $scope.basel.lon
-      };
-
-
-      $scope.$on('clearGeoWatch', function (e) {
-        watch.clearWatch();
-      });
     },
     function(e) {
       console.log("Error retrieving position " + e.code + " " + e.message);
     }
   );
+
+  var watch = $cordovaGeolocation.watchPosition(posOptions);
+  watch.then(
+    null,
+    function(e) {
+      // error
+      console.log("Error retrieving position " + e.code + " " + e.message);
+    },
+    function(position) {
+      $scope.basel = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      };
+      locationsService.setMyLocation(position.coords);
+  });
+
+  // some points of interest to show on the map
+  // to be user as markers, objects should have "lat", "lon", and "name" properties
+  $scope.whoiswhere.push = {
+    "name": "My Marker",
+    "lat": $scope.basel.lat,
+    "lon": $scope.basel.lon
+  };
+
+
+  $scope.$on('$destroy', function (e) {
+    watch.clearWatch();
+  });
 
   $scope.pingMsg = function () {
     Messaging.ping($cordovaDevice.getUUID(), function (d) {
@@ -109,38 +105,48 @@ app.controller('HomeCtrl', [
   };
 
   $scope.tagPopOver = function (e) {
-  $scope.data = {}
+    $scope.tagInput = {};
 
-  // An elaborate, custom popup
-  var myPopup = $ionicPopup.show({
-    templateUrl: 'templates/inc/tag-popover.html',
-    title: 'Tag this Location',
-    subTitle: 'Please use normal things',
-    scope: $scope,
-    buttons: [
-      { text: 'Cancel' },
-      {
-        text: '<b>Tag</b>',
-        type: 'button-positive',
-        onTap: function(e) {
-          if (!$scope.data.wifi) {
-            //don't allow the user to close unless he enters wifi password
-            e.preventDefault();
-          } else {
-            return $scope.data.wifi;
+    // An elaborate, custom popup
+    var myPopup = $ionicPopup.show({
+      templateUrl: 'templates/inc/tag-popover.html',
+      title: 'Tag this Location',
+      subTitle: 'Please use normal things',
+      scope: $scope,
+      buttons: [
+        {
+          text: 'Cancel'
+        },
+        {
+          text: '<b>Tag</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            if (!$scope.tagInput.name) {
+              //don't allow the user to close unless he enters wifi password
+              $scope.tagInput.errors = {
+                noName: "Please enter a name for this location"
+              };
+              $timeout(function () {
+                $scope.tagInput.errors = null;
+              }, 5000);
+              e.preventDefault();
+            } else {
+              return locationsService.addLocation($scope.tagInput);
+            }
           }
         }
-      }
-    ]
-  });
-  myPopup.then(function(res) {
-    console.log('Tapped!', res);
-  });
+      ]
+    });
+    myPopup.then(function(res) {
+      console.log('Tapped!', res);
+    });
+
+    $scope.$on('$destroy', function () {
+      myPopup.remove();
+    });
+
   };
 
-  $scope.$on('$destroy', function () {
-    $scope.tagPop.remove();
-  });
 
 }]);
 
