@@ -36,7 +36,8 @@
     function($rootScope, $http, api_config, $window, appBootStrap) {
       var service = {
         register: function (user, cb) {
-          $http.post(api_config.CONSUMER_API_URL + '/api/users', {
+          $http.post('/api/users', {
+          // $http.post(api_config.CONSUMER_API_URL + '/api/users', {
             email: encodeURI(user.email),
             phoneNumber: user.phoneNumber,
             password: user.password
@@ -52,10 +53,11 @@
           var authHeaderString = 'Basic ' + btoa(encodeURIComponent(user.email) + ':' + user.password);
           // console.log(atob(authHeaderString));
           $http.defaults.headers.common.Authorization =  authHeaderString;
-          $http.post(api_config.CONSUMER_API_URL + '/api/v1/users/auth', {
+          $http.post('/api/v1/users/auth', {
+          // $http.post(api_config.CONSUMER_API_URL + '/api/v1/users/auth', {
             // email: encodeURI(user.email),
             // password: user.password
-            device: appBootStrap.thisDevice.getUUID
+            device: appBootStrap.thisDevice
           })
           .success(function (data, status) {
             $http.defaults.headers.common.Authorization = authHeaderString;  // Step 1
@@ -95,7 +97,8 @@
           });
         },
         logout: function(user) {
-          $http.delete(api_config.CONSUMER_API_URL + '/api/v1/users/auth', {})
+          $http.delete('/api/v1/users/auth', {})
+          // $http.delete(api_config.CONSUMER_API_URL + '/api/v1/users/auth', {})
           .finally(function(data) {
             delete $http.defaults.headers.common.Authorization;
             delete $window.localStorage.authorizationToken;
@@ -108,138 +111,7 @@
       };
       return service;
   }]);
-  app.factory('Keeper', ['$http', '$rootScope', 'api_config', function($http, $rootScope, api_config){
-      var a = {};
 
-      a.currentFolder = '';
-
-      // a.currentUser = $cookies.throne;
-
-      a.path = [];
-
-      a.addToCrumb = function (ob) {
-        a.path.push(ob);
-        $rootScope.$broadcast('refresh_breadcrumb');
-      };
-
-
-      /**
-       * [thisUserFiles request for files belonging to this user]
-       * @param  {[type]}   param
-       * @param  {Function} callback
-       * @return {[type]}
-       */
-      a.thisUserFiles = function(param, callback){
-        return $http.get(api_config.CONSUMER_API_URL + '/api/v1/users/files', param)
-                .then(function(data) {
-                  return data;
-                }, function (data, status) {
-                  return status;
-                });
-        // .success(function(data, status){
-        //     callback(data);
-        // })
-        // .error(function(data, status){
-        //     callback(false);
-        // });
-      };
-
-      /**
-       * [thisUserQueue request for this users uncompleted queue]
-       * @param  {[type]}   param
-       * @param  {Function} callback
-       * @return {[type]}
-       */
-      a.thisUserQueue = function(param, callback){
-        $http.get(api_config + '/api/internal/users/queue', param)
-        .success(function(data, status){
-            callback(data);
-          })
-        .error(function(data, status){
-            console.log(data);
-            callback(false);
-          });
-      };
-
-      /**
-       * [deleteThisFile deletes a file belonging to the user]
-       * @param  {[type]}   ixid
-       * @param  {Function} callback
-       * @return {[type]}
-       */
-      a.deleteThisFile = function(ixid, callback){
-        $http.delete(api_config + '/api/internal/users/files/'+ixid)
-        .success(function(data, status){
-          callback(data);
-        })
-        .error(function(data, status){
-
-        });
-      };
-      /**
-       * [deleteThisFolder deletes a folder belonging to the user]
-       * @param  {[type]}   folderId
-       * @param  {Function} callback
-       * @return {[type]}
-       */
-      a.deleteThisFolder = function(folderId, callback){
-        $http.delete(api_config + '/api/internal/users/folder/' + folderId)
-        .success(function(data, status){
-          callback(data);
-        })
-        .error(function(data, status){
-
-        });
-      };
-
-      /**
-       * [removeFromQueue removes an upload from the queue]
-       * @param  {[type]}   mid
-       * @param  {Function} callback
-       * @return {[type]}
-       */
-      a.removeFromQueue = function(mid, callback){
-        $http.delete('/api/internal/users/queue/'+mid)
-        .success(function(data, success){
-          callback();
-        })
-        .error(function(data, success) {
-            /* Act on the event */
-        });
-      };
-
-      /**
-       * [updateTags updates tags belonging ]
-       * @param  {[type]}   tags
-       * @param  {Function} cb
-       * @return {[type]}
-       */
-      a.updateTags = function(tags, file_id, cb){
-        $http.put('/api/internal/users/files/'+file_id+'/tags', {tags: tags})
-        .success(function(d){
-
-        })
-        .error(function(d){
-
-        });
-      };
-
-      a.search = function(query, cb){
-        $http.get('/api/search/'+query)
-        .success(function(d){
-          cb(d);
-        })
-        .error(function(err){
-
-        });
-      };
-
-      a.makeFolder = function(foldername, parent, cb){
-
-      };
-
-      return a;
-    }]);
   app.factory('cordovaServices', ['$window', '$ionicPlatform', function ($window, $ionicPlatform) {
     return {
       filesystem: function (dataPath, cb) {
@@ -365,10 +237,19 @@
     '$q',
     '$window',
     '$ionicPopover',
-    function ($ionicModal, $cordovaDevice, $http, api_config, $q, $window, $ionicPopover) {
+    '$timeout',
+    function ($ionicModal, $cordovaDevice, $http, api_config, $q, $window, $ionicPopover, $timeout) {
     return {
       activeModal: null,
-      thisDevice: $cordovaDevice.getDevice(),
+      thisDevice: null,
+      strapCordovaDevice: function () {
+        var self = this;
+        console.log(arguments);
+        console.log('might destroy');
+        return $timeout(function () {
+          self.thisDevice = $cordovaDevice.getDevice();
+        });
+      },
       tagPopOverinit: function (scope, cb) {
         // .fromTemplateUrl() method
         $ionicPopover.fromTemplateUrl('templates/inc/tag-popover.html', {
@@ -380,7 +261,7 @@
       clientAuthenticationCheck: function (cb) {
         var self = this,
             deviceId = $cordovaDevice.getUUID();
-        return $http.get(api_config.CONSUMER_API_URL + '/api/v1/clients/' + deviceId + '?field_type=device')
+        return $http.get(api_config.CONSUMER_API_URL + '/api/v1/clients/' + deviceId + '?field_type=device');
         // .success(function (client) {
         //   cb(client);
         // })
@@ -475,6 +356,41 @@
     }
   };
 }]);
+
+app.factory('locationsService', ['$http', function ($http) {
+  var self = this;
+  self.myLocation = null;
+  return {
+    setMyLocation: function setMyLocation (coords){
+      self.myLocation = coords;
+    },
+    getMyLocation: function getMyLocation () {
+      return self.myLocation;
+    },
+    pingUserLocation: function (coords) {
+      return  $http.post('/api/v1/hereiam', {coords: coords});
+    },
+    addLocation: function (locationData) {
+      locationData.lon = this.getMyLocation().longitude;
+      locationData.lat = this.getMyLocation().latitude;
+      if (locationData.lon && locationData.lat) {
+        return $http.post('/api/v1/locations',  locationData);
+      } else {
+        return false;
+      }
+    },
+    listUserLocation: function () {
+      return $http.get('/api/vi/locations');
+    },
+    deleteUserLocation: function (locationData) {
+      return $http.delete('/api/v1/locations/:locationId');
+    },
+    locationProximity: function (locationData) {
+      return $http.get('/api/v1/geo/lat/:lat/lon/:lon');
+    }
+  };
+}]);
+
 
 })();
 

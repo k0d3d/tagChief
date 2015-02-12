@@ -1,0 +1,10 @@
+  <ion-content class="view-content" scroll="false">
+    <div class="s-c" resize-splash-div ng-style="splashImgDiv">
+      <div class="splash-doc" ng-class="splashImg">
+        <div class="splash-actions" ng-style="splashActionDiv">
+          <a ui-sref="auth.login" class="button button-energized button-block" ng-class="{'button-full': splashImgIsP, 'button-150': !splashImgIsP}">Sign in</a>
+          <a ui-sref="auth.register" class="button button-dark button-block" ng-class="{'button-full': splashImgIsP, 'button-150': !splashImgIsP}">Register</a>
+        </div>
+      </div>
+    </div>
+  </ion-content>

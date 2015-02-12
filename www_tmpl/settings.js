@@ -4,10 +4,13 @@ var config_data = {
     'app_name': 'TagChief Mobile'
   },
   'api_config': {
-    // 'url': 'http://drugstoc.ng'
-    // 'url': 'http://192.168.1.3:3000'
-    'CONSUMER_API_URL': "/* @echo CONSUMER_API_URL */",
-    'FILEVAULT_API_URL': "/* @echo FILEVAULT_API_URL */"
+    //  @ifdef BUILD_ENV_PRODUCTION'
+    'CONSUMER_API_URL': "/* @echo CONSUMER_API_URL */"
+    // @endif
+
+    //  @ifdef BUILD_ENV_TEST
+    'CONSUMER_API_URL': "/* @echo CONSUMER_API_URL */:3000"
+    // @endif
   }
 };
 angular.forEach(config_data,function(key,value) {

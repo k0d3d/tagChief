@@ -105,9 +105,17 @@
       });
     };
 
+    $scope.goBack = function () {
+      $state.go('app.login', [], {
+        location: true
+      });
+    };
+
     $scope.$on('event:auth-loginConfirmed', function() {
-      $scope.username = null;
-      $state.go('app.home');
+      $scope.email = $scope.passport = null;
+      $state.go('app.home', [], {
+        location: true
+      });
       // var url=$location.absUrl() + '#/app/home';
       // $timeout(function() {
       //   $window.location.href=url;

@@ -1,5 +1,7 @@
 module.exports = function(grunt) {
   var ipAddress =  grunt.option('host') || 'localhost';
+  var build_env =  grunt.option('build_env') || 'test';
+  var envO = {};
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -7,9 +9,9 @@ module.exports = function(grunt) {
     preprocess: {
       options: {
         context: {
-          // BUILD_ENV: 'TEST'
-          CONSUMER_API_URL: 'http://' + ipAddress + ':3000',
-          FILEVAULT_API_URL: 'http://' + ipAddress + ':3001'
+          BUILD_ENV_PRODUCTION: build_env === 'production',
+          BUILD_ENV_TEST: build_env === 'test',
+          CONSUMER_API_URL: 'http://' + ipAddress,
         }
       },
       test: {
@@ -19,7 +21,7 @@ module.exports = function(grunt) {
       },
       prod: {
         files: {
-          './www/js/sharedlibs/settings.js': './www_tmpl/settings.js'
+          './www/js/sharedlibs/settings.js': './www_tmpl/prod-settings.js'
         }
       }
     },
@@ -28,14 +30,14 @@ module.exports = function(grunt) {
 
       },
       test: {
-          // BUILD_ENV: 'TEST'
+          BUILD_ENV: 'TEST',
           CONSUMER_API_URL: 'http://' + ipAddress + ':3000',
           FILEVAULT_API_URL: 'http://' + ipAddress + ':3001'
       },
       prod : {
-          BUILD_ENV: 'TEST',
-          CONSUMER_API_URL: 'http://' + ipAddress + ':3000',
-          FILEVAULT_API_URL: 'http://' + ipAddress + ':3001'
+          BUILD_ENV: 'PRODUCTION',
+          CONSUMER_API_URL: 'http://' + ipAddress,
+          FILEVAULT_API_URL: 'http://' + ipAddress
       }
     },
     exec: {
@@ -49,6 +51,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-preprocess');
   grunt.loadNpmTasks('grunt-exec');
   // Default task(s).
-  grunt.registerTask('runionic', ['preprocess:test']);
+  grunt.registerTask('runionic', ['preprocess']);
 
 };

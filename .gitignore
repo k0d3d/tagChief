@@ -4,3 +4,6 @@
 node_modules/
 platforms/
 !platforms/android/AndroidManifest.xml
+engine/
+hooks/
+plugins/org.crosswalk.engine
