@@ -8,6 +8,7 @@
   app.directive('resizeContentDiv', ['$window', function ($window) {
     return {
       link: function (scope, ele, attrs) {
+        console.log('haba');
         $($window).on('orientationchange resize ready', function () {
           var screenWidth = $($window).width();
           if (screenWidth > 600) {
@@ -17,6 +18,8 @@
       }
     };
   }]);
+
+
 
   app.directive('resizeSplashDiv', ['$window', '$ionicPlatform', function ($window, $ionicPlatform) {
     return {

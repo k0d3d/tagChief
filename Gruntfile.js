@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
   var ipAddress =  grunt.option('host') || 'localhost';
-  var build_env =  grunt.option('build_env') || 'test';
-  var envO = {};
+  var build_env =  grunt.option('build_env');
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -9,8 +8,8 @@ module.exports = function(grunt) {
     preprocess: {
       options: {
         context: {
-          BUILD_ENV_PRODUCTION: build_env === 'production',
-          BUILD_ENV_TEST: build_env === 'test',
+          BUILD_ENV_PRODUCTION: (build_env === 'production'),
+          BUILD_ENV_TEST: (build_env === 'test'),
           CONSUMER_API_URL: 'http://' + ipAddress,
         }
       },

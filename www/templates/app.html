@@ -1,4 +1,7 @@
 <ion-view>
+    <div class="is-request-loading" ng-show="isRequesting">
+      <i class="fa fa-circle-o-notch fa-spin"></i>
+    </div>
     <ion-side-menus ng-controller="MainCtrl">
 
       <ion-side-menu-content drag-content="true">
@@ -33,34 +36,34 @@
       <ion-side-menu side="left">
         <ion-content id="sidebar" class="">
           <ion-list class="sidebar-nav">
-            <ion-item nav-clear menu-close ng-href="#/app/welcome" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/auth/welcome" active-href class="">
               Welcome
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/auth/login" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/auth/login" active-href class="">
               Sign In
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/auth/register" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/auth/register" active-href class="">
               Register
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/auth/forgotpw" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/auth/forgotpw" active-href class="">
               Forgot Password
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/app/home" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/tc/home" active-href class="">
               Landing Page
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/app/locations" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/tc/locations" active-href class="">
               Location Feed
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/app/location/01" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/tc/location/01" active-href class="">
               Location Profile
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/app/me" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/tc/me" active-href class="">
               User Profile
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/app/me/achievements" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/tc/me/achievements" active-href class="">
               User Achievements
             </ion-item>
-            <ion-item nav-clear menu-close ng-href="#/app/me/activity" active-href class="">
+            <ion-item nav-clear menu-close ng-href="#/app/tc/me/activity" active-href class="">
               Activity Page
             </ion-item>
           </ion-list>

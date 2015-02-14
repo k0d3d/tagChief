@@ -4,16 +4,156 @@
 		"selected_items":
 		[
 			[
+				"location",
+				"locationData"
+			],
+			[
+				"consol",
+				"console.log(message);"
+			],
+			[
+				"getM",
+				"getMyLocation"
+			],
+			[
+				"device",
+				"deviceFn〔variable〕"
+			],
+			[
+				"locati",
+				"locationId〔argument〕"
+			],
+			[
+				"save",
+				"saveUserLastLocation〔function〕"
+			],
+			[
+				"user",
+				"user.js"
+			],
+			[
+				"last",
+				"lastSeenAt"
+			],
+			[
+				"review",
+				"reviewId"
+			],
+			[
+				"delete",
+				"deleteLocationReview"
+			],
+			[
+				"Device",
+				"DeviceObject〔class〕"
+			],
+			[
+				"count",
+				"countTaggedLocation〔variable〕"
+			],
+			[
+				"loca",
+				"locations.js"
+			],
+			[
+				"module",
+				"moduleexports	module.exports"
+			],
+			[
+				"Check",
+				"CheckInSchema"
+			],
+			[
+				"Reviw",
+				"ReviewSchema"
+			],
+			[
+				"build",
+				"build_env"
+			],
+			[
+				"app",
+				"appBootStrap〔argument〕"
+			],
+			[
+				"cord",
+				"cordovaDevice"
+			],
+			[
+				"ta",
+				"tagPop"
+			],
+			[
+				"if",
+				"ifExists"
+			],
+			[
+				"conso",
+				"console.log(message);"
+			],
+			[
+				"cordo",
+				"cordovaMetadata"
+			],
+			[
+				"client",
+				"clientAuthenticationCreate"
+			],
+			[
+				"myL",
+				"myLocation"
+			],
+			[
+				"remove",
+				"removeClientByDeviceId"
+			],
+			[
+				"clientAuth",
+				"clientAuthentication"
+			],
+			[
+				"dev",
+				"deviceName"
+			],
+			[
+				"find",
+				"findByClientDeviceId"
+			],
+			[
+				"this",
+				"thisDevice"
+			],
+			[
+				"map",
+				"mapRefresh"
+			],
+			[
+				"creae",
+				"createMap"
+			],
+			[
+				"regid",
+				"regid"
+			],
+			[
+				"regist",
+				"registerationId"
+			],
+			[
+				"Devc",
+				"DeviceObject〔function〕"
+			],
+			[
+				"backl",
+				"background-color"
+			],
+			[
 				"margn",
 				"margin-top"
 			],
 			[
 				"margin",
 				"margin"
-			],
-			[
-				"myL",
-				"myLatLng"
 			],
 			[
 				"text",
@@ -26,10 +166,6 @@
 			[
 				"po",
 				"position"
-			],
-			[
-				"cord",
-				"cordovaServices"
 			],
 			[
 				"ech",
@@ -378,200 +514,16 @@
 			[
 				"for",
 				"for	for (…) {…}"
-			],
-			[
-				"Client",
-				"ClientSchema"
-			],
-			[
-				"Media",
-				"MediaSchema"
-			],
-			[
-				"console",
-				"console.log"
-			],
-			[
-				"uti",
-				"utility"
-			],
-			[
-				"con",
-				"constructor	JS constructor pattern"
-			],
-			[
-				"nav",
-				"navbar"
-			],
-			[
-				"_form",
-				"_formatFileSize"
-			],
-			[
-				"url",
-				"baseUrl"
-			],
-			[
-				"seesur",
-				"seesurfToken"
-			],
-			[
-				"sees",
-				"seesurfToken"
-			],
-			[
-				"requ",
-				"require"
-			],
-			[
-				"clear",
-				"clearQueue	.clearQueue()"
-			],
-			[
-				"ang",
-				"angular.forEach	AngularJS"
-			],
-			[
-				"mA",
-				"margin-top"
-			],
-			[
-				"fon",
-				"font-size"
-			],
-			[
-				"drop",
-				"drop-overlay"
-			],
-			[
-				"inline",
-				"inline-block"
-			],
-			[
-				"backgroung",
-				"background-image"
-			],
-			[
-				"uniqu",
-				"uniqueValidator"
-			],
-			[
-				"backgrund",
-				"background-color"
-			],
-			[
-				"backg",
-				"background-color"
-			],
-			[
-				"dire",
-				"directives"
-			],
-			[
-				"tem",
-				"templates"
-			],
-			[
-				"back",
-				"background-color"
-			],
-			[
-				"fff",
-				"FFFFFF"
-			],
-			[
-				"login",
-				"loginParams"
-			],
-			[
-				"register",
-				"registerController"
-			],
-			[
-				"IXI",
-				"IXIT.LoginApp"
-			],
-			[
-				"Login",
-				"LoginApp"
-			],
-			[
-				"form",
-				"formdata"
-			],
-			[
-				"Back",
-				"Backbone"
-			],
-			[
-				"Bak",
-				"Backbone.Marionette"
-			],
-			[
-				"order",
-				"orderId"
-			],
-			[
-				"Order",
-				"OrderStatus"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "www/css/main.css",
+			"file": "www/js/sharedlibs/services.js",
 			"settings":
 			{
-				"buffer_size": 70139,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "www/templates/app.html",
-			"settings":
-			{
-				"buffer_size": 3147,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/locations.html",
-			"settings":
-			{
-				"buffer_size": 7831,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/location.html",
-			"settings":
-			{
-				"buffer_size": 2850,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/css/style.css",
-			"settings":
-			{
-				"buffer_size": 2715,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/sharedlibs/directives.js",
-			"settings":
-			{
-				"buffer_size": 5627,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/css/themes.css",
-			"settings":
-			{
-				"buffer_size": 1312,
+				"buffer_size": 15284,
 				"line_ending": "Unix"
 			}
 		},
@@ -579,28 +531,12 @@
 			"file": "www/js/app.js",
 			"settings":
 			{
-				"buffer_size": 5761,
+				"buffer_size": 6233,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/js/modules/controllers.js",
-			"settings":
-			{
-				"buffer_size": 4691,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/modules/auth.js",
-			"settings":
-			{
-				"buffer_size": 3610,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/full-screen.html",
+			"file": "www/templates/full-screen.html",
 			"settings":
 			{
 				"buffer_size": 74,
@@ -608,10 +544,66 @@
 			}
 		},
 		{
-			"file": "www/js/sharedlibs/maps.js",
+			"file": "www/templates/app.html",
 			"settings":
 			{
-				"buffer_size": 8223,
+				"buffer_size": 3182,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/modules/auth.js",
+			"settings":
+			{
+				"buffer_size": 3823,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/css/style.css",
+			"settings":
+			{
+				"buffer_size": 3969,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/kingkoded/.cache/.fr-P28aj6/photoTilt-master/README.md",
+			"settings":
+			{
+				"buffer_size": 1052,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/splash-first.html",
+			"settings":
+			{
+				"buffer_size": 997,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/kingkoded/FedProjects/tagChief-node/views/layouts/mobile.jade",
+			"settings":
+			{
+				"buffer_size": 298,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/kingkoded/FedProjects/tagChief-node/views/oauth/oauth-dialog.jade",
+			"settings":
+			{
+				"buffer_size": 819,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/kingkoded/.cache/.fr-oLqCJF/photoTilt-master/demo/index.html",
+			"settings":
+			{
+				"buffer_size": 668,
 				"line_ending": "Unix"
 			}
 		}
@@ -716,22 +708,115 @@
 	},
 	"expanded_folders":
 	[
-		"/home/kingkoded/FedProjects/tagChief-node"
+		"/home/kingkoded/FedProjects/tagChief-node",
+		"/home/kingkoded/FedProjects/tagChief-node/views",
+		"/home/kingkoded/FedProjects/tagChief-node/views/layouts",
+		"/home/kingkoded/FedProjects/tagChief-node/views/oauth"
 	],
 	"file_history":
 	[
-		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/page_ready_timeline.html",
-		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/page_ready_user_profile.html",
-		"/home/kingkoded/FedProjects/tagchief/www/index.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/login.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/register.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/plugins.js",
+		"/home/kingkoded/FedProjects/tagchief/www/index.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/app__.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
+		"/home/kingkoded/FedProjects/tagchief/www_tmpl/settings.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user/user.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
+		"/home/kingkoded/FedProjects/tagchief/Gruntfile.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user/locations.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/device.js",
+		"/home/kingkoded/FedProjects/tagchief/.gitignore",
+		"/home/kingkoded/FedProjects/tagChief-node/models/review.js",
+		"/home/kingkoded/FedProjects/tagchief/README.md",
+		"/home/kingkoded/FedProjects/tagChief-node/models/review.js\nreview.js",
+		"/home/kingkoded/FedProjects/tagChief-node/review.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/routes.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/tag-popover.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
+		"/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
+		"/home/kingkoded/FedProjects/tagChief-node/server.js",
 		"/home/kingkoded/FedProjects/tagchief/config.xml",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/message.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/location.js",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/event_register.js",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/email/mailer.js",
+		"/home/kingkoded/FedProjects/tagchief/www_tmpl/prod-settings.js",
+		"/home/kingkoded/FedProjects/tagChief-node/README.md",
+		"/home/kingkoded/FedProjects/tagchief/hooks/after_plugin_add/010_register_plugin.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/mongoose/examples/replicasets/person.js",
+		"/home/kingkoded/FedProjects/tagChief-node/config/default.json",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
+		"/home/kingkoded/FedProjects/tagChief-node/config/production.json",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/commons.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/media.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/vault.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
+		"/home/kingkoded/FedProjects/tagchief/www/css/animation.css",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/splash-first.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/directives.js",
+		"/home/kingkoded/FedProjects/tagchief/plugins/com.phonegap.plugins.PushPlugin/spec/jasmine.css",
+		"/home/kingkoded/FedProjects/tagchief/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.css",
+		"/home/kingkoded/FedProjects/tagchief/plugins/com.phonegap.plugins.PushPlugin/src/wp8/PushPlugin.cs",
+		"/home/kingkoded/FedProjects/tagchief/plugins/com.ionic.keyboard/plugin.xml",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/ProfileLauncherView.js",
+		"/home/kingkoded/FedProjects/tagChief-node/Procfile",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/push.js",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/user.js",
+		"/home/kingkoded/FedProjects/tagChief-node/views/oauth/oauth-dialog.jade",
+		"/home/kingkoded/FedProjects/tagchief/plugins/android.json",
+		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/oauth-server/oauth-server.js",
+		"/home/kingkoded/Projects/bncauth/controllers/oauth-server/oauth-server.js",
+		"/home/kingkoded/FedProjects/tagchief/platforms/android/AndroidManifest.xml",
+		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2/access_token.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2/oauth_client.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/passport-http/lib/passport-http/strategies/basic.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/shelljs/test/resources/chmod/b/a/b/.npmignore",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/forever-monitor/node_modules/ps-tree/node_modules/event-stream/node_modules/optimist/test/_/argv.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/passport-facebook/lib/strategy.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/cliff/examples/string-rows.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-s3/test/s3Task.js",
+		"/home/kingkoded/FedProjects/tagchief/plugins/nl.x-services.plugins.launchmyapp/plugin.xml",
+		"/home/kingkoded/FedProjects/tagChief-node/.gitignore",
+		"/home/kingkoded/FedProjects/tagchief/platforms/android/assets/www/templates/auth/forgotpw.html",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/.bin/forever",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-bower-task/node_modules/bower/node_modules/mout/object/forOwn.js",
+		"/home/kingkoded/FedProjects/tagchief/angular-authentication-example-master/LICENSE",
+		"/home/kingkoded/FedProjects/tagChief-node/config/development.json",
+		"/home/kingkoded/FedProjects/tagChief-node/config/express.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/download.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/v4ult.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/cabinet.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/clients._",
+		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/css/plugins.css",
+		"/home/kingkoded/Projects/bncauth/lib/auth/auth.js",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/bcrypt/Makefile",
+		"/home/kingkoded/FedProjects/tagChief-node/models/media/device.js",
+		"/home/kingkoded/FedProjects/tagchief/package.json",
+		"/home/kingkoded/FedProjects/ixit_mobile/package.json",
+		"/home/kingkoded/FedProjects/tagChief-node/package.json",
+		"/home/kingkoded/FedProjects/tagChief-node/models/media/media.js",
+		"/home/kingkoded/FedProjects/tagchief/www/css/main.css",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/location.html",
+		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
+		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/page_ready_user_profile.html",
+		"/home/kingkoded/FedProjects/tagchief/www/css/themes.css",
+		"/home/kingkoded/FedProjects/tagchief/www/full-screen.html",
+		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/page_ready_timeline.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/plugins.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/<ion-view>\n  <ion-nav-view name=\"fullContent\"></ion-nav-view>\n</ion-view>\n<ion-view>\n  <ion-nav-view name=\"fullContent\"></ion-nav-view>\n</ion-view>\nfull-screen.html",
 		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/page_comp_maps.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
 		"/home/kingkoded/FedProjects/tagchief/gulpfile.js",
 		"/tmp/fz3temp-1/request.php",
 		"/tmp/fz3temp-1/contact.php",
@@ -757,97 +842,7 @@
 		"/home/kingkoded/FedProjects/ixit_mobile/plugins/android.json",
 		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/aFileChooser-master/aFileChooserExample/src/com/ipaulpro/afilechooserexample/FileChooserExampleActivity.java",
 		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/com.ixit.filenamequery/plugin.xml",
-		"/home/kingkoded/.cache/.fr-xYVGju/aFileChooser-master/aFileChooserExample/AndroidManifest.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/ixit-filename-query/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/IXITFileNameQuery/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/steroids-echo-plugin-master/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.appgyver.plugin.Echo/src/android/com/appgyver/plugin/Echo.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.appgyver.plugin.Echo/www/EchoPlugin.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/platforms/android/src/com/appgyver/plugin/Echo.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/ixit-filename-query/src/android/com/ixit/plugin/Filenamequery.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.megster.cordova.FileChooser/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/platforms/android/src/com/ixit/filenamequery/plugin/FileNameQuery.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/IXITFileNameQuery/www/IXITFileNameQuery.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.ixit.filenamequery/www/IXITFileNameQuery.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/IXITFileNameQuery/src/com/ixit/filenamequery/FileNameQuery.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.ixit.filenamequery/src/com/ixit/filenamequery/FileNameQuery.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/www/css/app.scss",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/IXITFileChooser/src/org/ixit/filechooser/IXITFileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/org.ixit.filechooser/src/org/ixit/filechooser/IXITFileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/platforms/android/src/org/ixit/filechooser/plugin/IXITFileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/IXITFileChooser/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/platforms/android/res/values/strings.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/IXITFileChooser/res/values/strings.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/platforms/android/res/xml/config.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/config.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/IXITFileChooser/src/com/ixit/filechooser/IXITFileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.megster.cordova.FileChooser/README.md",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.cesidiodibenedetto.filechooser/src/android/filechooser/FileChooserActivity.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.cesidiodibenedetto.filechooser/src/android/filechooser/FileListAdapter.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.cesidiodibenedetto.filechooser/src/android/filechooser/FileListFragment.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.cesidiodibenedetto.filechooser/src/android/filechooser/LocalStorageProvider.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.cesidiodibenedetto.filechooser/src/android/FileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.ixit.filechooser/www/IXITFileChooser.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.ixit.filechooser/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.ixit.filechooser/src/com/ixit/filechooser/IXITFileChooser.java",
-		"/home/kingkoded/Projects/dk33p/models/media.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.ixit.mobile.filechooser/www/IXITFileChooser.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.ixit.mobile.filechooser/src/com/ixit/mobile/filechooser/IXITFileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.megster.cordova.FileChooser/src/android/FileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/IXITFileChooser/www/IXITFileChooser.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/www/js/modules/controllers.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.ixit.mobile.filechooser/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.megster.cordova.FileChooser/www/fileChooser.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/www/templates/files.html",
-		"/home/kingkoded/FedProjects/ixit_mobile/www/templates/upload.html",
-		"/home/kingkoded/FedProjects/ixit_mobile/IXITFileChooser/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova_plugins/com.ixit.mobile.filechooser/src/com/ixit/mobile/filechooser/IXITFileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/com.ixit.mobile.filechooser.ma/www/IXITFileChooser.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova/plugins/com.ixit.mobile.filechooser.ma/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova_plugins/com.ixit.mobile.filechooser/www/fileChooser.js",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova_plugins/com.ixit.mobile.filechooser/plugin.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova_plugins/aFileChooser-master/aFileChooserExample/AndroidManifest.xml",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova_plugins/com.ixit.mobile.filechooser/src/com/ixit/filechooser/IXITFileChooser.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/cordova_plugins/aFileChooser-master/aFileChooserExample/src/com/ipaulpro/afilechooserexample/FileChooserExampleActivity.java",
-		"/home/kingkoded/FedProjects/ixit_mobile/plugins/com.appgyver.plugin.Echo/plugin.xml",
-		"/tmp/fz3temp-1/portfolio.php",
-		"/tmp/fz3temp-1/waypoint.min.js",
-		"/tmp/fz3temp-1/owl.carousel.min.js",
-		"/tmp/fz3temp-1/script.js",
-		"/tmp/fz3temp-1/style.css",
-		"/tmp/fz3temp-1/about.php",
-		"/home/kingkoded/Projects/ixit_mobile/www/js/modules/auth.js",
-		"/home/kingkoded/Projects/ixit_mobile/www/js/sharedlibs/services.js",
-		"/home/kingkoded/Projects/ixit_mobile/www/index.html",
-		"/home/kingkoded/Projects/ixit_mobile/www/templates/upload.html",
-		"/home/kingkoded/Projects/ixit_mobile/www/css/app.scss",
-		"/home/kingkoded/Projects/ixit_mobile/www/js/app.js",
-		"/home/kingkoded/Projects/ixit_mobile/www/js/modules/controllers.js",
-		"/var/www/html/fp/wp-content/plugins/js_composer/readme.md",
-		"/home/kingkoded/Projects/ixit_mobile/www/templates/files.html",
-		"/home/kingkoded/Projects/ixit_mobile/www/templates/app.html",
-		"/home/kingkoded/Projects/ixit_mobile/www/templates/auth/login.html",
-		"/home/kingkoded/Projects/ixit_mobile/www/js/sharedlibs/config.js",
-		"/home/kingkoded/Projects/ixit_mobile/www/js/sharedlibs/directives.js",
-		"/home/kingkoded/Projects/ixit/controllers/k33per.js",
-		"/home/kingkoded/Projects/ixit_mobile/www/templates/login.html",
-		"/home/kingkoded/Projects/ixit/controllers/api-v1.js",
-		"/home/kingkoded/Projects/dk33p/models/media/media.js",
-		"/home/kingkoded/Projects/ixit_mobile/www/lib/angular-http-auth/src/http-auth-interceptor.js",
-		"/home/kingkoded/Projects/dk33p/node_modules/aws-sdk/lib/config.js",
-		"/home/kingkoded/Projects/ixit_mobile/www/config.xml",
-		"/home/kingkoded/Projects/dk33p/node_modules/grunt-contrib-concat/docs/concat-options.md",
-		"/home/kingkoded/Projects/dk33p/controllers/cabinet.js",
-		"/home/kingkoded/Projects/ixit_mobile/plugins/org.apache.cordova.console/www/console-via-logger.js",
-		"/home/kingkoded/Projects/dk33p/node_modules/grunt-autoprefixer/node_modules/autoprefixer-core/node_modules/caniuse-db/region-usage-json/VN.json",
-		"/home/kingkoded/Projects/ixit/controllers/api/user.js",
-		"/home/kingkoded/Projects/ixit/lib/auth/passport.js",
-		"/home/kingkoded/Projects/ixit/controllers/routes.js",
-		"/home/kingkoded/Projects/dk33p/lib/middlewares/authorization._",
-		"/home/kingkoded/Projects/ixit/build/js/angular-ui-router.min.js",
-		"/home/kingkoded/Projects/ixit/views/dashboard/all.jade",
-		"/home/kingkoded/Projects/ixit/server.js",
-		"/home/kingkoded/Projects/ixit/controllers/users.js"
+		"/home/kingkoded/.cache/.fr-xYVGju/aFileChooser-master/aFileChooserExample/AndroidManifest.xml"
 	],
 	"find":
 	{
@@ -858,6 +853,10 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"/home/kingkoded/FedProjects/tagChief-node/lib",
+			"/home/kingkoded/FedProjects/tagChief-node/controllers",
+			"/home/kingkoded/FedProjects/tagChief-node/models",
+			"/home/kingkoded/FedProjects/tagChief-node",
 			"/home/kingkoded/Projects/ixit_mobile/www/js",
 			"/home/kingkoded/www/clinico",
 			"/home/kingkoded/Projects/ixit",
@@ -885,6 +884,35 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Date.now",
+			"Date",
+			"date",
+			"Date",
+			"date",
+			"Date",
+			"errors",
+			"Errors",
+			"errors",
+			"thisDevice",
+			"underscore",
+			"clientOAuth",
+			"plain",
+			"clientAuthenticationCheck",
+			"tag",
+			"ta",
+			"tag",
+			";\n",
+			"req.query.field_type",
+			"$http.defaults.headers.common.Authorization ",
+			"cors",
+			"v2",
+			"12cas",
+			"anima",
+			"downloader",
+			"Device",
+			"\n//checks if a device has been registered to TagChief\n Device.prototype.checkDeviceIdExist = function checkDeviceIdExist (deviceId, userId) {\n  var q = Q.defer();\n  Device.findOne({\n    deviceId: deviceId,\n    active: true,\n    userId: userId\n  })\n  .exec(function (err, d) {\n    if (err) {\n      return q.reject(err);\n    }\n    return q.resolve(d);\n  });\n\n  return q.promise;\n };",
+			"ixit document",
+			"light",
 			"media ",
 			"body",
 			"src=\"/",
@@ -983,36 +1011,7 @@
 			"high",
 			"progress-bar-stripes",
 			".progress",
-			"just",
-			"elements",
-			"event",
-			"inputpan",
-			"pattern",
-			"accodion",
-			"'/js/",
-			"modules",
-			"          '/js/modules",
-			"'/js/",
-			"js",
-			"          '/js",
-			"'/js",
-			"dndev",
-			"empty",
-			"'js/",
-			"js",
-			"            'js",
-			"'js",
-			"clean",
-			"function minErr(module) {",
-			"php",
-			"'/",
-			"'/css",
-			"link(rel='stylesheet', type='text/css', href=",
-			", rel='stylesheet', type='text/css')",
-			"link(href=",
-			"script(src=",
-			"build/",
-			"nodemon"
+			"just"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1020,6 +1019,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"lodash",
 			"src=\"./",
 			"src=\"./img",
 			"src=\"/img",
@@ -1065,124 +1065,217 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
+		"whole_word": false,
 		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 9,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/css/main.css",
+					"file": "www/js/sharedlibs/services.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 70139,
+						"buffer_size": 15284,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1902,
-								1902
+								14932,
+								14932
 							]
 						],
 						"settings":
 						{
-							"WordCountSyntax": "css",
+							"WordCountSyntax": "javascript",
 							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2691.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6233,
+						"regions":
+						{
+						},
+						"selection":
+						[
 							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
+								5767,
+								5767
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1443.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "www/templates/full-screen.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 74,
+						"regions":
+						{
+						},
+						"selection":
+						[
 							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
+								33,
+								33
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "html",
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/templates/app.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3182,
+						"regions":
+						{
+						},
+						"selection":
+						[
 							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
+								2177,
+								2177
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "html",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "www/js/modules/auth.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3823,
+						"regions":
+						{
+						},
+						"selection":
+						[
 							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
+								2799,
+								2799
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 858.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3969,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3964,
+								3964
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"WordCountSyntax": "css",
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
@@ -1192,27 +1285,61 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2197.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 11,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "www/templates/app.html",
+					"buffer": 6,
+					"file": "/home/kingkoded/.cache/.fr-P28aj6/photoTilt-master/README.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3147,
+						"buffer_size": 1052,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								163,
+								163
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "markdown",
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "www/templates/splash-first.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 997,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								987,
+								987
 							]
 						],
 						"settings":
@@ -1220,100 +1347,82 @@
 							"WordCountShouldRun": true,
 							"WordCountSyntax": "html",
 							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "/home/kingkoded/FedProjects/tagChief-node/views/layouts/mobile.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 298,
+						"regions":
+						{
+						},
+						"selection":
+						[
 							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
+								298,
+								298
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "jade",
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"open_with_edit": true,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "/home/kingkoded/FedProjects/tagChief-node/views/oauth/oauth-dialog.jade",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 819,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								22,
+								22
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "jade",
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1325,618 +1434,32 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "www/templates/locations.html",
+					"buffer": 10,
+					"file": "/home/kingkoded/.cache/.fr-oLqCJF/photoTilt-master/demo/index.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7831,
+						"buffer_size": 668,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								84,
-								84
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "html",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"open_with_edit": true,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "www/templates/location.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2850,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								137,
-								138
+								132,
+								132
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": true,
 							"WordCountSyntax": "html",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
-							"open_with_edit": true,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/css/style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2715,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "css",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1360.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "www/js/sharedlibs/directives.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 5627,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "javascript",
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 351.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "www/css/themes.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1312,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								956,
-								956
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "css",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -1944,627 +1467,6 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "www/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5761,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 541.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "www/js/modules/controllers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4691,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "www/js/modules/auth.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3610,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "www/full-screen.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 74,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								74,
-								74
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "html",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"open_with_edit": true,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "www/js/sharedlibs/maps.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8223,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"codeintel": true,
-							"codeintel_database_dir": "~/.codeintel",
-							"codeintel_enabled_languages":
-							[
-								"JavaScript",
-								"SCSS",
-								"Python",
-								"HTML",
-								"Ruby",
-								"Python3",
-								"XML",
-								"Sass",
-								"HTML5",
-								"Perl",
-								"CSS",
-								"Twig",
-								"Less",
-								"Node.js",
-								"TemplateToolkit",
-								"PHP"
-							],
-							"codeintel_exclude_scopes_from_complete_triggers":
-							[
-								"comment"
-							],
-							"codeintel_language_settings":
-							{
-								"JavaScript":
-								{
-									"codeintel_max_recursive_dir_depth": 2,
-									"codeintel_scan_exclude_dir":
-									[
-										"/build/",
-										"/min/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": false,
-									"codeintel_selected_catalogs":
-									[
-										"jQuery"
-									]
-								},
-								"PHP":
-								{
-									"codeintel_max_recursive_dir_depth": 15,
-									"codeintel_scan_exclude_dir":
-									[
-										"/Applications/MAMP/bin/php/php5.5.3/"
-									],
-									"codeintel_scan_extra_dir":
-									[
-									],
-									"codeintel_scan_files_in_project": true,
-									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
-								},
-								"Python3":
-								{
-									"codeintel_scan_extra_dir":
-									[
-										"/Applications/Sublime Text.app/Contents/MacOS",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
-										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
-									],
-									"codeintel_scan_files_in_project": true,
-									"codeintel_selected_catalogs":
-									[
-									],
-									"python3": "/usr/local/bin/python3.3"
-								}
-							},
-							"codeintel_live": true,
-							"codeintel_max_recursive_dir_depth": 10,
-							"codeintel_scan_exclude_dir":
-							[
-							],
-							"codeintel_scan_files_in_project": true,
-							"codeintel_selected_catalogs":
-							[
-							],
-							"codeintel_snippets": false,
-							"codeintel_syntax_map":
-							{
-								"Python Django": "Python"
-							},
-							"codeintel_tooltips": "popup",
-							"codeintel_word_completions": "buffer",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"open_with_edit": true,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 624.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -2629,8 +1531,20 @@
 		"selected_items":
 		[
 			[
+				"err",
+				"tagChief-node/config/errors.json"
+			],
+			[
 				"maps",
-				"www/js/sharedlibs/maps.js"
+				"tagchief/www/js/sharedlibs/maps.js"
+			],
+			[
+				"stra/bas",
+				"tagChief-node/node_modules/passport-http/lib/passport-http/strategies/basic.js"
+			],
+			[
+				"forgotpw",
+				"tagchief/www/templates/auth/forgotpw.html"
 			],
 			[
 				"k33",
@@ -2815,10 +1729,6 @@
 			[
 				"navi",
 				"ixit/views/includes/navigation.jade"
-			],
-			[
-				"err",
-				"dk33p/lib/errors.js"
 			],
 			[
 				"error",
@@ -3155,7 +2065,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 223.0,
+	"side_bar_width": 322.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

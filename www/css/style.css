@@ -170,3 +170,37 @@ a:hover.home-cta {
 .block [readonly] {
   background-color: transparent !important;
 }
+
+.s-c {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 4;
+}
+
+.logobox {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  width: 211px;
+  margin-left: -105px;
+}
+
+.logobox img {
+  display: block;
+}
+
+.logobox h3 {
+  font-size: 16px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.is-request-loading {
+  position: absolute;
+  z-index: 99;
+}
+
+.is-request-loading i {
+  color: #e74c3c;
+}

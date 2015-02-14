@@ -2,31 +2,6 @@
 
 var app = angular.module('controllers', []);
 
-
-// app.config(function($stateProvider, $urlRouterProvider) {
-//   $stateProvider
-
-//     .state('splash', {
-//       url: "/splash",
-//       abstract: true,
-//       views: {
-//         'noHeaderContent' : {
-//           templateUrl: "full-screen.html",
-//         }
-//       }
-//     })
-
-//     .state('splash.welcome', {
-//       url: "/welcome",
-//       views: {
-//         'fullContent@splash' :{
-//           templateUrl: "templates/splash-first.html",
-//           controller: 'SplashCtrl'
-//         }
-//       }
-//     });
-// });
-
 app.controller('HomeCtrl', [
   '$scope',
   '$ionicModal',
@@ -41,61 +16,61 @@ app.controller('HomeCtrl', [
   'locationsService',
   function($scope, $ionicModal, $ionicPopup, $timeout, cordovaServices, $cordovaGeolocation, $state, Messaging, $cordovaDevice, appBootStrap, locationsService) {
 
-  $scope.whoiswhere = [];
-  $scope.basel = {
-    lat: 0,
-    lon: 0
-  };
-  var posOptions = {
-    timeout: 5000,
-    enableHighAccuracy: true,
-    maximumAge: 3000
-  };
+  // $scope.whoiswhere = [];
+  // $scope.base = {
+  //   lat: 0,
+  //   lon: 0
+  // };
+  // var posOptions = {
+  //   timeout: 5000,
+  //   enableHighAccuracy: true,
+  //   maximumAge: 3000
+  // };
 
-  $cordovaGeolocation.getCurrentPosition(posOptions)
-  .then(
-    function(position) {
-      $scope.position=position;
-      var c = position.coords;
-      $scope.basel = {
-        lat: c.latitude,
-        lon: c.longitude
-      };
-      locationsService.setMyLocation(position.coords);
+  // $cordovaGeolocation.getCurrentPosition(posOptions)
+  // .then(
+  //   function(position) {
+  //     $scope.position=position;
+  //     var c = position.coords;
+  //     $scope.base = {
+  //       lat: c.latitude,
+  //       lon: c.longitude
+  //     };
+  //     locationsService.setMyLocation(position.coords);
 
-    },
-    function(e) {
-      console.log("Error retrieving position " + e.code + " " + e.message);
-    }
-  );
+  //   },
+  //   function(e) {
+  //     console.log("Error retrieving position " + e.code + " " + e.message);
+  //   }
+  // );
 
-  var watch = $cordovaGeolocation.watchPosition(posOptions);
-  watch.then(
-    null,
-    function(e) {
-      // error
-      console.log("Error retrieving position " + e.code + " " + e.message);
-    },
-    function(position) {
-      $scope.basel = {
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
-      };
-      locationsService.setMyLocation(position.coords);
-  });
+  // var watch = $cordovaGeolocation.watchPosition(posOptions);
+  // watch.then(
+  //   null,
+  //   function(e) {
+  //     // error
+  //     console.log("Error retrieving position " + e.code + " " + e.message);
+  //   },
+  //   function(position) {
+  //     $scope.base = {
+  //       lat: position.coords.latitude,
+  //       lon: position.coords.longitude
+  //     };
+  //     locationsService.setMyLocation(position.coords);
+  // });
 
-  // some points of interest to show on the map
-  // to be user as markers, objects should have "lat", "lon", and "name" properties
-  $scope.whoiswhere.push = {
-    "name": "My Marker",
-    "lat": $scope.basel.lat,
-    "lon": $scope.basel.lon
-  };
+  // // some points of interest to show on the map
+  // // to be user as markers, objects should have "lat", "lon", and "name" properties
+  // $scope.whoiswhere.push = {
+  //   "name": "My Marker",
+  //   "lat": $scope.base.lat,
+  //   "lon": $scope.base.lon
+  // };
 
 
-  $scope.$on('$destroy', function (e) {
-    watch.clearWatch();
-  });
+  // $scope.$on('$destroy', function (e) {
+  //   watch.clearWatch();
+  // });
 
   $scope.pingMsg = function () {
     Messaging.ping($cordovaDevice.getUUID(), function (d) {
@@ -168,6 +143,17 @@ app.controller('UploaderCtrl', ['$scope', 'cordovaServices', function ($scope, c
 app.controller('SplashCtrl', ['$scope', function ($scope) {
 
 
+}]);
+
+app.controller('LocationCtrl', ['$scope', 'locationsService', function ($scope, locationsService) {
+  $scope.locationQueryParams = {
+    loadPerRequest: 20
+  };
+  //load user added / tagged / check-in locations / or load locations wit the users interest
+  locationsService.locationProximity($scope.locationQueryParams)
+  .then(function(d) {
+    $scope.locationFeed = d.data;
+  });
 }]);
 
 app.filter('hideSystemFiles', function () {

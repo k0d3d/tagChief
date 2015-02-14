@@ -5,56 +5,67 @@
   app.config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
 
-      .state('auth', {
+      .state('app.auth', {
         url: "/auth",
         abstract: true,
         views: {
-          'noHeaderContent' : {
-            templateUrl: "full-screen.html",
+          'noheadercontent@' : {
+            templateUrl: "templates/full-screen.html",
             controller: 'RegisterLoginCtrl'
           }
         }
       })
-
-      .state('auth.welcome', {
-        url: "/welcome",
-        views: {
-          'fullContent@auth' :{
-            templateUrl: "templates/splash-first.html",
-
-          }
-        }
-      })
-      .state('auth.forgotpw', {
+      .state('app.auth.forgotpw', {
         url: "/forgotpw",
         views: {
-          'fullContent@auth' :{
+          'fullContent@app.auth' :{
             templateUrl: "templates/auth/forgotpw.html"
           }
         }
       })
-      .state('auth.register', {
-        url: "/register",
-        views: {
-          'fullContent@auth' :{
-            templateUrl: "templates/auth/register.html"
-          }
-        }
-      })
-      .state('auth.login', {
+      .state('app.auth.login', {
         url: "/login",
         views: {
-          'fullContent@auth' :{
+          'fullContent@app.auth' :{
             templateUrl: "templates/auth/login.html"
           }
         }
       })
+      .state('app.auth.welcome', {
+        url: "/welcome",
+        views: {
+          'fullContent@app.auth' :{
+            templateUrl: "templates/splash-first.html"
+          }
+        }
+      })
+      .state('app.auth.register', {
+        url: "/register",
+        views: {
+          'fullContent@app.auth' :{
+            templateUrl: "templates/auth/register.html"
+          }
+        }
+      })
+
       ;
   });
   app.controller('RegisterCtrl', ['$scope', function ($scope) {
 
   }]);
-  app.controller('RegisterLoginCtrl', function($scope, $http, $state, AuthenticationService, $ionicPopup, $window, $ionicPlatform, $location, $timeout) {
+  app.controller('RegisterLoginCtrl', [
+    '$scope',
+    '$http',
+    '$state',
+    'AuthenticationService',
+    '$ionicPopup',
+    '$window',
+    '$ionicPlatform',
+    '$location',
+    '$timeout',
+    '$rootScope',
+    function($scope, $http, $state, AuthenticationService, $ionicPopup, $window, $ionicPlatform, $location, $timeout, $rootScope) {
+
     $ionicPlatform.onHardwareBackButton(function () {
       return false;
     });
@@ -106,20 +117,20 @@
     };
 
     $scope.goBack = function () {
-      $state.go('app.login', [], {
+      $state.go('app.tc.home', [], {
         location: true
       });
     };
 
     $scope.$on('event:auth-loginConfirmed', function() {
+      console.log('login confirmed');
       $scope.email = $scope.passport = null;
-      $state.go('app.home', [], {
-        location: true
+      $state.go('app.tc.home', {}, {
+        location: true,
+        reload: true
       });
-      // var url=$location.absUrl() + '#/app/home';
-      // $timeout(function() {
-      //   $window.location.href=url;
-      // });
+
+      window.location.reload(true);
     });
 
     $scope.$on('event:auth-login-failed', function(e, status) {
@@ -137,7 +148,7 @@
       });
     });
 
-  });
+  }]);
   app.controller('LogoutCtrl', function($scope, AuthenticationService, $window) {
       AuthenticationService.logout();
       delete $window.sessionStorage.authorizationToken;

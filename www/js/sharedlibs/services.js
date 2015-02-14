@@ -242,6 +242,7 @@
     return {
       activeModal: null,
       thisDevice: null,
+      isRequesting: false,
       strapCordovaDevice: function () {
         var self = this;
         console.log(arguments);
@@ -357,10 +358,31 @@
   };
 }]);
 
-app.factory('locationsService', ['$http', function ($http) {
+app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function ($http, $cordovaGeolocation, Q) {
   var self = this;
   self.myLocation = null;
+  var ls_def_pos_option = {
+    timeout: 5000,
+    enableHighAccuracy: true,
+    maximumAge: 3000
+  };
   return {
+    watchPosition: function watchPosition (posOption) {
+      posOption = posOption || ls_def_pos_option;
+      return $cordovaGeolocation.watchPosition(posOption);
+    },
+    geoLocationInit: function (posOption) {
+        var q = Q.defer();
+        var self = this;
+        posOption = posOption || ls_def_pos_option;
+        $cordovaGeolocation.getCurrentPosition(posOption)
+        .then(function (position) {
+          self.setMyLocation(position.coords);
+          q.resolve(position.coords);
+        });
+
+        return q.promise;
+    },
     setMyLocation: function setMyLocation (coords){
       self.myLocation = coords;
     },
@@ -379,14 +401,27 @@ app.factory('locationsService', ['$http', function ($http) {
         return false;
       }
     },
-    listUserLocation: function () {
-      return $http.get('/api/vi/locations');
+    listUserLocation: function listUserLocation (query) {
+      return $http.get('/api/v1/locations?' + $.param(query));
     },
-    deleteUserLocation: function (locationData) {
-      return $http.delete('/api/v1/locations/:locationId');
-    },
-    locationProximity: function (locationData) {
-      return $http.get('/api/v1/geo/lat/:lat/lon/:lon');
+    // deleteUserLocation: function (locationData) {
+    //   return $http.delete('/api/v1/locations/:locationId');
+    // },
+    locationProximity: function locationProximity (locationData) {
+      var q = Q.defer();
+      var self = this;
+
+      this.geoLocationInit()
+      .then(function (geoPromise) {
+
+        locationData.lon = self.getMyLocation().longitude;
+        locationData.lat = self.getMyLocation().latitude;
+        return q.resolve($http.get('/api/v1/position?' + $.param(locationData)));
+      }, function () {
+        return q.reject();
+      });
+
+      return q.promise;
     }
   };
 }]);

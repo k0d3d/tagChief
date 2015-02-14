@@ -18,44 +18,71 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
     .state('app', {
       url: "/app",
       abstract: true,
+      resolve: {
+        geoPosition: function ($q, locationsService) {
+            var q = $q.defer();
+            var i = locationsService.geoLocationInit();
+            i.then(
+              function(position) {
+                q.resolve(position);
+                // $scope.position=position;
+                // $scope.base = {
+                //   lat: position.latitude,
+                //   lon: position.longitude
+                // };
+              },
+              function(e) {
+                console.log("Error retrieving position " + e.code + " " + e.message);
+              }
+            );
+
+            return q.promise;
+        }
+      }
+    })
+
+    .state('app.tc', {
+      url: "/tc",
+      abstract: true,
       views: {
-        'mainContent' : {
+        'maincontent@' : {
           templateUrl: "templates/app.html",
           controller: 'AppCtrl'
         }
       }
     })
 
-    .state('app.home', {
+
+    .state('app.tc.home', {
       url: "/home",
       views: {
-        'viewContent@app' :{
+        'viewContent@app.tc' :{
           templateUrl: "templates/home.html",
           controller: 'HomeCtrl'
         }
       }
     })
-    .state('app.locations', {
+    .state('app.tc.locations', {
       url: "/locations",
       views: {
-        'viewContent@app' :{
-          templateUrl: "templates/locations.html"
-          // controller: 'FilesCtrl'
+        'viewContent@app.tc' :{
+          templateUrl: "templates/locations.html",
+          controller: 'LocationCtrl'
         }
       }
     })
-    .state('app.location', {
+    .state('app.tc.location', {
       url: "/location/:locationId",
       views: {
-        'viewContent@app' :{
+        'viewContent@app.tc' :{
           templateUrl: "templates/location.html"
         }
       }
     })
-    .state('app.me', {
+    .state('app.tc.me', {
       url: "/me/achievements",
       views: {
-        'viewContent@app' :{
+        'viewContent@app.tc' :{
           templateUrl: "templates/me-achievements.html",
           controller: 'FilesCtrl'
         }
@@ -73,7 +100,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/home');
+  $urlRouterProvider.otherwise('/app/tc/home');
 
   $httpProvider.interceptors.push('tokenInterceptor');
   $httpProvider.interceptors.push(['$rootScope', '$q', function($rootScope, $q) {
@@ -87,9 +114,10 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       }
     };
   }]);
- $httpProvider.interceptors.push(['$q', 'api_config', function ($q, api_config) {
+ $httpProvider.interceptors.push(['$q', 'api_config', '$rootScope', function ($q, api_config, $rootScope) {
       return {
           'request': function (config) {
+            // appBootStrap.isRequesting = true;
              if (config.url.indexOf('/api/') > -1 ) {
                 config.url = api_config.CONSUMER_API_URL + '' + config.url;
                 return config || $q.when(config);
@@ -98,6 +126,10 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
               }
 
 
+          },
+          'response': function (resp) {
+              // appBootStrap.isRequesting = false;
+               return resp || $q.when(resp);
           }
 
       };
@@ -106,7 +138,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
 });
 
 
-app.run(['$ionicPlatform', '$cordovaPush', function($ionicPlatform, $cordovaPush, appBootStrap) {
+app.run(['$ionicPlatform', '$cordovaPush', 'appBootStrap', function($ionicPlatform, $cordovaPush, appBootStrap) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -160,10 +192,34 @@ app.controller('AppCtrl', [
   'appBootStrap',
   '$interval',
   'locationsService',
-  function ($scope, $state, $rootScope, Messaging, $cordovaDevice, $window, appBootStrap, $interval, locationsService) {
+  '$cordovaGeolocation',
+  '$q',
+  'geoPosition',
+  function (
+    $scope,
+    $state,
+    $rootScope,
+    Messaging,
+    $cordovaDevice,
+    $window,
+    appBootStrap,
+    $interval,
+    locationsService,
+    $cordovaGeolocation,
+    $q,
+    geoPosition
+    ) {
   $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
-      evt.preventDefault();
       console.log(error);
+      evt.preventDefault();
+  });
+
+  $rootScope.$on('$stateChangeStart',
+  function(event, toState, toParams, fromState, fromParams){
+    // console.log(toParams);
+    if ($window.localStorage.authorizationToken && toState.name.indexOf("app.auth") > -1 ) {
+      event.preventDefault();
+    }
   });
 
   $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
@@ -193,28 +249,94 @@ app.controller('AppCtrl', [
   });
 
   if (!$window.localStorage.authorizationToken) {
-    $state.go('auth.welcome');
+    $state.go('app.auth.welcome');
   }
 
-  $interval(function () {
-    if ($window.localStorage.authorizationToken) {
-      var l = locationsService.getMyLocation() || {};
-      if (!l.latitude && !l.longitude) {
-        return false;
-      }
-      locationsService.pingUserLocation(l);
-    }
-  }, 10000);
+  $scope.isRequesting = appBootStrap.isRequesting || false;
+
+  // $interval(function () {
+  //   if ($window.localStorage.authorizationToken) {
+  //     var l = locationsService.getMyLocation() || {};
+  //     if (!l.latitude && !l.longitude) {
+  //       return false;
+  //     }
+  //     locationsService.pingUserLocation(l);
+  //   }
+  // }, 10000);
+
+
+  /**  Start Geo postioning code / monitor */
+  $scope.whoiswhere = [];
+  $scope.base = {
+    lat: 0,
+    lon: 0
+  };
+
+  $scope.position = geoPosition;
+  $scope.base = {
+    lat: geoPosition.latitude,
+    lon: geoPosition.longitude
+  };
+
+  // var geoLocationInit =  $cordovaGeolocation.getCurrentPosition(posOptions)
+  // var i = geoPosition.geoLocationInit();
+  // i.then(
+  //   function(position) {
+  //     $scope.position=position;
+  //     $scope.base = {
+  //       lat: position.latitude,
+  //       lon: position.longitude
+  //     };
+  //   },
+  //   function(e) {
+  //     console.log("Error retrieving position " + e.code + " " + e.message);
+  //   }
+  // );
+
+  var watch = locationsService.watchPosition();
+  watch.then(
+    null,
+    function(e) {
+      // error
+      console.log("Error retrieving position " + e.code + " " + e.message);
+    },
+    function(position) {
+      $scope.base = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude
+      };
+      locationsService.setMyLocation(position.coords);
+  });
+
+  // show on the map
+  // you as a  markers, objects should have "lat", "lon", and "name" properties
+  $scope.whoiswhere.push = {
+    "name": "Here I am",
+    "lat": $scope.base.lat,
+    "lon": $scope.base.lon
+  };
+
+
+  $scope.$on('$destroy', function (e) {
+    watch.clearWatch();
+  });
+
+  /** end geo monitor code */
+
+
+  $scope.$on('app-is-requesting', function (e, data) {
+    console.log(data);
+  });
 
   $scope.$on('auth-loginRequired', function(e, rejection) {
     if (!$state.is('app.login')) {
-      $state.go('app.login', [], {
+      $state.go('app.auth.login', [], {
         location: true
       });
     }
   });
   $scope.$on('event:auth-logout-complete', function() {
-    $state.go('app.home', {}, {reload: true, inherit: false});
+    $state.go('app.tc.home', {}, {reload: true, inherit: false});
   });
   $scope.$on('$destroy', function() {
     appBootStrap.strapCordovaDevice().cancel();
@@ -232,3 +354,27 @@ app.factory('tokenInterceptor', function ($window) {
     }
   };
 });
+
+  app.directive('tiltbg', ['$timeout', function ($timeout) {
+    return {
+      compile: function (ele) {
+        function resizeIBG () {
+            $(".ibg-bg", ele).css({
+              width: $(window).outerWidth(),
+              height: $(window).outerHeight()
+            });
+        }
+        $(document).ready(function () {
+           $(ele).interactive_bg({
+             strength: 25,              // Movement Strength when the cursor is moved. The higher, the faster it will reacts to your cursor. The default value is 25.
+             scale: 1.5,               // The scale in which the background will be zoomed when hovering. Change this to 1 to stop scaling. The default value is 1.05.
+             animationSpeed: "100ms",   // The time it takes for the scale to animate. This accepts CSS3 time function such as "100ms", "2.5s", etc. The default value is "100ms".
+             contain: false,             // This option will prevent the scaled object/background from spilling out of its container. Keep this true for interactive background. Set it to false if you want to make an interactive object instead of a background. The default value is true.
+             wrapContent: false         // This option let you choose whether you want everything inside to reacts to your cursor, or just the background. Toggle it to true to have every elements inside reacts the same way. The default value is false
+           });
+        });
+        $timeout(resizeIBG());
+        $(window).on('resize load orientationchange', resizeIBG);
+      }
+    };
+  }]);
