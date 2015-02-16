@@ -65,7 +65,11 @@
     '$timeout',
     '$rootScope',
     function($scope, $http, $state, AuthenticationService, $ionicPopup, $window, $ionicPlatform, $location, $timeout, $rootScope) {
+    // $rootScope.$on('$stateChangeStart',
+    // function(event, toState, toParams, fromState, fromParams){
 
+    // });
+      // $scope.mainCfg.viewNoHeaderIsActive = true;
     $ionicPlatform.onHardwareBackButton(function () {
       return false;
     });
@@ -107,7 +111,7 @@
                   text: '<b>Login Now</b>',
                   type: 'button-positive',
                   onTap: function(e) {
-                    $state.go('auth.login');
+                    $state.go('app.auth.login');
                   }
                 }
               ]
@@ -124,13 +128,14 @@
 
     $scope.$on('event:auth-loginConfirmed', function() {
       console.log('login confirmed');
+      $scope.mainCfg.viewNoHeaderIsActive = false;
       $scope.email = $scope.passport = null;
       $state.go('app.tc.home', {}, {
         location: true,
         reload: true
       });
 
-      window.location.reload(true);
+      // window.location.reload(true);
     });
 
     $scope.$on('event:auth-login-failed', function(e, status) {

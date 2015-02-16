@@ -4,7 +4,7 @@ var config_data = {
     'app_name': 'TagChief Mobile'
   },
   'api_config': {
-    'CONSUMER_API_URL': "http://192.168.43.184:3000"
+    'CONSUMER_API_URL': "https://stark-cliffs-8842.herokuapp.com"
   }
 };
 angular.forEach(config_data,function(key,value) {

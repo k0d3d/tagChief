@@ -77,20 +77,6 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
             scaleControl: "@"   // Whether to show scale control on the map.
         },
         link: function (scope, element, attrs) {
-            var toResize, toCenter;
-            var infowindow;
-            var currentMarkers;
-            var callbackName = 'InitMapCb';
-            //default map, pending when location is detected.
-
-
-              // callback when google maps is loaded
-            $window[callbackName] = function() {
-              // console.log("map: init callback");
-              // createMap();
-              // updateMarkers();
-            };
-
 
             function createMap() {
 
@@ -139,13 +125,13 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
               }
             }
 
-            var mapRefresh = $interval(refreshMeMarker, 30000);
+            var mapRefresh = $interval(refreshMeMarker, 10000);
             scope.$on('$destroy', function () {
               $interval.cancel(mapRefresh);
             });
 
-            angular.element(document).ready(createMap());
-            // $timeout(createMap(), 0);
+            // angular.element(document).ready(createMap());
+            $timeout(createMap(), 0);
 
             // Info window trigger function
             // function onItemClick(pin, label, datum, url) {

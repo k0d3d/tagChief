@@ -17,33 +17,12 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
 
     .state('app', {
       url: "/app",
-      abstract: true,
-      resolve: {
-        geoPosition: function ($q, locationsService) {
-            var q = $q.defer();
-            var i = locationsService.geoLocationInit();
-            i.then(
-              function(position) {
-                q.resolve(position);
-                // $scope.position=position;
-                // $scope.base = {
-                //   lat: position.latitude,
-                //   lon: position.longitude
-                // };
-              },
-              function(e) {
-                console.log("Error retrieving position " + e.code + " " + e.message);
-              }
-            );
-
-            return q.promise;
-        }
-      }
+      abstract: true
     })
 
     .state('app.tc', {
       url: "/tc",
-      abstract: true,
+      // abstract: true,
       views: {
         'maincontent@' : {
           templateUrl: "templates/app.html",
@@ -51,14 +30,11 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
         }
       }
     })
-
-
     .state('app.tc.home', {
       url: "/home",
       views: {
         'viewContent@app.tc' :{
-          templateUrl: "templates/home.html",
-          controller: 'HomeCtrl'
+          templateUrl: "templates/home.html"
         }
       }
     })
@@ -117,19 +93,24 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
  $httpProvider.interceptors.push(['$q', 'api_config', '$rootScope', function ($q, api_config, $rootScope) {
       return {
           'request': function (config) {
-            // appBootStrap.isRequesting = true;
+            $rootScope.$broadcast('app-is-requesting', true);
              if (config.url.indexOf('/api/') > -1 ) {
                 config.url = api_config.CONSUMER_API_URL + '' + config.url;
                 return config || $q.when(config);
               } else {
                return config || $q.when(config);
               }
-
-
           },
           'response': function (resp) {
+              $rootScope.$broadcast('app-is-requesting', false);
               // appBootStrap.isRequesting = false;
                return resp || $q.when(resp);
+          },
+          // optional method
+         'requestError': function(rejection) {
+            // do something on error
+            $rootScope.$broadcast('app-is-requesting', false);
+            return $q.reject(rejection);
           }
 
       };
@@ -163,23 +144,43 @@ app.run(['$ionicPlatform', '$cordovaPush', 'appBootStrap', function($ionicPlatfo
     });
 
     appBootStrap.strapCordovaDevice();
-
-
-    // WARNING: dangerous to unregister (results in loss of tokenID)
-    // $cordovaPush.unregister(options).then(function(result) {
-    //   // Success!
-    // }, function(err) {
-    //   // Error
-    // });
-
-
-
   });
 
 }]);
 
-app.controller('MainCtrl', ['$scope', '$state', function ($scope, $state) {
+app.controller('MainCtrl', [
+  '$scope',
+  '$state',
+  '$stateParams',
+  '$window',
+  '$rootScope',
+  function ($scope, $state, $stateParams, $window, $rootScope) {
+      $scope.mainCfg = {
+        viewNoHeaderIsActive: true
+      };
+      // if thr no no auth..token in app local storage, treat d user as a first time user
+      if (!$window.localStorage.authorizationToken) {
+          return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
+      }
 
+      $rootScope.$on('$stateChangeStart',
+      function(event, toState, toParams, fromState, fromParams){
+        //check for an authorizationToken in our localStorage
+        //if we find one, we check if it is a Bearer type token,
+        //we wanna redirect to our login page to get new auth tokens
+        //
+        if ($window.localStorage.authorizationToken) {
+          //if we have an bearer type auth token and for some reason, we're being sent to any
+          //app.auth state... it should freeze d transition.
+          if (
+            ($window.localStorage.authorizationToken && toState.name.indexOf("app.auth") > -1 ) &&
+            ($window.localStorage.authorizationToken.split(" ")[0] == 'Bearer' && toState.name.indexOf("app.auth") > -1 )
+          ) {
+            console.log('shouldnt b here');
+            return event.preventDefault();
+          }
+        }
+      });
 }]);
 
 app.controller('AppCtrl', [
@@ -194,7 +195,7 @@ app.controller('AppCtrl', [
   'locationsService',
   '$cordovaGeolocation',
   '$q',
-  'geoPosition',
+  '$stateParams',
   function (
     $scope,
     $state,
@@ -207,140 +208,131 @@ app.controller('AppCtrl', [
     locationsService,
     $cordovaGeolocation,
     $q,
-    geoPosition
-    ) {
-  $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
-      console.log(error);
-      evt.preventDefault();
-  });
+    $stateParams) {
+      // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
+      //     console.log(error);
+      //     evt.preventDefault();
+      // });
+      //but this isnt a bearer token
+      // if ($window.localStorage.authorizationToken.split(" ")[0] !== 'Bearer') {
+      //     $state.go('app.auth.login', {}, {
+      //       location: true
+      //     });
+      //   return false;
+      //     // return (fromState.name.indexOf("app.auth") > -1 ) ? false : $state.go('app.auth.login');
+      // }
 
-  $rootScope.$on('$stateChangeStart',
-  function(event, toState, toParams, fromState, fromParams){
-    // console.log(toParams);
-    if ($window.localStorage.authorizationToken && toState.name.indexOf("app.auth") > -1 ) {
-      event.preventDefault();
-    }
-  });
+      $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+        switch(notification.event) {
+          case 'registered':
+            if (notification.regid.length > 0 ) {
+              Messaging.setRegId(notification.regid);
+              Messaging.ping($cordovaDevice.getUUID(), function (d) {
+                console.log(d);
+              });
+            }
+            break;
 
-  $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-    switch(notification.event) {
-      case 'registered':
-        if (notification.regid.length > 0 ) {
-          Messaging.setRegId(notification.regid);
-          Messaging.ping($cordovaDevice.getUUID(), function (d) {
-            console.log(d);
+          case 'message':
+            // this is the actual push notification. its format depends on the data model from the push server
+            alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+            break;
+
+          case 'error':
+            alert('GCM error = ' + notification.msg);
+            break;
+
+          default:
+            alert('An unknown GCM event has occurred');
+            break;
+        }
+      });
+
+
+      $interval(function () {
+        if ($window.localStorage.authorizationToken.split(" ")[0] == 'Bearer') {
+          var l = locationsService.getMyLocation() || {};
+          if (!l.latitude && !l.longitude) {
+            locationsService.geoLocationInit();
+            locationsService.watchPosition();
+            return false;
+          }
+          locationsService.pingUserLocation();
+        }
+      }, 20000);
+
+
+      /**  Start Geo postioning code / monitor */
+      $scope.whoiswhere = [];
+      $scope.base = {
+        lat: 0,
+        lon: 0
+      };
+
+      var i = locationsService.geoLocationInit();
+      i.then(
+        function(position) {
+          $scope.position=position;
+          $scope.base = {
+            lat: position.latitude,
+            lon: position.longitude
+          };
+        },
+        function(e) {
+          console.log("Error retrieving position " + e.code + " " + e.message);
+        }
+      );
+
+      var watch = locationsService.watchPosition();
+      watch.then(
+        null,
+        function(e) {
+          // error
+          console.log("Error retrieving position " + e.code + " " + e.message);
+        },
+        function(position) {
+          console.log(position);
+          $scope.base = {
+            lat: position.coords.latitude,
+            lon: position.coords.longitude
+          };
+          locationsService.setMyLocation(position.coords);
+      });
+
+      // show on the map
+      // you as a  markers, objects should have "lat", "lon", and "name" properties
+      $scope.whoiswhere.push = {
+        "name": "Here I am",
+        "lat": $scope.base.lat,
+        "lon": $scope.base.lon
+      };
+
+
+      $scope.$on('$destroy', function (e) {
+        watch.clearWatch();
+      });
+
+      /** end geo monitor code */
+
+
+      $scope.$on('app-is-requesting', function (e, data) {
+        $scope.mainCfg.isRequesting = data;
+      });
+
+      $scope.$on('auth-loginRequired', function(e, rejection) {
+        console.log('login');
+        if (!$state.is('app.auth.login')) {
+          $state.go('app.auth.login', {}, {
+            location: true
           });
         }
-        break;
-
-      case 'message':
-        // this is the actual push notification. its format depends on the data model from the push server
-        alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-        break;
-
-      case 'error':
-        alert('GCM error = ' + notification.msg);
-        break;
-
-      default:
-        alert('An unknown GCM event has occurred');
-        break;
-    }
-  });
-
-  if (!$window.localStorage.authorizationToken) {
-    $state.go('app.auth.welcome');
-  }
-
-  $scope.isRequesting = appBootStrap.isRequesting || false;
-
-  // $interval(function () {
-  //   if ($window.localStorage.authorizationToken) {
-  //     var l = locationsService.getMyLocation() || {};
-  //     if (!l.latitude && !l.longitude) {
-  //       return false;
-  //     }
-  //     locationsService.pingUserLocation(l);
-  //   }
-  // }, 10000);
-
-
-  /**  Start Geo postioning code / monitor */
-  $scope.whoiswhere = [];
-  $scope.base = {
-    lat: 0,
-    lon: 0
-  };
-
-  $scope.position = geoPosition;
-  $scope.base = {
-    lat: geoPosition.latitude,
-    lon: geoPosition.longitude
-  };
-
-  // var geoLocationInit =  $cordovaGeolocation.getCurrentPosition(posOptions)
-  // var i = geoPosition.geoLocationInit();
-  // i.then(
-  //   function(position) {
-  //     $scope.position=position;
-  //     $scope.base = {
-  //       lat: position.latitude,
-  //       lon: position.longitude
-  //     };
-  //   },
-  //   function(e) {
-  //     console.log("Error retrieving position " + e.code + " " + e.message);
-  //   }
-  // );
-
-  var watch = locationsService.watchPosition();
-  watch.then(
-    null,
-    function(e) {
-      // error
-      console.log("Error retrieving position " + e.code + " " + e.message);
-    },
-    function(position) {
-      $scope.base = {
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
-      };
-      locationsService.setMyLocation(position.coords);
-  });
-
-  // show on the map
-  // you as a  markers, objects should have "lat", "lon", and "name" properties
-  $scope.whoiswhere.push = {
-    "name": "Here I am",
-    "lat": $scope.base.lat,
-    "lon": $scope.base.lon
-  };
-
-
-  $scope.$on('$destroy', function (e) {
-    watch.clearWatch();
-  });
-
-  /** end geo monitor code */
-
-
-  $scope.$on('app-is-requesting', function (e, data) {
-    console.log(data);
-  });
-
-  $scope.$on('auth-loginRequired', function(e, rejection) {
-    if (!$state.is('app.login')) {
-      $state.go('app.auth.login', [], {
-        location: true
       });
-    }
-  });
-  $scope.$on('event:auth-logout-complete', function() {
-    $state.go('app.tc.home', {}, {reload: true, inherit: false});
-  });
-  $scope.$on('$destroy', function() {
-    appBootStrap.strapCordovaDevice().cancel();
-  });
+      $scope.$on('event:auth-logout-complete', function() {
+        $state.go('app.tc.home', {}, {reload: true, inherit: false});
+      });
+      $scope.$on('$destroy', function() {
+        appBootStrap.strapCordovaDevice().cancel();
+      });
 }]);
 
 app.factory('tokenInterceptor', function ($window) {
@@ -366,7 +358,7 @@ app.factory('tokenInterceptor', function ($window) {
         }
         $(document).ready(function () {
            $(ele).interactive_bg({
-             strength: 25,              // Movement Strength when the cursor is moved. The higher, the faster it will reacts to your cursor. The default value is 25.
+             strength: 35,              // Movement Strength when the cursor is moved. The higher, the faster it will reacts to your cursor. The default value is 25.
              scale: 1.5,               // The scale in which the background will be zoomed when hovering. Change this to 1 to stop scaling. The default value is 1.05.
              animationSpeed: "100ms",   // The time it takes for the scale to animate. This accepts CSS3 time function such as "100ms", "2.5s", etc. The default value is "100ms".
              contain: false,             // This option will prevent the scaled object/background from spilling out of its container. Keep this true for interactive background. Set it to false if you want to make an interactive object instead of a background. The default value is true.

@@ -14,7 +14,7 @@
       },
       ping: function (deviceId, cb) {
         var self = this;
-        $http.post(api_config.CONSUMER_API_URL + '/api/v1/messaging/' + deviceId, {
+        $http.post('/api/v1/messaging/' + deviceId, {
           rId: self.regid
         })
         .success(function (data) {
@@ -29,14 +29,13 @@
   app.factory('AuthenticationService', [
     '$rootScope',
     '$http',
-    // 'authService',
     'api_config',
     '$window',
     'appBootStrap',
     function($rootScope, $http, api_config, $window, appBootStrap) {
       var service = {
         register: function (user, cb) {
-          $http.post('/api/users', {
+          $http.post('/api/v1/users', {
           // $http.post(api_config.CONSUMER_API_URL + '/api/users', {
             email: encodeURI(user.email),
             phoneNumber: user.phoneNumber,
@@ -245,8 +244,7 @@
       isRequesting: false,
       strapCordovaDevice: function () {
         var self = this;
-        console.log(arguments);
-        console.log('might destroy');
+
         return $timeout(function () {
           self.thisDevice = $cordovaDevice.getDevice();
         });
@@ -262,7 +260,7 @@
       clientAuthenticationCheck: function (cb) {
         var self = this,
             deviceId = $cordovaDevice.getUUID();
-        return $http.get(api_config.CONSUMER_API_URL + '/api/v1/clients/' + deviceId + '?field_type=device');
+        return $http.get('/api/v1/clients/' + deviceId + '?field_type=device');
         // .success(function (client) {
         //   cb(client);
         // })
@@ -279,7 +277,7 @@
         var self = this,
             deviceName = $cordovaDevice.getModel() || 'Unknown Device',
             deviceId = $cordovaDevice.getUUID();
-            return $http.post(api_config.CONSUMER_API_URL + '/api/v1/clients', {
+            return $http.post('/api/v1/clients', {
               name: deviceName,
               deviceId: deviceId
             });
@@ -294,7 +292,7 @@
       clientAuthenticationReset: function () {
         var self = this,
             deviceId = $cordovaDevice.getUUID();
-        $http.delete(api_config.CONSUMER_API_URL + '/api/v1/clients/' + deviceId + '?field_type=id')
+        $http.delete('/api/v1/clients/' + deviceId + '?field_type=id')
         .success(function (data) {
           cb (data);
         })
@@ -369,6 +367,7 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function 
   return {
     watchPosition: function watchPosition (posOption) {
       posOption = posOption || ls_def_pos_option;
+      posOption.frequency =  5000;
       return $cordovaGeolocation.watchPosition(posOption);
     },
     geoLocationInit: function (posOption) {
@@ -389,8 +388,8 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function 
     getMyLocation: function getMyLocation () {
       return self.myLocation;
     },
-    pingUserLocation: function (coords) {
-      return  $http.post('/api/v1/hereiam', {coords: coords});
+    pingUserLocation: function () {
+      return  $http.post('/api/v1/hereiam', {coords: this.getMyLocation()});
     },
     addLocation: function (locationData) {
       locationData.lon = this.getMyLocation().longitude;
@@ -410,14 +409,14 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function 
     locationProximity: function locationProximity (locationData) {
       var q = Q.defer();
       var self = this;
-
+      console.log('i get called oh');
       this.geoLocationInit()
       .then(function (geoPromise) {
-
+        console.log(geoPromise);
         locationData.lon = self.getMyLocation().longitude;
         locationData.lat = self.getMyLocation().latitude;
         return q.resolve($http.get('/api/v1/position?' + $.param(locationData)));
-      }, function () {
+      }, function (err) {
         return q.reject();
       });
 

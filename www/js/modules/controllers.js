@@ -14,8 +14,24 @@ app.controller('HomeCtrl', [
   '$cordovaDevice',
   'appBootStrap',
   'locationsService',
-  function($scope, $ionicModal, $ionicPopup, $timeout, cordovaServices, $cordovaGeolocation, $state, Messaging, $cordovaDevice, appBootStrap, locationsService) {
+  '$stateParams',
+  function(
+    $scope,
+    $ionicModal,
+    $ionicPopup,
+    $timeout,
+    cordovaServices,
+    $cordovaGeolocation,
+    $state,
+    Messaging,
+    $cordovaDevice,
+    appBootStrap,
+    locationsService,
+    $stateParams
+    ) {
 
+
+    console.log('always home');
   // $scope.whoiswhere = [];
   // $scope.base = {
   //   lat: 0,
@@ -75,7 +91,6 @@ app.controller('HomeCtrl', [
   $scope.pingMsg = function () {
     Messaging.ping($cordovaDevice.getUUID(), function (d) {
       console.log(d);
-      alert('should be reg');
     });
   };
 
@@ -149,6 +164,7 @@ app.controller('LocationCtrl', ['$scope', 'locationsService', function ($scope, 
   $scope.locationQueryParams = {
     loadPerRequest: 20
   };
+  console.log('fuck');
   //load user added / tagged / check-in locations / or load locations wit the users interest
   locationsService.locationProximity($scope.locationQueryParams)
   .then(function(d) {
