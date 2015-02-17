@@ -113,11 +113,11 @@ MapApp.directive("appMap", ['$window', '$timeout', 'Initializer', '$interval', '
 
             function refreshMeMarker () {
               if (scope.myLocation) {
-                console.log("should init refresh");
+                // console.log("should init refresh");
                 scope.myLocation.setMap( scope.map );
                 //delayed so you can see it move
                 $timeout( function(){
-                    console.log("na here sure pass");
+                    // console.log("na here sure pass");
                     scope.myLocation.setPosition( new google.maps.LatLng(scope.center.lat, scope.center.lon) );
                     scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
 
@@ -130,8 +130,8 @@ MapApp.directive("appMap", ['$window', '$timeout', 'Initializer', '$interval', '
             // angular.element(document).ready(createMap());
             var mapRefresh = scope.$watch(locationsService.getMyLocation,
                 function (coords, oldValue) {
-                    console.log(coords);
-                    console.log(oldValue);
+                    // console.log(coords);
+                    // console.log(oldValue);
                     if(coords) {
 
                         scope.center.lat = coords.latitude;
