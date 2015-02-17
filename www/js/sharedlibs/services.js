@@ -357,43 +357,48 @@
 }]);
 
 app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function ($http, $cordovaGeolocation, Q) {
-  var self = this;
-  self.myLocation = null;
+  var geoSrvs = this;
+  geoSrvs.myLocation = {
+    longitude : 0,
+    latitude: 0
+  };
   var ls_def_pos_option = {
-    timeout: 5000,
+    timeout: 10000,
     enableHighAccuracy: true,
-    maximumAge: 3000
+    maximumAge: 1000
   };
   return {
     watchPosition: function watchPosition (posOption) {
       posOption = posOption || ls_def_pos_option;
-      posOption.frequency =  5000;
       return $cordovaGeolocation.watchPosition(posOption);
     },
     geoLocationInit: function (posOption) {
-        var q = Q.defer();
-        var self = this;
+        var q = Q.defer(), self = this;
         posOption = posOption || ls_def_pos_option;
         $cordovaGeolocation.getCurrentPosition(posOption)
         .then(function (position) {
           self.setMyLocation(position.coords);
           q.resolve(position.coords);
+        }, function (err) {
+          q.reject(err);
         });
 
         return q.promise;
     },
     setMyLocation: function setMyLocation (coords){
-      self.myLocation = coords;
+      geoSrvs.myLocation = coords;
     },
     getMyLocation: function getMyLocation () {
-      return self.myLocation;
+      return geoSrvs.myLocation;
     },
     pingUserLocation: function () {
-      return  $http.post('/api/v1/hereiam', {coords: this.getMyLocation()});
+      var self = this;
+      return  $http.post('/api/v1/hereiam', {coords: self.getMyLocation()});
     },
     addLocation: function (locationData) {
-      locationData.lon = this.getMyLocation().longitude;
-      locationData.lat = this.getMyLocation().latitude;
+      var self = this;
+      locationData.lon = self.getMyLocation().longitude;
+      locationData.lat = self.getMyLocation().latitude;
       if (locationData.lon && locationData.lat) {
         return $http.post('/api/v1/locations',  locationData);
       } else {
@@ -406,21 +411,26 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function 
     // deleteUserLocation: function (locationData) {
     //   return $http.delete('/api/v1/locations/:locationId');
     // },
-    locationProximity: function locationProximity (locationData) {
-      var q = Q.defer();
-      var self = this;
+    locationProximity: function locationProximity () {
+      var q = Q.defer(),
+          self = this,
+          locationData = {};
       console.log('i get called oh');
-      this.geoLocationInit()
-      .then(function (geoPromise) {
-        console.log(geoPromise);
+      // this.geoLocationInit()
+      // .then(function (geoPromise) {
+      //   console.log(geoPromise);
         locationData.lon = self.getMyLocation().longitude;
         locationData.lat = self.getMyLocation().latitude;
-        return q.resolve($http.get('/api/v1/position?' + $.param(locationData)));
-      }, function (err) {
-        return q.reject();
-      });
+        if (locationData.lon && locationData.lat) {
+          return $http.get('/api/v1/position?' + $.param(locationData));
+        } else {
 
-      return q.promise;
+          q.reject(new Error('NoLocationData'));
+          return q.promise;
+        }
+      // }, function (err) {
+      // });
+
     }
   };
 }]);

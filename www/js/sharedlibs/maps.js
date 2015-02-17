@@ -60,26 +60,25 @@ MapApp.filter('lon', function () {
  * Handle Google Maps API V3+
  */
 // - Documentation: https://developers.google.com/maps/documentation/
-MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) {
+MapApp.directive("appMap", ['$window', '$timeout', 'Initializer', '$interval', 'locationsService', function ($window, $timeout, Initializer, $interval, locationsService) {
     return {
         restrict: "E",
         replace: true,
         template: "<div></div>",
         scope: {
-            center: "=",        // Center point on the map (e.g. <code>{ latitude: 10, longitude: 10 }</code>).
+            // center: "=",        // Center point on the map (e.g. <code>{ latitude: 10, longitude: 10 }</code>).
             markers: "=",       // Array of map markers (e.g. <code>[{ lat: 10, lon: 10, name: "hello" }]</code>).
-            width: "@",         // Map width in pixels.
-            height: "@",        // Map height in pixels.
-            zoom: "@",          // Zoom level (one is totally zoomed out, 25 is very much zoomed in).
-            mapTypeId: "@",     // Type of tile to show on the map (roadmap, satellite, hybrid, terrain).
-            panControl: "@",    // Whether to show a pan control on the map.
-            zoomControl: "@",   // Whether to show a zoom control on the map.
-            scaleControl: "@"   // Whether to show scale control on the map.
+            // width: "@",         // Map width in pixels.
+            // height: "@",        // Map height in pixels.
+            // mapTypeId: "@",     // Type of tile to show on the map (roadmap, satellite, hybrid, terrain).
+            // panControl: "@",    // Whether to show a pan control on the map.
+            // zoomControl: "@",   // Whether to show a zoom control on the map.
+            // scaleControl: "@"   // Whether to show scale control on the map.
         },
         link: function (scope, element, attrs) {
+            scope.center = {};
 
             function createMap() {
-
 
               Initializer.mapsInitialized
               .then(function(){
@@ -114,10 +113,11 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
 
             function refreshMeMarker () {
               if (scope.myLocation) {
+                console.log("should init refresh");
                 scope.myLocation.setMap( scope.map );
                 //delayed so you can see it move
                 $timeout( function(){
-
+                    console.log("na here sure pass");
                     scope.myLocation.setPosition( new google.maps.LatLng(scope.center.lat, scope.center.lon) );
                     scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
 
@@ -125,13 +125,31 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
               }
             }
 
-            var mapRefresh = $interval(refreshMeMarker, 10000);
-            scope.$on('$destroy', function () {
-              $interval.cancel(mapRefresh);
-            });
+            // var mapRefresh = $interval(refreshMeMarker, 10000);
 
             // angular.element(document).ready(createMap());
-            $timeout(createMap(), 0);
+            var mapRefresh = scope.$watch(locationsService.getMyLocation,
+                function (coords, oldValue) {
+                    console.log(coords);
+                    console.log(oldValue);
+                    if(coords) {
+
+                        scope.center.lat = coords.latitude;
+                        scope.center.lon = coords.longitude;
+                        refreshMeMarker();
+                    }
+                }
+
+            );
+            scope.$on('$destroy', function () {
+              mapRefresh();
+            });
+
+            $timeout(function () {
+                scope.center.lat = locationsService.getMyLocation().latitude;
+                scope.center.lon = locationsService.getMyLocation().longitude;
+                createMap();
+            }, 0);
 
             // Info window trigger function
             // function onItemClick(pin, label, datum, url) {
@@ -192,4 +210,4 @@ MapApp.directive("appMap", function ($window, $timeout, Initializer, $interval) 
 
       } // end of link:
     }; // end of return
-});
+}]);

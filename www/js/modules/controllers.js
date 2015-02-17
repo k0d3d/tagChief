@@ -30,63 +30,8 @@ app.controller('HomeCtrl', [
     $stateParams
     ) {
 
+  console.log('always home');
 
-    console.log('always home');
-  // $scope.whoiswhere = [];
-  // $scope.base = {
-  //   lat: 0,
-  //   lon: 0
-  // };
-  // var posOptions = {
-  //   timeout: 5000,
-  //   enableHighAccuracy: true,
-  //   maximumAge: 3000
-  // };
-
-  // $cordovaGeolocation.getCurrentPosition(posOptions)
-  // .then(
-  //   function(position) {
-  //     $scope.position=position;
-  //     var c = position.coords;
-  //     $scope.base = {
-  //       lat: c.latitude,
-  //       lon: c.longitude
-  //     };
-  //     locationsService.setMyLocation(position.coords);
-
-  //   },
-  //   function(e) {
-  //     console.log("Error retrieving position " + e.code + " " + e.message);
-  //   }
-  // );
-
-  // var watch = $cordovaGeolocation.watchPosition(posOptions);
-  // watch.then(
-  //   null,
-  //   function(e) {
-  //     // error
-  //     console.log("Error retrieving position " + e.code + " " + e.message);
-  //   },
-  //   function(position) {
-  //     $scope.base = {
-  //       lat: position.coords.latitude,
-  //       lon: position.coords.longitude
-  //     };
-  //     locationsService.setMyLocation(position.coords);
-  // });
-
-  // // some points of interest to show on the map
-  // // to be user as markers, objects should have "lat", "lon", and "name" properties
-  // $scope.whoiswhere.push = {
-  //   "name": "My Marker",
-  //   "lat": $scope.base.lat,
-  //   "lon": $scope.base.lon
-  // };
-
-
-  // $scope.$on('$destroy', function (e) {
-  //   watch.clearWatch();
-  // });
 
   $scope.pingMsg = function () {
     Messaging.ping($cordovaDevice.getUUID(), function (d) {
@@ -135,11 +80,6 @@ app.controller('HomeCtrl', [
         }
       ]
     });
-    // myPopup.then(function(res) {
-    //   if (res) {
-    //     myPopup.close();
-    //   }
-    // });
 
     $scope.$on('$destroy', function () {
       myPopup.remove();
@@ -169,6 +109,14 @@ app.controller('LocationCtrl', ['$scope', 'locationsService', function ($scope, 
   locationsService.locationProximity($scope.locationQueryParams)
   .then(function(d) {
     $scope.locationFeed = d.data;
+  }, function (err) {
+    if (err instanceof Error) {
+       if (err.message == 'NoLocationData') {
+          alert('Location not found');
+       }
+    }
+    alert('other error occured');
+    console.log(err);
   });
 }]);
 

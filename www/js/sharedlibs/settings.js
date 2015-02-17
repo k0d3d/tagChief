@@ -5,6 +5,7 @@ var config_data = {
   },
   'api_config': {
     'CONSUMER_API_URL': "https://stark-cliffs-8842.herokuapp.com"
+    // 'CONSUMER_API_URL': "http://192.168.1.4:3000"
   }
 };
 angular.forEach(config_data,function(key,value) {

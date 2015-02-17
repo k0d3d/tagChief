@@ -34,7 +34,8 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       url: "/home",
       views: {
         'viewContent@app.tc' :{
-          templateUrl: "templates/home.html"
+          templateUrl: "templates/home.html",
+          controller: 'HomeCtrl'
         }
       }
     })
@@ -105,6 +106,12 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
               $rootScope.$broadcast('app-is-requesting', false);
               // appBootStrap.isRequesting = false;
                return resp || $q.when(resp);
+          },
+          // optional method
+         'responseError': function(rejection) {
+            // do something on error
+            $rootScope.$broadcast('app-is-requesting', false);
+            return $q.reject(rejection);
           },
           // optional method
          'requestError': function(rejection) {
@@ -252,9 +259,10 @@ app.controller('AppCtrl', [
       $interval(function () {
         if ($window.localStorage.authorizationToken.split(" ")[0] == 'Bearer') {
           var l = locationsService.getMyLocation() || {};
+
           if (!l.latitude && !l.longitude) {
-            locationsService.geoLocationInit();
-            locationsService.watchPosition();
+            // locationsService.geoLocationInit();
+            // locationsService.watchPosition();
             return false;
           }
           locationsService.pingUserLocation();
@@ -265,18 +273,22 @@ app.controller('AppCtrl', [
       /**  Start Geo postioning code / monitor */
       $scope.whoiswhere = [];
       $scope.base = {
-        lat: 0,
-        lon: 0
+        coords:  {
+          lat: 0,
+          lon: 0
+        }
       };
 
       var i = locationsService.geoLocationInit();
       i.then(
         function(position) {
-          $scope.position=position;
-          $scope.base = {
-            lat: position.latitude,
-            lon: position.longitude
-          };
+
+          //should get coarse position
+          // $scope.position=position;
+          // $scope.base = {
+          //   lat: position.latitude,
+          //   lon: position.longitude
+          // };
         },
         function(e) {
           console.log("Error retrieving position " + e.code + " " + e.message);
@@ -292,10 +304,10 @@ app.controller('AppCtrl', [
         },
         function(position) {
           console.log(position);
-          $scope.base = {
-            lat: position.coords.latitude,
-            lon: position.coords.longitude
-          };
+
+          // $scope.base.coords.lat =  position.coords.latitude;
+          // $scope.base.coords.lon =  position.coords.longitude;
+
           locationsService.setMyLocation(position.coords);
       });
 
@@ -303,8 +315,8 @@ app.controller('AppCtrl', [
       // you as a  markers, objects should have "lat", "lon", and "name" properties
       $scope.whoiswhere.push = {
         "name": "Here I am",
-        "lat": $scope.base.lat,
-        "lon": $scope.base.lon
+        "lat": $scope.base.coords.lat,
+        "lon": $scope.base.coords.lon
       };
 
 
