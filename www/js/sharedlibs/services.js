@@ -242,6 +242,7 @@
       activeModal: null,
       thisDevice: null,
       isRequesting: false,
+      modals: {},
       strapCordovaDevice: function () {
         var self = this;
 
@@ -356,11 +357,12 @@
   };
 }]);
 
-app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function ($http, $cordovaGeolocation, Q) {
+app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', '$rootScope', function ($http, $cordovaGeolocation, Q, $rootScope) {
   var geoSrvs = this;
   geoSrvs.myLocation = {
     longitude : 0,
-    latitude: 0
+    latitude: 0,
+    timeStamp: null
   };
   var ls_def_pos_option = {
     timeout: 10000,
@@ -368,6 +370,25 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function 
     maximumAge: 1000
   };
   return {
+    checkIntoLocation: function checkIntoLocation (locationId) {
+      var q = Q.defer(),
+          self = this,
+          locationData = {};
+      console.log('i get called oh');
+      // this.geoLocationInit()
+      // .then(function (geoPromise) {
+      //   console.log(geoPromise);
+        locationData.lon = self.getMyLocation().longitude;
+        locationData.lat = self.getMyLocation().latitude;
+        if (locationData.lon && locationData.lat) {
+          return $http.post('/api/v1/location/' +  locationId +'/checkin');
+        } else {
+          q.reject(new Error('NoLocationData'));
+          return q.promise;
+        }
+
+      return q.promise;
+    },
     watchPosition: function watchPosition (posOption) {
       posOption = posOption || ls_def_pos_option;
       return $cordovaGeolocation.watchPosition(posOption);
@@ -386,14 +407,20 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function 
         return q.promise;
     },
     setMyLocation: function setMyLocation (coords){
-      geoSrvs.myLocation = coords;
+      geoSrvs.myLocation.latitude = coords.latitude;
+      geoSrvs.myLocation.longitude = coords.longitude;
+      if (!geoSrvs.myLocation.timeStamp) {
+        geoSrvs.myLocation.timeStamp = Date.now();
+      }
     },
     getMyLocation: function getMyLocation () {
       return geoSrvs.myLocation;
     },
     pingUserLocation: function () {
       var self = this;
-      return  $http.post('/api/v1/hereiam', {coords: self.getMyLocation()});
+      return  $http.post('/api/v1/hereiam', {
+        coords: self.getMyLocation()
+      });
     },
     addLocation: function (locationData) {
       var self = this;
@@ -431,6 +458,33 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', function 
       // }, function (err) {
       // });
 
+    },
+    deviceIsSitting: function deviceIsSitting (coords) {
+      var self = this;
+      var prevLocation = self.getMyLocation();
+      //if its equal, for how long has it been equal, if its changed..
+      //dont bother
+      if (angular.equals({
+        latitude: prevLocation.latitude,
+        longitude: prevLocation.longitude
+      }, {
+        latitude: coords.latitude,
+        longitude: coords.longitude
+      })) {
+        var momentNow = moment();
+        var momentThen = moment(prevLocation.timeStamp);
+        var diff = momentThen.diff(momentNow, 'seconds');
+        //for example now is = -57
+        if (diff > -65 && diff < -55) {
+          console.log('TRIGGERED');
+          $rootScope.$broadcast('locationsService::userisSitting', prevLocation);
+          self.pingUserLocation();
+        }
+        console.log('%s has passed since u sat down', diff);
+      } else {
+        geoSrvs.myLocation.timeStamp = Date.now();
+        console.log('You are moving u bastard, sit down');
+      }
     }
   };
 }]);

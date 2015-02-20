@@ -204,3 +204,19 @@ a:hover.home-cta {
 .is-request-loading i {
   color: #e74c3c;
 }
+
+.header-logo {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  height: 44px;
+}
+
+.header-logo img {
+  height: 44px;
+}
+
+.no-content {
+  text-align: center;
+  margin: 10px auto;
+}

@@ -30,9 +30,6 @@ app.controller('HomeCtrl', [
     $stateParams
     ) {
 
-  console.log('always home');
-
-
   $scope.pingMsg = function () {
     Messaging.ping($cordovaDevice.getUUID(), function (d) {
       console.log(d);
@@ -100,24 +97,66 @@ app.controller('SplashCtrl', ['$scope', function ($scope) {
 
 }]);
 
-app.controller('LocationCtrl', ['$scope', 'locationsService', function ($scope, locationsService) {
+app.controller('LocationCtrl', ['$scope', 'locationsService', '$state', '$stateParams', '$ionicPopup', function ($scope, locationsService, $state, $stateParams, $ionicPopup) {
+  $state.transitionTo($state.current, $stateParams, {
+      reload: true,
+      inherit: false,
+      notify: true
+  });
   $scope.locationQueryParams = {
     loadPerRequest: 20
   };
-  console.log('fuck');
-  //load user added / tagged / check-in locations / or load locations wit the users interest
-  locationsService.locationProximity($scope.locationQueryParams)
-  .then(function(d) {
-    $scope.locationFeed = d.data;
-  }, function (err) {
-    if (err instanceof Error) {
-       if (err.message == 'NoLocationData') {
-          alert('Location not found');
+
+  $scope.openCheckInModal = function (locationId) {
+     var confirmPopup = $ionicPopup.confirm({
+       title: 'Check In',
+       template: 'Are you sure you want to checkin here?'
+     });
+     confirmPopup.then(function(res) {
+       if(res) {
+        locationsService.checkIntoLocation(locationId);
+         console.log('You are sure');
+       } else {
+         console.log('You are not sure');
        }
-    }
-    alert('other error occured');
-    console.log(err);
-  });
+     });
+  };
+
+  $scope.checkInUser = function (params, isModal) {
+    // appBootStrap.modals.checkin.hide();
+  };
+
+  $scope.loadLocations = function loadLocations (params) {
+    var i = locationsService.geoLocationInit();
+    i.then(
+      function(position) {
+        //load user added / tagged / check-in locations / or load locations wit the users interest
+        locationsService.locationProximity($scope.locationQueryParams)
+        .then(function(d) {
+          console.log(d);
+          $scope.locationFeed = d.data;
+          $scope.$broadcast('scroll.refreshComplete');
+        }, function (err) {
+          if (err instanceof Error) {
+             if (err.message == 'NoLocationData') {
+                // alert('Location not found');
+             }
+          }
+          // alert('other error occured');
+          $scope.$broadcast('scroll.refreshComplete');
+          console.log(err);
+        });
+      },
+      function(e) {
+        $scope.$broadcast('scroll.refreshComplete');
+        console.log("Error retrieving position " + e.code + " " + e.message);
+      }
+    );
+  };
+
+  //init
+  $scope.loadLocations();
+
 }]);
 
 app.filter('hideSystemFiles', function () {

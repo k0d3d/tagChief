@@ -60,7 +60,13 @@ MapApp.filter('lon', function () {
  * Handle Google Maps API V3+
  */
 // - Documentation: https://developers.google.com/maps/documentation/
-MapApp.directive("appMap", ['$window', '$timeout', 'Initializer', '$interval', 'locationsService', function ($window, $timeout, Initializer, $interval, locationsService) {
+MapApp.directive("appMap", [
+    '$window',
+    '$timeout',
+    'Initializer',
+    '$interval',
+    'locationsService',
+    function ($window, $timeout, Initializer, $interval, locationsService) {
     return {
         restrict: "E",
         replace: true,
@@ -79,7 +85,7 @@ MapApp.directive("appMap", ['$window', '$timeout', 'Initializer', '$interval', '
             scope.center = {};
 
             function createMap() {
-
+                console.log(scope.center);
               Initializer.mapsInitialized
               .then(function(){
                   var myLatLng = new google.maps.LatLng(scope.center.lat, scope.center.lon);
@@ -112,6 +118,7 @@ MapApp.directive("appMap", ['$window', '$timeout', 'Initializer', '$interval', '
             }
 
             function refreshMeMarker () {
+                console.log('might b ur fault');
               if (scope.myLocation) {
                 // console.log("should init refresh");
                 scope.myLocation.setMap( scope.map );
@@ -145,11 +152,18 @@ MapApp.directive("appMap", ['$window', '$timeout', 'Initializer', '$interval', '
               mapRefresh();
             });
 
-            $timeout(function () {
-                scope.center.lat = locationsService.getMyLocation().latitude;
-                scope.center.lon = locationsService.getMyLocation().longitude;
-                createMap();
-            }, 0);
+            var i = locationsService.geoLocationInit();
+            i.then(
+                function(position) {
+                    scope.center.lat = locationsService.getMyLocation().latitude;
+                    scope.center.lon = locationsService.getMyLocation().longitude;
+                    createMap();
+                },
+                function(e) {
+                  console.log("Error retrieving position " + e.code + " " + e.message);
+                }
+            );
+
 
             // Info window trigger function
             // function onItemClick(pin, label, datum, url) {

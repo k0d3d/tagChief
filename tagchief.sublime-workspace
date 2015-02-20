@@ -4,12 +4,96 @@
 		"selected_items":
 		[
 			[
-				"app",
-				"appConfig"
+				"prev",
+				"prevLocation"
+			],
+			[
+				"root",
+				"rootScope"
 			],
 			[
 				"loca",
-				"locationLists〔argument〕"
+				"loadLocations"
+			],
+			[
+				"moment",
+				"momentNow"
+			],
+			[
+				"mom",
+				"momentThen"
+			],
+			[
+				"la",
+				"latitude"
+			],
+			[
+				"long",
+				"longitude"
+			],
+			[
+				"pre",
+				"prevLocation"
+			],
+			[
+				"device",
+				"deviceIsSitting"
+			],
+			[
+				"p",
+				"pouchdb-3.3.1.min.js"
+			],
+			[
+				"ge",
+				"geolib.elevation.js"
+			],
+			[
+				"noti",
+				"notification〔argument〕"
+			],
+			[
+				"locat",
+				"locationList"
+			],
+			[
+				"reg",
+				"regIds〔variable〕"
+			],
+			[
+				"cosn",
+				"console.log(message);"
+			],
+			[
+				"mess",
+				"messageQueue"
+			],
+			[
+				"regis",
+				"registerationIds"
+			],
+			[
+				"G",
+				"GcmMessage"
+			],
+			[
+				"push",
+				"pushResults"
+			],
+			[
+				"main",
+				"mainCfg"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"state",
+				"stateParams"
+			],
+			[
+				"app",
+				"appConfig"
 			],
 			[
 				"geo",
@@ -18,10 +102,6 @@
 			[
 				"post",
 				"postion"
-			],
-			[
-				"pos",
-				"posOption〔variable〕"
 			],
 			[
 				"po",
@@ -50,10 +130,6 @@
 			[
 				"getM",
 				"getMyLocation"
-			],
-			[
-				"device",
-				"deviceFn〔variable〕"
 			],
 			[
 				"locati",
@@ -438,172 +514,32 @@
 			[
 				"update",
 				"updateTags"
-			],
-			[
-				"path",
-				"path.normalize(path);"
-			],
-			[
-				"users",
-				"Users"
-			],
-			[
-				"profi",
-				"profile-photo-hidden-input"
-			],
-			[
-				"direc",
-				"directives"
-			],
-			[
-				"directi",
-				"directive"
-			],
-			[
-				"queue",
-				"queueTip"
-			],
-			[
-				"direct",
-				"directive"
-			],
-			[
-				"proto",
-				"prototype"
-			],
-			[
-				"chunk",
-				"chunkNumber"
-			],
-			[
-				"$root",
-				"$rootScope"
-			],
-			[
-				"angul",
-				"angular.forEach	AngularJS"
-			],
-			[
-				"mongoose",
-				"mongooseResult"
-			],
-			[
-				"filepa",
-				"filepath"
-			],
-			[
-				"filep",
-				"filepath"
-			],
-			[
-				"usr",
-				"userId"
-			],
-			[
-				"util",
-				"util"
-			],
-			[
-				"progre",
-				"progress-bar"
-			],
-			[
-				"que",
-				"queuecopy"
-			],
-			[
-				"Que",
-				"queueController"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+			"settings":
+			{
+				"buffer_size": 4105,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/sharedlibs/maps.js",
+			"settings":
+			{
+				"buffer_size": 8590,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "www/js/sharedlibs/services.js",
 			"settings":
 			{
-				"buffer_size": 16306,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
-			"settings":
-			{
-				"buffer_size": 928,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/sharedlibs/settings.js",
-			"settings":
-			{
-				"buffer_size": 291,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/users.js",
-			"settings":
-			{
-				"buffer_size": 1899,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/app.js",
-			"settings":
-			{
-				"buffer_size": 11373,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/home.html",
-			"settings":
-			{
-				"buffer_size": 599,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/modules/auth.js",
-			"settings":
-			{
-				"buffer_size": 3990,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/models/user.js",
-			"settings":
-			{
-				"buffer_size": 31456,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/config/default.json",
-			"settings":
-			{
-				"buffer_size": 897,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/modules/controllers.js",
-			"settings":
-			{
-				"buffer_size": 5022,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/locations.html",
-			"settings":
-			{
-				"buffer_size": 1556,
+				"buffer_size": 17806,
 				"line_ending": "Unix"
 			}
 		}
@@ -708,59 +644,77 @@
 	},
 	"expanded_folders":
 	[
+		"/home/kingkoded/FedProjects/tagchief",
 		"/home/kingkoded/FedProjects/tagchief/www",
 		"/home/kingkoded/FedProjects/tagchief/www/js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs",
-		"/home/kingkoded/FedProjects/tagChief-node",
-		"/home/kingkoded/FedProjects/tagChief-node/models",
-		"/home/kingkoded/FedProjects/tagChief-node/views/includes",
-		"/home/kingkoded/FedProjects/tagChief-node/views/layouts",
-		"/home/kingkoded/FedProjects/tagChief-node/views/oauth"
+		"/home/kingkoded/FedProjects/tagchief/www/templates"
 	],
 	"file_history":
 	[
+		"/home/kingkoded/FedProjects/tagChief-node/models/device.js",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
+		"/home/kingkoded/FedProjects/tagchief/www/index.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
+		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/oauth-server/oauth-server.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
+		"/home/kingkoded/FedProjects/tagchief/www/__index.html",
+		"/home/kingkoded/FedProjects/tagchief/config.xml",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user/locations.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user/user.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/location.html",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/routes.js",
+		"/home/kingkoded/FedProjects/tagchief/www_tmpl/settings.js",
+		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/framework/test/org/apache/cordova/PreferenceSetTest.java",
+		"/home/kingkoded/FedProjects/tagchief/platforms/android/cordova/lib/start-emulator",
+		"/home/kingkoded/FedProjects/tagChief-node/server.js",
+		"/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
+		"/home/kingkoded/FedProjects/tagChief-node/package.json",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/pushes.js",
+		"/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/tag-popover.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/login.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/register.html",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/users.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/full-screen.html",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/splash-first.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
+		"/home/kingkoded/FedProjects/tagChief-node/config/default.json",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/jquery/src/var/hasOwn.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/hash.js",
-		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/cordova/node_modules/shelljs/src/popd.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/templates/prompt-alert-tpl.jade",
 		"/home/kingkoded/FedProjects/tagChief-node/Procfile",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/pkginfo/examples/all-properties.js",
 		"/home/kingkoded/FedProjects/tcb/www/js/sharedlibs/services.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/oauth-server/oauth-server.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/oauth/oauth-dialog.jade",
-		"/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/pkginfo/examples/object-argument.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user/user.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/middlewares/cors.js",
 		"/home/kingkoded/FedProjects/tagChief-node/config/development.json",
 		"/home/kingkoded/FedProjects/tagChief-node/config/test.json",
-		"/home/kingkoded/FedProjects/tagChief-node/server.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/device.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user/locations.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/routes.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-cli/AUTHORS",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/angular-ui-router/release/angular-ui-router.js",
 		"/home/kingkoded/FedProjects/tagchief/plugins/android.json",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/alphaId._",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
-		"/home/kingkoded/FedProjects/tagchief/www/index.html",
 		"/home/kingkoded/FedProjects/tagchief/hooks/before_platform_add/init_directories.js",
 		"/home/kingkoded/FedProjects/tagchief/node_modules/gulp/node_modules/gulp-util/lib/isNull.js",
 		"/home/kingkoded/FedProjects/tagchief/ionic.project",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/__locations.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/full-screen.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/login.html",
-		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/splash-first.html",
 		"/home/kingkoded/FedProjects/tagChief-node/views/home/login.jade",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/cordova/log",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/test/fixtures/log-on-interval.js",
@@ -769,21 +723,13 @@
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/directives.js",
 		"/home/kingkoded/.cache/.fr-oLqCJF/photoTilt-master/demo/index.html",
 		"/home/kingkoded/FedProjects/tagChief-node/views/layouts/mobile.jade",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/register.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/app__.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
-		"/home/kingkoded/FedProjects/tagchief/www_tmpl/settings.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
 		"/home/kingkoded/FedProjects/tagchief/Gruntfile.js",
 		"/home/kingkoded/FedProjects/tagchief/.gitignore",
 		"/home/kingkoded/FedProjects/tagChief-node/models/review.js",
 		"/home/kingkoded/FedProjects/tagchief/README.md",
 		"/home/kingkoded/FedProjects/tagChief-node/models/review.js\nreview.js",
 		"/home/kingkoded/FedProjects/tagChief-node/review.js",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/tag-popover.html",
-		"/home/kingkoded/FedProjects/tagchief/config.xml",
-		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/message.js",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/location.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/event_register.js",
@@ -792,13 +738,11 @@
 		"/home/kingkoded/FedProjects/tagChief-node/README.md",
 		"/home/kingkoded/FedProjects/tagchief/hooks/after_plugin_add/010_register_plugin.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/mongoose/examples/replicasets/person.js",
-		"/home/kingkoded/FedProjects/tagChief-node/config/default.json",
 		"/home/kingkoded/FedProjects/tagChief-node/config/production.json",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/commons.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/media.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/vault.js",
 		"/home/kingkoded/FedProjects/tagchief/www/css/animation.css",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
 		"/home/kingkoded/FedProjects/tagchief/plugins/com.phonegap.plugins.PushPlugin/spec/jasmine.css",
 		"/home/kingkoded/FedProjects/tagchief/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.css",
 		"/home/kingkoded/FedProjects/tagchief/plugins/com.phonegap.plugins.PushPlugin/src/wp8/PushPlugin.cs",
@@ -829,24 +773,14 @@
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/clients._",
 		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/css/plugins.css",
 		"/home/kingkoded/Projects/bncauth/lib/auth/auth.js",
-		"/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/bcrypt/Makefile",
 		"/home/kingkoded/FedProjects/tagChief-node/models/media/device.js",
 		"/home/kingkoded/FedProjects/tagchief/package.json",
 		"/home/kingkoded/FedProjects/ixit_mobile/package.json",
-		"/home/kingkoded/FedProjects/tagChief-node/package.json",
 		"/home/kingkoded/FedProjects/tagChief-node/models/media/media.js",
 		"/home/kingkoded/FedProjects/tagchief/www/css/main.css",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/location.html",
 		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/page_ready_user_profile.html",
-		"/home/kingkoded/FedProjects/tagchief/www/css/themes.css",
-		"/home/kingkoded/FedProjects/tagchief/www/full-screen.html",
-		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/page_ready_timeline.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/plugins.js",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/<ion-view>\n  <ion-nav-view name=\"fullContent\"></ion-nav-view>\n</ion-view>\n<ion-view>\n  <ion-nav-view name=\"fullContent\"></ion-nav-view>\n</ion-view>\nfull-screen.html",
-		"/home/kingkoded/Downloads/templates/proui/02 - ProUI Backend Template (HTML)/page_comp_maps.html",
-		"/home/kingkoded/FedProjects/tagchief/gulpfile.js"
+		"/home/kingkoded/FedProjects/tagchief/www/css/themes.css"
 	],
 	"find":
 	{
@@ -857,6 +791,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"/home/kingkoded/FedProjects/tagchief/www",
 			"/home/kingkoded/FedProjects/tagChief-node/lib",
 			"/home/kingkoded/FedProjects/tagChief-node/controllers",
 			"/home/kingkoded/FedProjects/tagChief-node/models",
@@ -888,6 +823,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"logobox",
+			"passport",
+			"saveUserLastLocation",
+			"gcm",
+			"GcmMessage",
+			"errors",
+			"DeviceObject",
+			"callbackName",
+			"InitMapCb",
+			"auth-loginRequired",
 			"api_config.CONSUMER_API_URL + ",
 			"api_config",
 			"api_config.CONSUMER_API_URL",
@@ -1005,17 +950,7 @@
 			"api_url",
 			"controllers",
 			".js",
-			"appID",
-			"easing",
-			"itemNa",
-			"iProgressCTX",
-			"<strong>",
-			"contact the",
-			"contact",
-			"src=\"",
-			"js",
-			"src=\"js",
-			"src=\""
+			"appID"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1023,6 +958,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"LocationDeviceObject",
 			"lodash",
 			"src=\"./",
 			"src=\"./img",
@@ -1075,24 +1011,24 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/js/sharedlibs/services.js",
+					"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 16306,
+						"buffer_size": 4105,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								14322,
-								14322
+								528,
+								528
 							]
 						],
 						"settings":
@@ -1109,7 +1045,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4510.0,
+						"translation.y": 65.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1117,202 +1053,55 @@
 				},
 				{
 					"buffer": 1,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
+					"file": "www/js/sharedlibs/maps.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 928,
+						"buffer_size": 8590,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								475,
-								475
+								0,
+								0
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
 							"WordCountSyntax": "javascript",
-							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/js/sharedlibs/settings.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 291,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								192,
-								192
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/users.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1899,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								241,
-								241
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 91.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11373,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1175,
-								1175
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 897.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "www/templates/home.html",
+					"buffer": 2,
+					"file": "www/js/sharedlibs/services.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 599,
+						"buffer_size": 17806,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								99,
-								99
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": true,
-							"WordCountSyntax": "html",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "www/js/modules/auth.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3990,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								945,
-								945
+								15484,
+								15484
 							]
 						],
 						"settings":
@@ -1329,155 +1118,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 4783.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/models/user.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 31456,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								20881,
-								20881
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 8645.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/config/default.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 897,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								288,
-								288
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "json",
-							"auto_complete": true,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "www/js/modules/controllers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5022,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								524,
-								524
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "www/templates/locations.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1556,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								923,
-								923
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "html",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -1541,6 +1185,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"setting",
+				"tagchief/www_tmpl/settings.js"
+			],
 			[
 				"home",
 				"tagchief/www/templates/home.html"
@@ -2048,10 +1696,6 @@
 			[
 				"lang.j",
 				"IXit/public/js/modules/lang.js"
-			],
-			[
-				"element",
-				"IXit/public/css/elements.css"
 			]
 		],
 		"width": 0.0
@@ -2088,7 +1732,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 151.0,
+	"side_bar_width": 213.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

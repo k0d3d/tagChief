@@ -203,6 +203,7 @@ app.controller('AppCtrl', [
   '$cordovaGeolocation',
   '$q',
   '$stateParams',
+  '$ionicModal',
   function (
     $scope,
     $state,
@@ -215,7 +216,8 @@ app.controller('AppCtrl', [
     locationsService,
     $cordovaGeolocation,
     $q,
-    $stateParams) {
+    $stateParams,
+    $ionicModal) {
       // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
       //     console.log(error);
       //     evt.preventDefault();
@@ -241,6 +243,7 @@ app.controller('AppCtrl', [
             break;
 
           case 'message':
+            console.log(notification);
             // this is the actual push notification. its format depends on the data model from the push server
             alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
             break;
@@ -256,19 +259,22 @@ app.controller('AppCtrl', [
       });
 
 
-      $interval(function () {
-        if ($window.localStorage.authorizationToken.split(" ")[0] == 'Bearer') {
-          var l = locationsService.getMyLocation() || {};
+      // $interval(function () {
+      //   if ($window.localStorage.authorizationToken.split(" ")[0] == 'Bearer') {
+      //     var l = locationsService.getMyLocation() || {};
 
-          if (!l.latitude && !l.longitude) {
-            // locationsService.geoLocationInit();
-            // locationsService.watchPosition();
-            return false;
-          }
-          locationsService.pingUserLocation();
-        }
-      }, 20000);
-
+      //     if (!l.latitude && !l.longitude) {
+      //       // locationsService.geoLocationInit();
+      //       // locationsService.watchPosition();
+      //       return false;
+      //     }
+      //     locationsService.pingUserLocation();
+      //   }
+      // }, 60000);
+      //
+      $scope.testPing = function () {
+        return locationsService.pingUserLocation();
+      };
 
       /**  Start Geo postioning code / monitor */
       $scope.whoiswhere = [];
@@ -309,6 +315,7 @@ app.controller('AppCtrl', [
           // $scope.base.coords.lon =  position.coords.longitude;
 
           locationsService.setMyLocation(position.coords);
+          locationsService.deviceIsSitting(position.coords);
       });
 
       // show on the map
@@ -318,12 +325,6 @@ app.controller('AppCtrl', [
         "lat": $scope.base.coords.lat,
         "lon": $scope.base.coords.lon
       };
-
-
-      $scope.$on('$destroy', function (e) {
-        watch.clearWatch();
-      });
-
       /** end geo monitor code */
 
 
@@ -343,6 +344,7 @@ app.controller('AppCtrl', [
         $state.go('app.tc.home', {}, {reload: true, inherit: false});
       });
       $scope.$on('$destroy', function() {
+        watch.clearWatch();
         appBootStrap.strapCordovaDevice().cancel();
       });
 }]);

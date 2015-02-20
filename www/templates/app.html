@@ -6,9 +6,11 @@
 
       <ion-side-menu-content drag-content="true">
         <ion-nav-bar ng-init="uiPage = {}">
-          <ion-nav-buttons side="left">
-            <h1 class="title"><img src="./img/logo.png" img-cache></h1>
-          </ion-nav-buttons>
+          <div class="header-logo nav-bar-block">
+            <div class="bar bar-header">
+              <h1 class="header-item"><img src="./img/logo.png" img-cache></h1>
+            </div>
+          </div>
           <ion-nav-buttons side="right">
               <div class="nav-buttons-primary ">
                 <button class="button button-icon" ng-click="select_up_action()">
