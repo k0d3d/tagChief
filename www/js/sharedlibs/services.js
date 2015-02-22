@@ -1,6 +1,11 @@
 (function () {
   var app = angular.module('services', []);
-  app.factory('Messaging', ['$http', 'api_config', function ($http, api_config) {
+  app.factory('Messaging', [
+    '$http',
+    'api_config',
+    '$state',
+    'appBootStrap',
+    function ($http, api_config, $state, appBootStrap) {
     var regid = '';
 
 
@@ -23,6 +28,16 @@
         .error(function (err) {
           cb(err);
         });
+      },
+      execAction: function execAction (actionName, params) {
+        switch (actionName) {
+          case 'CHECKIN':
+          // appBootStrap.openOnStateChangeSuccess(actionName);
+          $state.transitionTo('app.tc.location', angular.extend({popoverCheckin: actionName}, params), { reload: true, inherit: true, notify: true });
+          break;
+          default:
+          break;
+        }
       }
     };
   }]);
@@ -240,9 +255,19 @@
     function ($ionicModal, $cordovaDevice, $http, api_config, $q, $window, $ionicPopover, $timeout) {
     return {
       activeModal: null,
+      pendingPrompt: null,
       thisDevice: null,
       isRequesting: false,
       modals: {},
+      openOnStateChangeSuccess: function openOnStateChangeSuccess (actionName) {
+        console.log('should set');
+        this.pendingPrompt = actionName;
+        console.log(actionName, this.pendingPrompt);
+      },
+      clearPendingPrompts: function clearPendingPrompts () {
+        this.pendingPrompt = null;
+        console.log(this.pendingPrompt);
+      },
       strapCordovaDevice: function () {
         var self = this;
 
@@ -362,7 +387,8 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', '$rootSco
   geoSrvs.myLocation = {
     longitude : 0,
     latitude: 0,
-    timeStamp: null
+    timeStamp: null,
+    hasCheckedIn: false
   };
   var ls_def_pos_option = {
     timeout: 10000,
@@ -374,10 +400,7 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', '$rootSco
       var q = Q.defer(),
           self = this,
           locationData = {};
-      console.log('i get called oh');
-      // this.geoLocationInit()
-      // .then(function (geoPromise) {
-      //   console.log(geoPromise);
+
         locationData.lon = self.getMyLocation().longitude;
         locationData.lat = self.getMyLocation().latitude;
         if (locationData.lon && locationData.lat) {
@@ -416,10 +439,13 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', '$rootSco
     getMyLocation: function getMyLocation () {
       return geoSrvs.myLocation;
     },
-    pingUserLocation: function () {
+    pingUserLocation: function (params) {
+      params = params || {};
+      console.log('her i am');
       var self = this;
       return  $http.post('/api/v1/hereiam', {
-        coords: self.getMyLocation()
+        coords: self.getMyLocation(),
+        shouldPromptCheckIn: params.shouldPromptCheckIn
       });
     },
     addLocation: function (locationData) {
@@ -475,14 +501,22 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', '$rootSco
         var momentThen = moment(prevLocation.timeStamp);
         var diff = momentThen.diff(momentNow, 'seconds');
         //for example now is = -57
-        if (diff > -65 && diff < -55) {
+        //if the user has been in d same location for the below amount of time.
+        //and he hasnt checked into this location.
+        //trigger a push
+        if ((diff > -65 && diff < -55) && !geoSrvs.myLocation.hasCheckedIn) {
           console.log('TRIGGERED');
           $rootScope.$broadcast('locationsService::userisSitting', prevLocation);
-          self.pingUserLocation();
+          //reset the timeStamp so we can start comparing
+          //from here.
+          geoSrvs.myLocation.timeStamp = null;
+          geoSrvs.myLocation.hasCheckedIn = true;
+          self.pingUserLocation({shouldPromptCheckIn: true});
         }
         console.log('%s has passed since u sat down', diff);
       } else {
-        geoSrvs.myLocation.timeStamp = Date.now();
+        geoSrvs.myLocation.timeStamp = null;
+        geoSrvs.myLocation.hasCheckedIn = false;
         console.log('You are moving u bastard, sit down');
       }
     }

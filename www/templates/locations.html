@@ -6,9 +6,9 @@
       <div class="no-content no-list-locations" ng-hide="locationFeed.length > 0">
         <h3>No Locations to show</h3>
       </div>
-      <ul class="list location-feed">
+      <ion-list class="location-feed" can-swipe="false">
           <!-- Check in -->
-          <li class="item item-avatar" ng-repeat="l in locationFeed" ng-show="locationFeed.length > 0">
+          <ion-item class="item-avatar" ng-repeat="l in locationFeed" ng-show="locationFeed.length > 0" ui-sref="app.tc.location({locationId: l._id})">
               <img src="./img/placeholders/avatars/avatar3.jpg" alt="Avatar" class="img-circle" img-cache>
               <div class="media-body">
                   <p class="push-bit">
@@ -20,11 +20,11 @@
                   </p>
                   <div id="gmap-checkin" class="gmap push"></div>
                   <p>
-                      <a href="javascript:void(0)" class="button button-small button-default" ng-click="openCheckInModal(l._id)"><i class="fa fa-comments-o"></i> Check In</a>
+                      <a href="javascript:void(0)" class="button button-small button-default" ng-click="openCheckInModal($event, l._id)"><i class="fa fa-comments-o"></i> Check In</a>
                       <a href="javascript:void(0)" class="button button-small button-default"><i class="fa fa-share-square-o"></i> Share</a>
                   </p>
               </div>
-          </li>
+          </ion-item>
 
-      </ul>
+      </ion-list>
 </ion-content>

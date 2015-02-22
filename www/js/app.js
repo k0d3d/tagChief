@@ -49,13 +49,23 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       }
     })
     .state('app.tc.location', {
-      url: "/location/:locationId",
+      url: "/location/:locationId/popoverCheckin/:popoverCheckin",
       views: {
         'viewContent@app.tc' :{
-          templateUrl: "templates/location.html"
+          templateUrl: "templates/location.html",
+          controller: 'LocationCtrl'
         }
       }
     })
+    // .state('app.tc.locationcheckin', {
+    //   url: "/location/:locationId/checkin",
+    //   views: {
+    //     'viewContent@app.tc' :{
+    //       templateUrl: "templates/location.html",
+    //       controller: 'LocationCtrl'
+    //     }
+    //   }
+    // })
     .state('app.tc.me', {
       url: "/me/achievements",
       views: {
@@ -237,15 +247,16 @@ app.controller('AppCtrl', [
             if (notification.regid.length > 0 ) {
               Messaging.setRegId(notification.regid);
               Messaging.ping($cordovaDevice.getUUID(), function (d) {
-                console.log(d);
+                // console.log(d);
               });
             }
             break;
 
           case 'message':
-            console.log(notification);
+            // console.log(notification);
             // this is the actual push notification. its format depends on the data model from the push server
-            alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+            // alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+            Messaging.execAction(notification.payload.execAction, {pushData: notification.payload});
             break;
 
           case 'error':
@@ -273,9 +284,12 @@ app.controller('AppCtrl', [
       // }, 60000);
       //
       $scope.testPing = function () {
-        return locationsService.pingUserLocation();
+        return locationsService.pingUserLocation({shouldPromptCheckIn: true});
       };
 
+      $scope.testCheckIn = function () {
+        Messaging.execAction('CHECKIN', {locationId: 13, });
+      };
       /**  Start Geo postioning code / monitor */
       $scope.whoiswhere = [];
       $scope.base = {
@@ -314,8 +328,8 @@ app.controller('AppCtrl', [
           // $scope.base.coords.lat =  position.coords.latitude;
           // $scope.base.coords.lon =  position.coords.longitude;
 
-          locationsService.setMyLocation(position.coords);
           locationsService.deviceIsSitting(position.coords);
+          locationsService.setMyLocation(position.coords);
       });
 
       // show on the map

@@ -85,7 +85,6 @@ MapApp.directive("appMap", [
             scope.center = {};
 
             function createMap() {
-                console.log(scope.center);
               Initializer.mapsInitialized
               .then(function(){
                   var myLatLng = new google.maps.LatLng(scope.center.lat, scope.center.lon);
@@ -118,7 +117,6 @@ MapApp.directive("appMap", [
             }
 
             function refreshMeMarker () {
-                console.log('might b ur fault');
               if (scope.myLocation) {
                 // console.log("should init refresh");
                 scope.myLocation.setMap( scope.map );

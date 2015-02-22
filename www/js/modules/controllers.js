@@ -97,17 +97,28 @@ app.controller('SplashCtrl', ['$scope', function ($scope) {
 
 }]);
 
-app.controller('LocationCtrl', ['$scope', 'locationsService', '$state', '$stateParams', '$ionicPopup', function ($scope, locationsService, $state, $stateParams, $ionicPopup) {
-  $state.transitionTo($state.current, $stateParams, {
-      reload: true,
-      inherit: false,
-      notify: true
-  });
+app.controller('LocationCtrl', [
+  '$scope',
+  'locationsService',
+  '$state',
+  '$stateParams',
+  '$ionicPopup',
+  'appBootStrap',
+  function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap) {
+  // $state.transitionTo($state.current, $stateParams, {
+  //     reload: true,
+  //     inherit: false,
+  //     notify: true
+  // });
   $scope.locationQueryParams = {
     loadPerRequest: 20
   };
 
-  $scope.openCheckInModal = function (locationId) {
+
+  $scope.openCheckInModal = function (e, locationId) {
+    if (e instanceof Event) {
+      e.stopPropagation();
+    }
      var confirmPopup = $ionicPopup.confirm({
        title: 'Check In',
        template: 'Are you sure you want to checkin here?'
@@ -115,9 +126,9 @@ app.controller('LocationCtrl', ['$scope', 'locationsService', '$state', '$stateP
      confirmPopup.then(function(res) {
        if(res) {
         locationsService.checkIntoLocation(locationId);
-         console.log('You are sure');
+         // console.log('You are sure');
        } else {
-         console.log('You are not sure');
+         // console.log('You are not sure');
        }
      });
   };
@@ -154,8 +165,16 @@ app.controller('LocationCtrl', ['$scope', 'locationsService', '$state', '$stateP
     );
   };
 
+
   //init
   $scope.loadLocations();
+
+  //if there is a prompt to be launched on entry to this state,
+  //launch it..
+  if ($stateParams.popoverCheckin === 'CHECKIN') {
+    $scope.openCheckInModal(null, $stateParams.locationId);
+  }
+
 
 }]);
 
