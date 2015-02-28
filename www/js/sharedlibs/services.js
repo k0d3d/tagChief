@@ -5,7 +5,8 @@
     'api_config',
     '$state',
     'appBootStrap',
-    function ($http, api_config, $state, appBootStrap) {
+    '$rootScope',
+    function ($http, api_config, $state, appBootStrap, $rootScope) {
     var regid = '';
 
 
@@ -33,7 +34,7 @@
         switch (actionName) {
           case 'CHECKIN':
           // appBootStrap.openOnStateChangeSuccess(actionName);
-          $state.transitionTo('app.tc.location', angular.extend({popoverCheckin: actionName}, params), { reload: true, inherit: true, notify: true });
+          $rootScope.$broadcast('appUI::checkInPopOver', params);
           break;
           default:
           break;
@@ -378,11 +379,17 @@
             deferred.reject("Cannot authenticate via a web browser");
         }
         return deferred.promise;
-    }
-  };
+      }
+    };
 }]);
 
-app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', '$rootScope', function ($http, $cordovaGeolocation, Q, $rootScope) {
+app.factory('locationsService', [
+  '$http',
+  '$cordovaGeolocation',
+  '$q',
+  '$rootScope',
+  'appBootStrap',
+  function ($http, $cordovaGeolocation, Q, $rootScope, appBootStrap) {
   var geoSrvs = this;
   geoSrvs.myLocation = {
     longitude : 0,
@@ -404,13 +411,19 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', '$rootSco
         locationData.lon = self.getMyLocation().longitude;
         locationData.lat = self.getMyLocation().latitude;
         if (locationData.lon && locationData.lat) {
-          return $http.post('/api/v1/location/' +  locationId +'/checkin');
+          return $http.post('/api/v1/locations/' +  locationId +'?action=CHECKIN', {
+            deviceId: appBootStrap.thisDevice.uuid
+            // deviceId: 'appBootStrap.thisDevice.getUUID'
+          });
         } else {
           q.reject(new Error('NoLocationData'));
           return q.promise;
         }
 
       return q.promise;
+    },
+    fetchLocationData: function fetchLocationData (locationId) {
+      return $http.get('/api/v1/locations/' + locationId);
     },
     watchPosition: function watchPosition (posOption) {
       posOption = posOption || ls_def_pos_option;
@@ -441,11 +454,11 @@ app.factory('locationsService', ['$http', '$cordovaGeolocation', '$q', '$rootSco
     },
     pingUserLocation: function (params) {
       params = params || {};
-      console.log('her i am');
       var self = this;
       return  $http.post('/api/v1/hereiam', {
         coords: self.getMyLocation(),
-        shouldPromptCheckIn: params.shouldPromptCheckIn
+        shouldPromptCheckIn: params.shouldPromptCheckIn,
+        deviceId: appBootStrap.thisDevice.uuid
       });
     },
     addLocation: function (locationData) {

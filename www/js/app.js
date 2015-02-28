@@ -46,14 +46,19 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
           templateUrl: "templates/locations.html",
           controller: 'LocationCtrl'
         }
-      }
+      },
     })
     .state('app.tc.location', {
       url: "/location/:locationId/popoverCheckin/:popoverCheckin",
       views: {
         'viewContent@app.tc' :{
           templateUrl: "templates/location.html",
-          controller: 'LocationCtrl'
+          controller: 'ViewLocationCtrl',
+          resolve: {
+            viewLocationData: function (locationsService, $stateParams) {
+              return locationsService.fetchLocationData($stateParams.locationId);
+            }
+          }
         }
       }
     })
@@ -214,6 +219,7 @@ app.controller('AppCtrl', [
   '$q',
   '$stateParams',
   '$ionicModal',
+  '$ionicPopup',
   function (
     $scope,
     $state,
@@ -227,7 +233,8 @@ app.controller('AppCtrl', [
     $cordovaGeolocation,
     $q,
     $stateParams,
-    $ionicModal) {
+    $ionicModal,
+    $ionicPopup) {
       // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
       //     console.log(error);
       //     evt.preventDefault();
@@ -256,7 +263,7 @@ app.controller('AppCtrl', [
             // console.log(notification);
             // this is the actual push notification. its format depends on the data model from the push server
             // alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-            Messaging.execAction(notification.payload.execAction, {pushData: notification.payload});
+            Messaging.execAction(notification.payload.execAction, notification.payload);
             break;
 
           case 'error':
@@ -342,6 +349,26 @@ app.controller('AppCtrl', [
       /** end geo monitor code */
 
 
+
+      $scope.openCheckInModal = function (e, locationId) {
+        if (e instanceof Event) {
+          e.stopPropagation();
+        }
+         var confirmPopup = $ionicPopup.confirm({
+           title: 'Check In',
+           template: 'Are you sure you want to checkin here?'
+         });
+         confirmPopup.then(function(res) {
+           if(res) {
+            locationsService.checkIntoLocation(locationId);
+            $state.transitionTo('app.tc.location', {locationId: locationId}, { reload: true, inherit: true, notify: true });
+             // console.log('You are sure');
+           } else {
+             // console.log('You are not sure');
+           }
+         });
+      };
+
       $scope.$on('app-is-requesting', function (e, data) {
         $scope.mainCfg.isRequesting = data;
       });
@@ -360,6 +387,9 @@ app.controller('AppCtrl', [
       $scope.$on('$destroy', function() {
         watch.clearWatch();
         appBootStrap.strapCordovaDevice().cancel();
+      });
+      $scope.$on('appUI::checkInPopOver', function (e, data) {
+        $scope.openCheckInModal(e, data.locationId);
       });
 }]);
 

@@ -1,24 +1,62 @@
 var MapApp = angular.module('GoogleMapsInitializer', []);
 
 
+// MapApp.factory('Initializer', function($window, $q){
+
+//     //Google's url for async maps initialization accepting callback function
+//     var asyncUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCOt9IYHpYN22m7alw_HKi5y5WBgu57p4s&v=3.exp&sensor=true&callback=',
+//         mapsDefer = $q.defer();
+
+//     //Callback function - resolving promise after maps successfully loaded
+//     $window.googleMapsInitialized = mapsDefer.resolve; // removed ()
+
+//     //Async loader
+//     var asyncLoad = function(asyncUrl, callbackName) {
+//       var script = document.createElement('script');
+//       //script.type = 'text/javascript';
+//       script.src = asyncUrl + callbackName;
+//       document.body.appendChild(script);
+//     };
+//     //Start loading google maps
+//     asyncLoad(asyncUrl, 'googleMapsInitialized');
+
+//     //Usage: Initializer.mapsInitialized.then(callback)
+//     return {
+//         mapsInitialized : mapsDefer.promise,
+//         toolTipInit: function (cb) {
+//             //Google's url for async maps initialization accepting callback function
+//             var asyncUrl = 'js/vendor/gmaps-tooltip.js';
+//             //Callback function - resolving promise after maps successfully loaded
+
+//             //Async loader
+//             var asyncLoad = function(asyncUrl) {
+//               var script = document.createElement('script');
+//               //script.type = 'text/javascript';
+//               script.src = asyncUrl;
+//               document.body.appendChild(script);
+//             };
+//             //Start loading google maps
+//             asyncLoad(asyncUrl);
+//             cb();
+//         }
+//     };
+// });
+
 MapApp.factory('Initializer', function($window, $q){
 
     //Google's url for async maps initialization accepting callback function
-    var asyncUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCOt9IYHpYN22m7alw_HKi5y5WBgu57p4s&v=3.exp&sensor=true&callback=',
+    var asyncUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCOt9IYHpYN22m7alw_HKi5y5WBgu57p4s&v=3.exp&sensor=true&callback=googleMapsInitialized',
         mapsDefer = $q.defer();
+        gMapsLoader = $.getScript(asyncUrl);
+        gMapsLoader.done(function () {
+
+        })
+        .fail(function (err) {
+          return mapsDefer.reject(err);
+        });
 
     //Callback function - resolving promise after maps successfully loaded
-    $window.googleMapsInitialized = mapsDefer.resolve; // removed ()
-
-    //Async loader
-    var asyncLoad = function(asyncUrl, callbackName) {
-      var script = document.createElement('script');
-      //script.type = 'text/javascript';
-      script.src = asyncUrl + callbackName;
-      document.body.appendChild(script);
-    };
-    //Start loading google maps
-    asyncLoad(asyncUrl, 'googleMapsInitialized');
+    $window.googleMapsInitialized = mapsDefer.resolve;
 
     //Usage: Initializer.mapsInitialized.then(callback)
     return {
@@ -56,6 +94,33 @@ MapApp.filter('lon', function () {
 });
 
 
+MapApp.directive("cityState", ['Initializer', function (Initializer) {
+  return {
+    template: '<em>{{locationData.formatted_address}}</em>',
+    scope: {
+      locationData: "=cityState"
+    },
+    link: function (scope) {
+      Initializer.mapsInitialized
+      .then(function () {
+
+        var latLng = new google.maps.LatLng(scope.locationData.latitude, scope.locationData.longitude),
+          geoCoder = new google.maps.Geocoder();
+
+          geoCoder.geocode({
+            "latLng": latLng
+          }, function (results, status) {
+            var result = results[0];
+
+            scope.locationData.formatted_address = results[0].formatted_address;
+            scope.$apply();
+        });
+
+      });
+    }
+  };
+}]);
+
 /**
  * Handle Google Maps API V3+
  */
@@ -70,7 +135,7 @@ MapApp.directive("appMap", [
     return {
         restrict: "E",
         replace: true,
-        template: "<div></div>",
+        templateUrl: "templates/inc/maps-holder.html",
         scope: {
             // center: "=",        // Center point on the map (e.g. <code>{ latitude: 10, longitude: 10 }</code>).
             markers: "=",       // Array of map markers (e.g. <code>[{ lat: 10, lon: 10, name: "hello" }]</code>).
@@ -80,11 +145,15 @@ MapApp.directive("appMap", [
             // panControl: "@",    // Whether to show a pan control on the map.
             // zoomControl: "@",   // Whether to show a zoom control on the map.
             // scaleControl: "@"   // Whether to show scale control on the map.
+            isLoadingGmaps: "=isGmapsLoaded",
+            errorLoadingGmaps: "="
         },
+        controller: 'HomeCtrl',
         link: function (scope, element, attrs) {
             scope.center = {};
+            scope.isLoadingGmaps = true;
 
-            function createMap() {
+            scope.createMap = function createMap() {
               Initializer.mapsInitialized
               .then(function(){
                   var myLatLng = new google.maps.LatLng(scope.center.lat, scope.center.lon);
@@ -105,49 +174,66 @@ MapApp.directive("appMap", [
                   scope.myLocation = new google.maps.Marker({
                       position: myLatLng,
                       map: scope.map,
-                      title: "My Location"
+                      title: "My Location",
+                      icon: 'img/icon-marker.png'
                   });
 
-                  google.maps.event.addDomListener(element[0], 'mousedown', function(e) {
+                  google.maps.event.addDomListener($('div.map-container'), 'mousedown', function(e) {
                     e.preventDefault();
                     return false;
                   });
-                  infowindow = new google.maps.InfoWindow();
+                  var infowindow = new google.maps.InfoWindow({
+                    content: '<button class="button button-positive open-tag-dialog-btn button-clear button-small" ng-click="tagPopOver()">You are here</button>'
+                  });
+
+                  infowindow.open(scope.map, scope.myLocation);
+
+                  scope.isLoadingGmaps = false;
+                  scope.errorLoadingGmaps = false;
+
+                  $(document).on('click', '.open-tag-dialog-btn', function(e) {
+                    scope.tagPopOver();
+                  });
+              }, function (err) {
+                scope.errorLoadingGmaps = true;
               });
-            }
+            };
 
             function refreshMeMarker () {
               if (scope.myLocation) {
-                // console.log("should init refresh");
                 scope.myLocation.setMap( scope.map );
                 //delayed so you can see it move
-                $timeout( function(){
+                var resetMapMarker = $timeout( function(){
                     // console.log("na here sure pass");
                     scope.myLocation.setPosition( new google.maps.LatLng(scope.center.lat, scope.center.lon) );
                     scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
 
                 }, 1500 );
+                scope.$on('$destroy', function () {
+                  resetMapMarker.cancel();
+                });
               }
             }
 
-            // var mapRefresh = $interval(refreshMeMarker, 10000);
+            var mapRefresh = $interval(function () {
+                    scope.center.lat = locationsService.getMyLocation().latitude;
+                    scope.center.lon = locationsService.getMyLocation().longitude;
+                    refreshMeMarker();
+            }, 10000);
 
             // angular.element(document).ready(createMap());
-            var mapRefresh = scope.$watch(locationsService.getMyLocation,
-                function (coords, oldValue) {
-                    // console.log(coords);
-                    // console.log(oldValue);
-                    if(coords) {
+            // var mapRefresh = scope.$watch(locationsService.getMyLocation,
+            //     function (coords, oldValue) {
+            //         console.log('coords');
+            //         // console.log(oldValue);
+            //     }
 
-                        scope.center.lat = coords.latitude;
-                        scope.center.lon = coords.longitude;
-                        refreshMeMarker();
-                    }
-                }
+            // );
 
-            );
+
+
             scope.$on('$destroy', function () {
-              mapRefresh();
+              mapRefresh.cancel();
             });
 
             var i = locationsService.geoLocationInit();
@@ -155,9 +241,10 @@ MapApp.directive("appMap", [
                 function(position) {
                     scope.center.lat = locationsService.getMyLocation().latitude;
                     scope.center.lon = locationsService.getMyLocation().longitude;
-                    createMap();
+                    scope.createMap();
                 },
                 function(e) {
+                  scope.errorLoadingGmaps = true;
                   console.log("Error retrieving position " + e.code + " " + e.message);
                 }
             );

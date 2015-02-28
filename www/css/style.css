@@ -220,3 +220,30 @@ a:hover.home-cta {
   text-align: center;
   margin: 10px auto;
 }
+
+.tooltip-marker {
+  border: thin 1px #eee;
+  background-color: #FFFBF0;
+  padding: 5px;
+  width: 200px;
+}
+
+.home-tag-item {
+  padding: 0;
+}
+
+.home-tag-item button {
+  margin: 0 !important;
+}
+
+p.map-icon-holder {
+  font-size: 801%;
+  text-align: center;
+}
+
+button.is-loading-btn {
+  margin: 0px auto;
+  width: 150px;
+  position: relative;
+  display: block;
+}

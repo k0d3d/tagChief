@@ -30,6 +30,10 @@ app.controller('HomeCtrl', [
     $stateParams
     ) {
 
+  $scope.viewParams = {
+    isLoadingGmaps: true
+  };
+
   $scope.pingMsg = function () {
     Messaging.ping($cordovaDevice.getUUID(), function (d) {
       console.log(d);
@@ -43,7 +47,7 @@ app.controller('HomeCtrl', [
     var myPopup = $ionicPopup.show({
       templateUrl: 'templates/inc/tag-popover.html',
       title: 'Tag this Location',
-      subTitle: 'Please use normal things',
+      // subTitle: 'Adds',
       scope: $scope,
       buttons: [
         {
@@ -115,24 +119,6 @@ app.controller('LocationCtrl', [
   };
 
 
-  $scope.openCheckInModal = function (e, locationId) {
-    if (e instanceof Event) {
-      e.stopPropagation();
-    }
-     var confirmPopup = $ionicPopup.confirm({
-       title: 'Check In',
-       template: 'Are you sure you want to checkin here?'
-     });
-     confirmPopup.then(function(res) {
-       if(res) {
-        locationsService.checkIntoLocation(locationId);
-         // console.log('You are sure');
-       } else {
-         // console.log('You are not sure');
-       }
-     });
-  };
-
   $scope.checkInUser = function (params, isModal) {
     // appBootStrap.modals.checkin.hide();
   };
@@ -171,11 +157,24 @@ app.controller('LocationCtrl', [
 
   //if there is a prompt to be launched on entry to this state,
   //launch it..
-  if ($stateParams.popoverCheckin === 'CHECKIN') {
-    $scope.openCheckInModal(null, $stateParams.locationId);
-  }
+  // if ($stateParams.popoverCheckin === 'CHECKIN') {
+  //   $scope.openCheckInModal(null, $stateParams.locationId);
+  // }
 
 
+}]);
+
+app.controller('ViewLocationCtrl', [
+  '$scope',
+  'locationsService',
+  '$state',
+  '$stateParams',
+  '$ionicPopup',
+  'appBootStrap',
+  'viewLocationData',
+  function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap, viewLocationData) {
+
+    $scope.locationData = viewLocationData.data;
 }]);
 
 app.filter('hideSystemFiles', function () {
