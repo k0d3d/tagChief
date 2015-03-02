@@ -50,9 +50,7 @@
 
       ;
   });
-  app.controller('RegisterCtrl', ['$scope', function ($scope) {
 
-  }]);
   app.controller('RegisterLoginCtrl', [
     '$scope',
     '$http',

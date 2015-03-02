@@ -214,6 +214,8 @@ a:hover.home-cta {
 
 .header-logo img {
   height: 44px;
+  top: -5px;
+  position: relative;
 }
 
 .no-content {

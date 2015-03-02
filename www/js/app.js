@@ -143,6 +143,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
 
 app.run(['$ionicPlatform', '$cordovaPush', 'appBootStrap', function($ionicPlatform, $cordovaPush, appBootStrap) {
   $ionicPlatform.ready(function() {
+    console.log('heloo');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -156,6 +157,14 @@ app.run(['$ionicPlatform', '$cordovaPush', 'appBootStrap', function($ionicPlatfo
       "senderID": "384367763163"
     };
 
+    appBootStrap.strapCordovaDevice();
+    appBootStrap.strapLocalNotifications(window.plugin.notification.local);
+
+
+    //init db
+    appBootStrap.db = new PouchDB('tagchief');
+    var remoteCouch = false;
+
     //register the GCM sender Id for the app
     $cordovaPush.register(pushConfig).then(function(result) {
       // Success
@@ -165,7 +174,7 @@ app.run(['$ionicPlatform', '$cordovaPush', 'appBootStrap', function($ionicPlatfo
       console.log(err);
     });
 
-    appBootStrap.strapCordovaDevice();
+
   });
 
 }]);
@@ -295,7 +304,11 @@ app.controller('AppCtrl', [
       };
 
       $scope.testCheckIn = function () {
-        Messaging.execAction('CHECKIN', {locationId: 13, });
+        Messaging.execAction('CHECKIN', {locationId: 13, locationName: 'HoneyHome'});
+      };
+
+      $scope.testGCM = function () {
+        Messaging.testMessaging();
       };
       /**  Start Geo postioning code / monitor */
       $scope.whoiswhere = [];
@@ -304,6 +317,19 @@ app.controller('AppCtrl', [
           lat: 0,
           lon: 0
         }
+      };
+
+      $scope.testLocalNotifications = function testLocalNotifications() {
+        var now                  = new Date().getTime(),
+            seconds_from_now = new Date(now + 5*1000);
+        appBootStrap.localNotifications().add({
+                id:         Date.now() + 'testNotice',  // A unique id of the notification
+                date:       seconds_from_now,    // This expects a date object
+                message:    'Trial Notice',  // The message that is displayed
+                title:      'tagChief Feedback',  // The title of the message
+                json:       JSON.stringify({'index': 1}),  // Data to be passed through the notification
+                autoCancel: true, // Setting this flag and the notification is automatically cancelled when the user clicks it
+        });
       };
 
       var i = locationsService.geoLocationInit();
@@ -350,21 +376,32 @@ app.controller('AppCtrl', [
 
 
 
-      $scope.openCheckInModal = function (e, locationId) {
+      $scope.openCheckInModal = function (e, location) {
         if (e instanceof Event) {
           e.stopPropagation();
         }
          var confirmPopup = $ionicPopup.confirm({
            title: 'Check In',
-           template: 'Are you sure you want to checkin here?'
+           template: 'Are you sure you want to checkin to ' + location.locationName + '?'
          });
          confirmPopup.then(function(res) {
-           if(res) {
-            locationsService.checkIntoLocation(locationId);
-            $state.transitionTo('app.tc.location', {locationId: locationId}, { reload: true, inherit: true, notify: true });
+           if (res) {
+            locationsService.checkIntoLocation(location.locationId)
+            .then(locationsService.writeCheckIntoDB)
+            .then(locationsService.pollForFeedback)
+            .then(function (timer) {
+              $scope.$on('$destroy', function () {
+                timer.cancel();
+              });
+            });
+            $state.transitionTo('app.tc.location', {
+              locationId: location.locationId
+            }, {
+              reload: true,
+              inherit: true,
+              notify: true
+            });
              // console.log('You are sure');
-           } else {
-             // console.log('You are not sure');
            }
          });
       };
@@ -389,7 +426,7 @@ app.controller('AppCtrl', [
         appBootStrap.strapCordovaDevice().cancel();
       });
       $scope.$on('appUI::checkInPopOver', function (e, data) {
-        $scope.openCheckInModal(e, data.locationId);
+        $scope.openCheckInModal(e, data);
       });
 }]);
 

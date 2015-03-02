@@ -177,25 +177,6 @@ app.controller('ViewLocationCtrl', [
     $scope.locationData = viewLocationData.data;
 }]);
 
-app.filter('hideSystemFiles', function () {
-  return function (obj) {
-    return (obj.name.indexOf('.') === 0) ? false : true;
-  };
-});
-app.filter('formatFileSize', function(){
-  return function(bytes){
-    if (typeof bytes !== 'number') {
-      return '';
-    }
-    if (bytes >= 1000000000) {
-      return (bytes / 1000000000).toFixed(2) + ' GB';
-    }
-    if (bytes >= 1000000) {
-      return (bytes / 1000000).toFixed(2) + ' MB';
-    }
-    return (bytes / 1000).toFixed(2) + ' KB';
-  };
-});
 app.filter('moment', function(){
   return function(time){
     if (time == 'Infinity') {
@@ -205,12 +186,7 @@ app.filter('moment', function(){
       return m.fromNow();
     }
   };
-});
-app.filter('fileicon', ['api_config', function (api_config) {
-  return function (str) {
-    return './img/filetype/' + str.split('/').pop() + '.png';
-  };
-}])
+})
 ;
 
 })();

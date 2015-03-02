@@ -4,24 +4,104 @@
 		"selected_items":
 		[
 			[
-				"ionicP",
-				"ionicPopup"
-			],
-			[
 				"location",
-				"locationId〔argument〕"
+				"locationId"
 			],
 			[
-				"par",
-				"params"
+				"view",
+				"viewParams"
+			],
+			[
+				"maps",
+				"mapsDefer"
+			],
+			[
+				"map",
+				"mapsDefer"
+			],
+			[
+				"ay",
+				"asyncUrl"
+			],
+			[
+				"asy",
+				"asyncUrl〔variable〕"
 			],
 			[
 				"locat",
-				"locationId"
+				"locations"
+			],
+			[
+				"checkO",
+				"checkOutTime"
+			],
+			[
+				"mongoDoc",
+				"mongoDocOrId"
+			],
+			[
+				"mon",
+				"mongoDocOrId〔argument〕"
+			],
+			[
+				"err",
+				"errors〔variable〕"
+			],
+			[
+				"checkIn",
+				"checkInId"
+			],
+			[
+				"check",
+				"checkInId"
+			],
+			[
+				"Check",
+				"CheckLog"
+			],
+			[
+				"chec",
+				"checkInId"
+			],
+			[
+				"ch",
+				"checkIndo"
+			],
+			[
+				"add",
+				"addACheckInRecord"
+			],
+			[
+				"device",
+				"deviceFn〔variable〕"
+			],
+			[
+				"proto",
+				"prototype"
+			],
+			[
+				"Location",
+				"LocationDeviceObject"
 			],
 			[
 				"app",
 				"appBootStrap〔argument〕"
+			],
+			[
+				"d",
+				"div_〔variable〕"
+			],
+			[
+				"my",
+				"myLocationTooltip"
+			],
+			[
+				"ionicP",
+				"ionicPopup"
+			],
+			[
+				"par",
+				"params"
 			],
 			[
 				"action",
@@ -30,10 +110,6 @@
 			[
 				"act",
 				"actionName"
-			],
-			[
-				"check",
-				"checkin"
 			],
 			[
 				"prev",
@@ -66,10 +142,6 @@
 			[
 				"pre",
 				"prevLocation"
-			],
-			[
-				"device",
-				"deviceIsSitting"
 			],
 			[
 				"p",
@@ -188,10 +260,6 @@
 				"moduleexports	module.exports"
 			],
 			[
-				"Check",
-				"CheckInSchema"
-			],
-			[
 				"Reviw",
 				"ReviewSchema"
 			],
@@ -246,10 +314,6 @@
 			[
 				"this",
 				"thisDevice"
-			],
-			[
-				"map",
-				"mapRefresh"
 			],
 			[
 				"creae",
@@ -450,80 +514,24 @@
 			[
 				"Verification",
 				"VerificationModel"
-			],
-			[
-				"Verifica",
-				"VerificationModel"
-			],
-			[
-				"margi",
-				"margin"
-			],
-			[
-				"pading",
-				"padding-top"
-			],
-			[
-				"media",
-				"mediaNumber"
-			],
-			[
-				"down",
-				"downloadCount"
-			],
-			[
-				"meid",
-				"mediaId"
-			],
-			[
-				"min-",
-				"min-width"
-			],
-			[
-				"border",
-				"border-left"
-			],
-			[
-				"tra",
-				"table-hover"
-			],
-			[
-				"file",
-				"filetype"
-			],
-			[
-				"btn",
-				"btn-default"
-			],
-			[
-				"im",
-				"img-circle"
-			],
-			[
-				"bst",
-				"bst-col	bst-col"
-			],
-			[
-				"get",
-				"getFile"
-			],
-			[
-				"hash",
-				"hashrid"
-			],
-			[
-				"background",
-				"background-color"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+			"file": "www/js/sharedlibs/services.js",
 			"settings":
 			{
-				"buffer_size": 4423,
+				"buffer_size": 20090,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/modules/auth.js",
+			"settings":
+			{
+				"buffer_size": 4214,
 				"line_ending": "Unix"
 			}
 		},
@@ -531,63 +539,23 @@
 			"file": "/home/kingkoded/FedProjects/tagChief-node/models/device.js",
 			"settings":
 			{
-				"buffer_size": 11139,
+				"buffer_size": 15601,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/js/app.js",
+			"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
 			"settings":
 			{
-				"buffer_size": 13659,
+				"buffer_size": 4971,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/js/sharedlibs/services.js",
+			"file": "www/js/sharedlibs/settings.js",
 			"settings":
 			{
-				"buffer_size": 19748,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/sharedlibs/maps.js",
-			"settings":
-			{
-				"buffer_size": 8873,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/modules/controllers.js",
-			"settings":
-			{
-				"buffer_size": 4778,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/locations.html",
-			"settings":
-			{
-				"buffer_size": 1748,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
-			"settings":
-			{
-				"buffer_size": 1942,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
-			"settings":
-			{
-				"buffer_size": 7544,
+				"buffer_size": 470,
 				"line_ending": "Unix"
 			}
 		}
@@ -692,81 +660,97 @@
 	},
 	"expanded_folders":
 	[
+		"/home/kingkoded/FedProjects/tagchief",
 		"/home/kingkoded/FedProjects/tagchief/www",
 		"/home/kingkoded/FedProjects/tagchief/www/js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/modules",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs",
-		"/home/kingkoded/FedProjects/tagChief-node",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers",
-		"/home/kingkoded/FedProjects/tagChief-node/i18n",
-		"/home/kingkoded/FedProjects/tagChief-node/models"
+		"/home/kingkoded/FedProjects/tagChief-node/views",
+		"/home/kingkoded/FedProjects/tagChief-node/views/oauth"
 	],
 	"file_history":
 	[
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/pushes.js",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/oauth-server/oauth-server.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/maps-holder.html",
+		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user/locations.js",
+		"/home/kingkoded/FedProjects/tagChief-node/config/default.json",
+		"/home/kingkoded/FedProjects/tagChief-node/views/email-templates/user-email-verification.jade",
+		"/home/kingkoded/FedProjects/tagChief-node/views/layouts/email-layout.jade",
+		"/home/kingkoded/FedProjects/tagChief-node/public/style.css",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-s3/test/s3Task.js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
+		"/home/kingkoded/FedProjects/tagchief/config.xml",
+		"/home/kingkoded/www/gazuka/index.php",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/device.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/media/device.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/location.html",
+		"/home/kingkoded/FedProjects/tagchief/www/index.html",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
+		"/home/kingkoded/FedProjects/tagChief-node/config/development.json",
+		"/home/kingkoded/FedProjects/tagchief/www/lib/ngCordova/src/plugins/deviceOrientation.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/lingua/node_modules/traverse/test/lib/deep_equal.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/.bin/dependency-check",
+		"/home/kingkoded/FedProjects/tagchief/engine/cordova-crosswalk-engine-c0.6.1/libs/xwalk_core_library/res/raw/device_capabilities_api.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/DirectoryContentView.js",
+		"/home/kingkoded/FedProjects/tagchief/engine/cordova-crosswalk-engine-c0.6.1/src/android/XWalkCordovaView.java",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/HeapSnapshotLoader.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
+		"/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
+		"/home/kingkoded/FedProjects/tagChief-node/server.js",
+		"/home/kingkoded/FedProjects/tagchief/www_tmpl/settings.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user/user.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/media/media.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/vendor/gmaps-tooltip.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/vendor/tooltip.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/pushes.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/mongoose/contRun.sh",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/CONTRIBUTING.md",
-		"/home/kingkoded/FedProjects/tagchief/config.xml",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-concat/docs/concat-options.md",
-		"/home/kingkoded/FedProjects/tagChief-node/models/device.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js",
-		"/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
 		"/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
-		"/home/kingkoded/FedProjects/tagChief-node/server.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user/user.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user/locations.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/nodemailer-wellknown/services.json",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/aws-sdk/lib/services/swf.js",
-		"/home/kingkoded/FedProjects/tagchief/www_tmpl/settings.js",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/test/settings.gradle",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/settings.gradle",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-bower-task/node_modules/bower/node_modules/tar/test/00-setup-fixtures.js",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/angular-ui-router/src/stateDirectives.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/checkin-modal.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/ParsedURL.js",
 		"/home/kingkoded/FedProjects/tagChief-node/Procfile",
-		"/home/kingkoded/FedProjects/tagchief/www/index.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
-		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/oauth-server/oauth-server.js",
 		"/home/kingkoded/FedProjects/tagchief/www/__index.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/location.html",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/routes.js",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/framework/test/org/apache/cordova/PreferenceSetTest.java",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/cordova/lib/start-emulator",
 		"/home/kingkoded/FedProjects/tagChief-node/package.json",
-		"/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/tag-popover.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/login.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/register.html",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/users.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/full-screen.html",
-		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/splash-first.html",
 		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
-		"/home/kingkoded/FedProjects/tagChief-node/config/default.json",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/jquery/src/var/hasOwn.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/hash.js",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/cordova/node_modules/shelljs/src/popd.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/templates/prompt-alert-tpl.jade",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/pkginfo/examples/all-properties.js",
 		"/home/kingkoded/FedProjects/tcb/www/js/sharedlibs/services.js",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/oauth/oauth-dialog.jade",
 		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/pkginfo/examples/object-argument.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/middlewares/cors.js",
-		"/home/kingkoded/FedProjects/tagChief-node/config/development.json",
 		"/home/kingkoded/FedProjects/tagChief-node/config/test.json",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-cli/AUTHORS",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/angular-ui-router/release/angular-ui-router.js",
@@ -813,24 +797,7 @@
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/user.js",
 		"/home/kingkoded/Projects/bncauth/controllers/oauth-server/oauth-server.js",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/AndroidManifest.xml",
-		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2/access_token.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2/oauth_client.js",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/passport-http/lib/passport-http/strategies/basic.js",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/shelljs/test/resources/chmod/b/a/b/.npmignore",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/forever-monitor/node_modules/ps-tree/node_modules/event-stream/node_modules/optimist/test/_/argv.js",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/passport-facebook/lib/strategy.js",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/cliff/examples/string-rows.js",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-s3/test/s3Task.js",
-		"/home/kingkoded/FedProjects/tagchief/plugins/nl.x-services.plugins.launchmyapp/plugin.xml",
-		"/home/kingkoded/FedProjects/tagChief-node/.gitignore",
-		"/home/kingkoded/FedProjects/tagchief/platforms/android/assets/www/templates/auth/forgotpw.html",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/.bin/forever",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-bower-task/node_modules/bower/node_modules/mout/object/forOwn.js",
-		"/home/kingkoded/FedProjects/tagchief/angular-authentication-example-master/LICENSE",
-		"/home/kingkoded/FedProjects/tagChief-node/config/express.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/download.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/v4ult.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/cabinet.js"
+		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2/access_token.js"
 	],
 	"find":
 	{
@@ -873,6 +840,23 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"console",
+			"validation",
+			"InvalidParams",
+			"console",
+			"ber",
+			"on vali",
+			"clientOAuth",
+			"viewLocationData",
+			"getUUID",
+			"syncIndex",
+			"getUserDevices",
+			"/location",
+			"location",
+			"getUserDevices",
+			"checkIntoLocation",
+			"InfoWindow",
+			"infowindow",
 			"modals",
 			"pingUserLocation",
 			"console",
@@ -983,24 +967,7 @@
 			".php",
 			".html",
 			"wp_",
-			"define",
-			"memo",
-			"adding_extra_reg_fields",
-			"sendSMS",
-			"check_user_status",
-			"message",
-			"retrying",
-			"hasError",
-			"#EEEEEE",
-			",  disabled=\"disabled\"",
-			"errors",
-			".save",
-			"conso",
-			"setFields",
-			"user_id",
-			"new_user_email_notification",
-			"wooc_extra_register_fields",
-			"mt_toplevel_page"
+			"define"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1061,135 +1028,24 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4423,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3976,
-								3976
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 754.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/models/device.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11139,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2655,
-								2655
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 1156.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "www/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13659,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11706,
-								11706
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4321.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "www/js/sharedlibs/services.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19748,
+						"buffer_size": 20090,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								973,
-								973
+								15630,
+								15630
 							]
 						],
 						"settings":
@@ -1206,32 +1062,67 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 585.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "www/js/sharedlibs/maps.js",
-					"semi_transient": false,
+					"buffer": 1,
+					"file": "www/js/modules/auth.js",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 8873,
+						"buffer_size": 4214,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5718,
-								5718
+								3616,
+								3285
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
+							"WordCountSyntax": "javascript",
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 1053.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/kingkoded/FedProjects/tagChief-node/models/device.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 15601,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4021,
+								4021
+							]
+						],
+						"settings":
+						{
 							"WordCountSyntax": "javascript",
 							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
@@ -1239,31 +1130,67 @@
 							"remote_loading": false,
 							"synced": false,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": -0.0,
-						"translation.y": 1326.0,
+						"translation.y": 1131.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4971,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2660,
+								2660
+							]
+						],
+						"settings":
+						{
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 546.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "www/js/modules/controllers.js",
+					"buffer": 4,
+					"file": "www/js/sharedlibs/settings.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4778,
+						"buffer_size": 470,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3796,
-								3796
+								312,
+								312
 							]
 						],
 						"settings":
@@ -1280,117 +1207,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1326.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "www/templates/locations.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1748,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1454,
-								1454
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "html",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1942,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1022,
-								1022
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7544,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7228,
-								7228
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "javascript",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 2418.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
 					"type": "text"
 				}
 			]
@@ -1455,6 +1275,22 @@
 		"selected_items":
 		[
 			[
+				"style",
+				"tagchief/www/css/style.css"
+			],
+			[
+				"device",
+				"tagChief-node/models/device.js"
+			],
+			[
+				"maps",
+				"tagchief/www/js/sharedlibs/maps.js"
+			],
+			[
+				"settn",
+				"tagchief/www/js/sharedlibs/settings.js"
+			],
+			[
 				"controller",
 				"tagchief/www/js/modules/controllers.js"
 			],
@@ -1485,10 +1321,6 @@
 			[
 				"api-",
 				"tagChief-node/controllers/api-v1.js"
-			],
-			[
-				"maps",
-				"tagchief/www/js/sharedlibs/maps.js"
 			],
 			[
 				"oauth",
@@ -1637,10 +1469,6 @@
 			[
 				"lib/defaults.ph",
 				"ixitCloud/lib/private/defaults.php"
-			],
-			[
-				"style",
-				"ixit_mobile/www/css/style.css"
 			],
 			[
 				"all.",
@@ -1957,14 +1785,6 @@
 			[
 				"eleme",
 				"IXit/public/css/elements.css"
-			],
-			[
-				"applica",
-				"dk33p/node_modules/express/lib/application.js"
-			],
-			[
-				"directi",
-				"IXit/public/js/modules/directives.js"
 			]
 		],
 		"width": 0.0
@@ -2001,7 +1821,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 213.0,
+	"side_bar_width": 211.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

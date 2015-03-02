@@ -16,6 +16,7 @@
     "preprocess": "^2.1.0"
   },
   "cordovaPlugins": [
-    "https://github.com/brodysoft/Cordova-SQLitePlugin.git"
+    "https://github.com/brodysoft/Cordova-SQLitePlugin.git",
+    "de.appplant.cordova.plugin.local-notification"
   ]
 }
