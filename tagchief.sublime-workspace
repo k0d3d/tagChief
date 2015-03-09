@@ -4,8 +4,104 @@
 		"selected_items":
 		[
 			[
+				"opt",
+				"option	Tag"
+			],
+			[
+				"the",
+				"theQ〔variable〕"
+			],
+			[
 				"location",
-				"locationId"
+				"locationData"
+			],
+			[
+				"pus",
+				"pushConfig"
+			],
+			[
+				"reload",
+				"reloadMap"
+			],
+			[
+				"boo",
+				"bootHash〔variable〕"
+			],
+			[
+				"chce",
+				"checkData"
+			],
+			[
+				"chec",
+				"checkData"
+			],
+			[
+				"locat",
+				"locationsService"
+			],
+			[
+				"ret",
+				"returnActionExec"
+			],
+			[
+				"console",
+				"console.log(message);"
+			],
+			[
+				"test",
+				"testLocalNotifications〔function〕"
+			],
+			[
+				"plugins",
+				"pluginInstance"
+			],
+			[
+				"loc",
+				"localNotificationsInstance"
+			],
+			[
+				"localt",
+				"localNotifications"
+			],
+			[
+				"plu",
+				"pluginInstance"
+			],
+			[
+				"local",
+				"localNotifications"
+			],
+			[
+				"app",
+				"appBootStrap〔argument〕"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"device",
+				"deviceId〔argument〕"
+			],
+			[
+				"messag",
+				"messaging/:deviceId"
+			],
+			[
+				"loca",
+				"locationsService"
+			],
+			[
+				"getD",
+				"getDefaultFeedback"
+			],
+			[
+				"check",
+				"checkInData"
+			],
+			[
+				"write",
+				"writeCheckIntoDB"
 			],
 			[
 				"view",
@@ -28,10 +124,6 @@
 				"asyncUrl〔variable〕"
 			],
 			[
-				"locat",
-				"locations"
-			],
-			[
 				"checkO",
 				"checkOutTime"
 			],
@@ -52,16 +144,8 @@
 				"checkInId"
 			],
 			[
-				"check",
-				"checkInId"
-			],
-			[
 				"Check",
 				"CheckLog"
-			],
-			[
-				"chec",
-				"checkInId"
 			],
 			[
 				"ch",
@@ -72,20 +156,12 @@
 				"addACheckInRecord"
 			],
 			[
-				"device",
-				"deviceFn〔variable〕"
-			],
-			[
 				"proto",
 				"prototype"
 			],
 			[
 				"Location",
 				"LocationDeviceObject"
-			],
-			[
-				"app",
-				"appBootStrap〔argument〕"
 			],
 			[
 				"d",
@@ -118,10 +194,6 @@
 			[
 				"root",
 				"rootScope"
-			],
-			[
-				"loca",
-				"loadLocations"
 			],
 			[
 				"moment",
@@ -442,120 +514,40 @@
 			[
 				"code",
 				"code_samples  (variable)"
-			],
-			[
-				"wp_enq",
-				"wp_enqueue_style"
-			],
-			[
-				"enq",
-				"wp_enqueue_scripts"
-			],
-			[
-				"pa",
-				"padding-right"
-			],
-			[
-				"padding",
-				"padding-left"
-			],
-			[
-				"ex",
-				"external.js"
-			],
-			[
-				"font",
-				"font-size"
-			],
-			[
-				"backgroun",
-				"background-color:   (property)"
-			],
-			[
-				"ion",
-				"ionic-nav-view	ionic-nav-view"
-			],
-			[
-				"ion-nav-",
-				"ionic-nav-buttons:right	ionic-nav-buttons-right"
-			],
-			[
-				"mod",
-				"models/"
-			],
-			[
-				"folder",
-				"folderId"
-			],
-			[
-				"json",
-				"jsondata"
-			],
-			[
-				"flow-",
-				"flow-drop"
-			],
-			[
-				"Folder",
-				"FolderSchema"
-			],
-			[
-				"l",
-				"lib/"
-			],
-			[
-				"require",
-				"module.requireRepl();"
-			],
-			[
-				"cabinet",
-				"cabinetTabs"
-			],
-			[
-				"Verification",
-				"VerificationModel"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "www/js/sharedlibs/services.js",
+			"file": "www/js/app.js",
 			"settings":
 			{
-				"buffer_size": 20090,
+				"buffer_size": 15420,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/js/modules/auth.js",
+			"file": "/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
 			"settings":
 			{
-				"buffer_size": 4214,
+				"buffer_size": 2776,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/models/device.js",
+			"file": "www/templates/inc/feedback-popover.html",
 			"settings":
 			{
-				"buffer_size": 15601,
+				"buffer_size": 155,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+			"file": "www/templates/inc/checkin-modal.html",
 			"settings":
 			{
-				"buffer_size": 4971,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/sharedlibs/settings.js",
-			"settings":
-			{
-				"buffer_size": 470,
+				"buffer_size": 422,
 				"line_ending": "Unix"
 			}
 		}
@@ -660,40 +652,66 @@
 	},
 	"expanded_folders":
 	[
-		"/home/kingkoded/FedProjects/tagchief",
 		"/home/kingkoded/FedProjects/tagchief/www",
-		"/home/kingkoded/FedProjects/tagchief/www/js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/modules",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs",
-		"/home/kingkoded/FedProjects/tagChief-node/views",
-		"/home/kingkoded/FedProjects/tagChief-node/views/oauth"
+		"/home/kingkoded/FedProjects/tagchief/www/templates",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/inc",
+		"/home/kingkoded/FedProjects/tagChief-node",
+		"/home/kingkoded/FedProjects/tagChief-node/config"
 	],
 	"file_history":
 	[
-		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/oauth-server/oauth-server.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
+		"/home/kingkoded/Downloads/imei.txt",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
+		"/home/kingkoded/FedProjects/tagchief/www/index.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
+		"/home/kingkoded/FedProjects/tagchief/config.xml",
+		"/home/kingkoded/FedProjects/tagchief/plugins/android.json",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/tag-popover.html",
 		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/feedback-popover.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/location.html",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js",
+		"/home/kingkoded/www/gazuka/index.html",
+		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
+		"/home/kingkoded/FedProjects/tagChief-node/views/email-templates/fatal-error.jade",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
+		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2.js",
+		"/home/kingkoded/FedProjects/tagChief-node/server.js",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-concat/docs/concat-options.md",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-bower-task/node_modules/bower/node_modules/tar/test/00-setup-fixtures.js",
+		"/home/kingkoded/FedProjects/tagchief/node_modules/gulp-sass/node_modules/node-sass/test/sass-spec/spec/extend-tests/188_test_unused_placeholder_selector/input.scss",
+		"/home/kingkoded/FedProjects/tagchief/node_modules/gulp-sass/node_modules/node-sass/test/sass-spec/spec/todo/bourbon/lib/css3/_inline-block.scss",
+		"/home/kingkoded/FedProjects/tagchief/www_tmpl/settings.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/directives.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/maps-holder.html",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/pushes.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/routes.js",
+		"/home/kingkoded/FedProjects/tagchief/platforms/android/src/com/eigenvalue/tagchief/mobile/MainActivity.java",
+		"/home/kingkoded/FedProjects/tagchief/.jshintrc",
 		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user/locations.js",
-		"/home/kingkoded/FedProjects/tagChief-node/config/default.json",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/email-templates/user-email-verification.jade",
+		"/home/kingkoded/FedProjects/tagChief-node/views/email-templates/user-auth-failure.jade",
+		"/home/kingkoded/FedProjects/tagchief/node_modules/gulp-sass/node_modules/node-sass/libsass/utf8_string.cpp",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-autoprefixer/node_modules/autoprefixer-core/node_modules/caniuse-db/region-usage-json/UY.json",
+		"/home/kingkoded/FedProjects/tagChief-node/node_modules/jade/node_modules/mkdirp/test/umask_sync.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user/locations.js",
+		"/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
+		"/home/kingkoded/FedProjects/tagChief-node/models/device.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/oauth-server/oauth-server.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
+		"/home/kingkoded/FedProjects/tagChief-node/config/default.json",
 		"/home/kingkoded/FedProjects/tagChief-node/views/layouts/email-layout.jade",
 		"/home/kingkoded/FedProjects/tagChief-node/public/style.css",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-s3/test/s3Task.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
-		"/home/kingkoded/FedProjects/tagchief/config.xml",
 		"/home/kingkoded/www/gazuka/index.php",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/device.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/media/device.js",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/location.html",
-		"/home/kingkoded/FedProjects/tagchief/www/index.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
 		"/home/kingkoded/FedProjects/tagChief-node/config/development.json",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/ngCordova/src/plugins/deviceOrientation.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/lingua/node_modules/traverse/test/lib/deep_equal.js",
@@ -704,43 +722,30 @@
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/HeapSnapshotLoader.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
 		"/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
-		"/home/kingkoded/FedProjects/tagChief-node/server.js",
-		"/home/kingkoded/FedProjects/tagchief/www_tmpl/settings.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/user/user.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/media/media.js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/vendor/gmaps-tooltip.js",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/vendor/tooltip.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/pushes.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/mongoose/contRun.sh",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/CONTRIBUTING.md",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-concat/docs/concat-options.md",
-		"/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/nodemailer-wellknown/services.json",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/aws-sdk/lib/services/swf.js",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/test/settings.gradle",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/settings.gradle",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-bower-task/node_modules/bower/node_modules/tar/test/00-setup-fixtures.js",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/angular-ui-router/src/stateDirectives.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/checkin-modal.html",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/ParsedURL.js",
 		"/home/kingkoded/FedProjects/tagChief-node/Procfile",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
 		"/home/kingkoded/FedProjects/tagchief/www/__index.html",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/routes.js",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/framework/test/org/apache/cordova/PreferenceSetTest.java",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/cordova/lib/start-emulator",
 		"/home/kingkoded/FedProjects/tagChief-node/package.json",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/tag-popover.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/login.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/register.html",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/users.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/full-screen.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/splash-first.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/jquery/src/var/hasOwn.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/hash.js",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/cordova/node_modules/shelljs/src/popd.js",
@@ -748,13 +753,11 @@
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/pkginfo/examples/all-properties.js",
 		"/home/kingkoded/FedProjects/tcb/www/js/sharedlibs/services.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/oauth/oauth-dialog.jade",
-		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/node_modules/pkginfo/examples/object-argument.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/middlewares/cors.js",
 		"/home/kingkoded/FedProjects/tagChief-node/config/test.json",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-cli/AUTHORS",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/angular-ui-router/release/angular-ui-router.js",
-		"/home/kingkoded/FedProjects/tagchief/plugins/android.json",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/alphaId._",
 		"/home/kingkoded/FedProjects/tagchief/hooks/before_platform_add/init_directories.js",
 		"/home/kingkoded/FedProjects/tagchief/node_modules/gulp/node_modules/gulp-util/lib/isNull.js",
@@ -765,7 +768,6 @@
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/forever/test/fixtures/log-on-interval.js",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/LICENSE",
 		"/home/kingkoded/.cache/.fr-P28aj6/photoTilt-master/README.md",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/directives.js",
 		"/home/kingkoded/.cache/.fr-oLqCJF/photoTilt-master/demo/index.html",
 		"/home/kingkoded/FedProjects/tagChief-node/views/layouts/mobile.jade",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/app__.html",
@@ -785,19 +787,7 @@
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/mongoose/examples/replicasets/person.js",
 		"/home/kingkoded/FedProjects/tagChief-node/config/production.json",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/commons.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/media.js",
-		"/home/kingkoded/FedProjects/tagChief-node/models/vault.js",
-		"/home/kingkoded/FedProjects/tagchief/www/css/animation.css",
-		"/home/kingkoded/FedProjects/tagchief/plugins/com.phonegap.plugins.PushPlugin/spec/jasmine.css",
-		"/home/kingkoded/FedProjects/tagchief/plugins/org.apache.cordova.inappbrowser/tests/resources/inject.css",
-		"/home/kingkoded/FedProjects/tagchief/plugins/com.phonegap.plugins.PushPlugin/src/wp8/PushPlugin.cs",
-		"/home/kingkoded/FedProjects/tagchief/plugins/com.ionic.keyboard/plugin.xml",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/ProfileLauncherView.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/push.js",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/user.js",
-		"/home/kingkoded/Projects/bncauth/controllers/oauth-server/oauth-server.js",
-		"/home/kingkoded/FedProjects/tagchief/platforms/android/AndroidManifest.xml",
-		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2/access_token.js"
+		"/home/kingkoded/FedProjects/tagChief-node/models/media.js"
 	],
 	"find":
 	{
@@ -840,6 +830,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"\"",
+			"cordovaServices",
+			"\"",
+			"onadd",
+			"href=\"javascript:void(0)\"",
+			"();\n",
+			"questions",
+			"\"",
+			"ObjectId",
+			"\">\n",
+			"label",
+			"opencheckInPopOver",
+			"\"",
+			"()\n",
+			"\"",
+			"loginRequired",
+			"\"",
+			"BNC",
+			"thisDevice",
+			";\n",
+			"thisDevice",
+			"\"",
+			"'",
+			"20000",
 			"console",
 			"validation",
 			"InvalidParams",
@@ -943,31 +957,7 @@
 			"Plot",
 			"plot",
 			"DIAMONDBANK MAFOLUKU ",
-			"REDEEMERS",
-			"api_config.url",
-			"login",
-			"state",
-			"strip_files_result",
-			"getUsersFiles",
-			"findUserFiles",
-			"getUsersFiles",
-			"httpRequestInterceptor",
-			"redis",
-			"red",
-			"isLoggedIn(), ",
-			"internal",
-			"consol",
-			"putE",
-			"uri",
-			"USAChinaCorp",
-			"USAChinaCorp.com",
-			".php",
-			"image.",
-			"images.",
-			".php",
-			".html",
-			"wp_",
-			"define"
+			"REDEEMERS"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -975,6 +965,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"'",
 			"LocationDeviceObject",
 			"lodash",
 			"src=\"./",
@@ -1033,19 +1024,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "www/js/sharedlibs/services.js",
+					"file": "www/js/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 20090,
+						"buffer_size": 15420,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								15630,
-								15630
+								13624,
+								12882
 							]
 						],
 						"settings":
@@ -1062,7 +1053,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 585.0,
+						"translation.y": 5343.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -1070,35 +1061,34 @@
 				},
 				{
 					"buffer": 1,
-					"file": "www/js/modules/auth.js",
+					"file": "/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 4214,
+						"buffer_size": 2776,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3616,
-								3285
+								0,
+								2776
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
+							"WordCountSyntax": "json",
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 1053.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1106,103 +1096,62 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/models/device.js",
+					"file": "www/templates/inc/feedback-popover.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15601,
+						"buffer_size": 155,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4021,
-								4021
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
+							"WordCountSyntax": "html",
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 1131.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4971,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2660,
-								2660
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 546.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "www/js/sharedlibs/settings.js",
+					"buffer": 3,
+					"file": "www/templates/inc/checkin-modal.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 470,
+						"buffer_size": 422,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								312,
-								312
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
+							"WordCountSyntax": "html",
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1275,6 +1224,30 @@
 		"selected_items":
 		[
 			[
+				"feed",
+				"tagchief/www/templates/inc/feedback-popover.html"
+			],
+			[
+				"app.js",
+				"tagchief/www/js/app.js"
+			],
+			[
+				"controllers",
+				"tagchief/www/js/modules/controllers.js"
+			],
+			[
+				"controller",
+				"tagchief/www/js/modules/controllers.js"
+			],
+			[
+				"sett",
+				"tagchief/www/js/sharedlibs/settings.js"
+			],
+			[
+				"user-ema",
+				"tagChief-node/views/email-templates/user-email-verification.jade"
+			],
+			[
 				"style",
 				"tagchief/www/css/style.css"
 			],
@@ -1291,16 +1264,8 @@
 				"tagchief/www/js/sharedlibs/settings.js"
 			],
 			[
-				"controller",
-				"tagchief/www/js/modules/controllers.js"
-			],
-			[
 				"servic",
 				"tagchief/www/js/sharedlibs/services.js"
-			],
-			[
-				"sett",
-				"tagchief/www/js/sharedlibs/settings.js"
 			],
 			[
 				"pushe",
@@ -1699,10 +1664,6 @@
 				"ixit/public/js/modules/controllers/dashboardController.js"
 			],
 			[
-				"app.js",
-				"ixit/public/js/app.js"
-			],
-			[
 				"servi",
 				"ixit/public/js/modules/services/service.js"
 			],
@@ -1773,18 +1734,6 @@
 			[
 				"notice",
 				"IXit/app/views/templates/notice-alert-tpl.jade"
-			],
-			[
-				"app.j",
-				"IXit/public/js/app.js"
-			],
-			[
-				"ixit/user",
-				"IXit/public/js/modules/controllers/userController.js"
-			],
-			[
-				"eleme",
-				"IXit/public/css/elements.css"
 			]
 		],
 		"width": 0.0
@@ -1821,7 +1770,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 211.0,
+	"side_bar_width": 182.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

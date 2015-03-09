@@ -1,0 +1,17 @@
+  <ion-content class="has-header view-content has-subheader" scroll="false">
+    <div class="list card has-header map-holder">
+
+
+      <div class="item item-body map-area">
+        <app-map style="height:400px;" markers="whoiswhere" is-gmaps-loaded="viewParams.isLoadingGmaps" error-loading-gmaps="viewParams.errorLoadingGmaps">
+        </app-map>
+      </div>
+      <div class="item home-tag-item" ng-hide="viewParams.isLoadingGmaps || viewParams.errorLoadingGmaps">
+          <button class="button button-assertive button-full home-cta" href="#" ng-click="tagPopOver()">
+            <i class="fa fa-map-marker fa-3x"></i>
+            Tag Here
+          </button>
+      </div>
+
+    </div>
+  </ion-content>

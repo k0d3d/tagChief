@@ -16,75 +16,61 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
   $stateProvider
 
     .state('app', {
-      url: "/app",
+      url: '/app',
       abstract: true
     })
 
     .state('app.tc', {
-      url: "/tc",
+      url: '/tc',
       // abstract: true,
       views: {
         'maincontent@' : {
-          templateUrl: "templates/app.html",
+          templateUrl: 'templates/app.html',
           controller: 'AppCtrl'
         }
       }
     })
     .state('app.tc.home', {
-      url: "/home",
+      url: '/home',
       views: {
         'viewContent@app.tc' :{
-          templateUrl: "templates/home.html",
+          templateUrl: 'templates/home.html',
           controller: 'HomeCtrl'
         }
       }
     })
     .state('app.tc.locations', {
-      url: "/locations",
+      url: '/locations',
       views: {
         'viewContent@app.tc' :{
-          templateUrl: "templates/locations.html",
+          templateUrl: 'templates/locations.html',
           controller: 'LocationCtrl'
         }
       },
     })
     .state('app.tc.location', {
-      url: "/location/:locationId/popoverCheckin/:popoverCheckin",
+      url: '/location/:locationId/popoverCheckin/:popoverCheckin',
       views: {
         'viewContent@app.tc' :{
-          templateUrl: "templates/location.html",
-          controller: 'ViewLocationCtrl',
-          resolve: {
-            viewLocationData: function (locationsService, $stateParams) {
-              return locationsService.fetchLocationData($stateParams.locationId);
-            }
-          }
+          templateUrl: 'templates/location.html',
+          controller: 'ViewLocationCtrl'
         }
       }
     })
-    // .state('app.tc.locationcheckin', {
-    //   url: "/location/:locationId/checkin",
-    //   views: {
-    //     'viewContent@app.tc' :{
-    //       templateUrl: "templates/location.html",
-    //       controller: 'LocationCtrl'
-    //     }
-    //   }
-    // })
     .state('app.tc.me', {
-      url: "/me/achievements",
+      url: '/me/achievements',
       views: {
         'viewContent@app.tc' :{
-          templateUrl: "templates/me-achievements.html",
+          templateUrl: 'templates/me-achievements.html',
           controller: 'FilesCtrl'
         }
       }
     })
     .state('app.account', {
-      url: "/account",
+      url: '/account',
       views: {
         'menuContent' :{
-          templateUrl: "templates/account.html",
+          templateUrl: 'templates/account.html',
           // controller: 'PlaylistsCtrl'
         }
       }
@@ -141,7 +127,13 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
 });
 
 
-app.run(['$ionicPlatform', '$cordovaPush', 'appBootStrap', function($ionicPlatform, $cordovaPush, appBootStrap) {
+app.run([
+  '$ionicPlatform',
+  '$cordovaPush',
+  'appBootStrap',
+  'api_config',
+  'pushConfig',
+  function($ionicPlatform, $cordovaPush, appBootStrap, api_config, pushConfig) {
   $ionicPlatform.ready(function() {
     console.log('heloo');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -153,26 +145,20 @@ app.run(['$ionicPlatform', '$cordovaPush', 'appBootStrap', function($ionicPlatfo
       StatusBar.styleDefault();
     }
 
-    var pushConfig = {
-      "senderID": "384367763163"
-    };
 
     appBootStrap.strapCordovaDevice();
-    appBootStrap.strapLocalNotifications(window.plugin.notification.local);
+    if (window.plugin) {
+      appBootStrap.strapLocalNotifications(window.plugin.notification.local);
+    }
 
 
     //init db
     appBootStrap.db = new PouchDB('tagchief');
     var remoteCouch = false;
-
     //register the GCM sender Id for the app
-    $cordovaPush.register(pushConfig).then(function(result) {
-      // Success
-      console.log(result);
-    }, function(err) {
-      // Error
-      console.log(err);
-    });
+    if (window.localStorage.gcmid) {
+      $cordovaPush.register(pushConfig);
+    }
 
 
   });
@@ -189,13 +175,9 @@ app.controller('MainCtrl', [
       $scope.mainCfg = {
         viewNoHeaderIsActive: true
       };
-      // if thr no no auth..token in app local storage, treat d user as a first time user
-      if (!$window.localStorage.authorizationToken) {
-          return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
-      }
 
       $rootScope.$on('$stateChangeStart',
-      function(event, toState, toParams, fromState, fromParams){
+      function(event, toState){
         //check for an authorizationToken in our localStorage
         //if we find one, we check if it is a Bearer type token,
         //we wanna redirect to our login page to get new auth tokens
@@ -204,8 +186,8 @@ app.controller('MainCtrl', [
           //if we have an bearer type auth token and for some reason, we're being sent to any
           //app.auth state... it should freeze d transition.
           if (
-            ($window.localStorage.authorizationToken && toState.name.indexOf("app.auth") > -1 ) &&
-            ($window.localStorage.authorizationToken.split(" ")[0] == 'Bearer' && toState.name.indexOf("app.auth") > -1 )
+            ($window.localStorage.authorizationToken && toState.name.indexOf('app.auth') > -1 ) &&
+            ($window.localStorage.authorizationToken.split(' ')[0] === 'Bearer' && toState.name.indexOf('app.auth') > -1 )
           ) {
             console.log('shouldnt b here');
             return event.preventDefault();
@@ -229,6 +211,8 @@ app.controller('AppCtrl', [
   '$stateParams',
   '$ionicModal',
   '$ionicPopup',
+  'pushConfig',
+  '$cordovaPush',
   function (
     $scope,
     $state,
@@ -243,7 +227,14 @@ app.controller('AppCtrl', [
     $q,
     $stateParams,
     $ionicModal,
-    $ionicPopup) {
+    $ionicPopup,
+    pushConfig,
+    $cordovaPush
+    ) {
+      // if thr no no auth..token in app local storage, treat d user as a first time user
+      if (!$window.localStorage.authorizationToken) {
+          return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
+      }
       // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
       //     console.log(error);
       //     evt.preventDefault();
@@ -256,12 +247,26 @@ app.controller('AppCtrl', [
       //   return false;
       //     // return (fromState.name.indexOf("app.auth") > -1 ) ? false : $state.go('app.auth.login');
       // }
+      //
+      // By now we should have an instance of our local
+      // notifcation plugin on the appBootstrap Service.
+      // we just need to register our onclick handlers.
+      if (window.plugin) {
+        window.plugin.notification.local.onclick = function (id, state, json) {
+          Messaging.execAction(JSON.parse(json).eventName, JSON.parse(json));
+        };
+        window.plugin.notification.local.onadd = function () {
+          console.log(arguments);
+        };
+      }
+
 
       $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
         switch(notification.event) {
           case 'registered':
             if (notification.regid.length > 0 ) {
               Messaging.setRegId(notification.regid);
+              // window.localStorage.gcmid = notification.regid;
               Messaging.ping($cordovaDevice.getUUID(), function (d) {
                 // console.log(d);
               });
@@ -285,26 +290,12 @@ app.controller('AppCtrl', [
         }
       });
 
-
-      // $interval(function () {
-      //   if ($window.localStorage.authorizationToken.split(" ")[0] == 'Bearer') {
-      //     var l = locationsService.getMyLocation() || {};
-
-      //     if (!l.latitude && !l.longitude) {
-      //       // locationsService.geoLocationInit();
-      //       // locationsService.watchPosition();
-      //       return false;
-      //     }
-      //     locationsService.pingUserLocation();
-      //   }
-      // }, 60000);
-      //
       $scope.testPing = function () {
         return locationsService.pingUserLocation({shouldPromptCheckIn: true});
       };
 
       $scope.testCheckIn = function () {
-        Messaging.execAction('CHECKIN', {locationId: 13, locationName: 'HoneyHome'});
+        Messaging.execAction('CHECKIN', {locationId: '54dfde529b18357e313d2aa8', locationName: 'HoneyHome'});
       };
 
       $scope.testGCM = function () {
@@ -323,12 +314,12 @@ app.controller('AppCtrl', [
         var now                  = new Date().getTime(),
             seconds_from_now = new Date(now + 5*1000);
         appBootStrap.localNotifications().add({
-                id:         Date.now() + 'testNotice',  // A unique id of the notification
-                date:       seconds_from_now,    // This expects a date object
-                message:    'Trial Notice',  // The message that is displayed
-                title:      'tagChief Feedback',  // The title of the message
-                json:       JSON.stringify({'index': 1}),  // Data to be passed through the notification
-                autoCancel: true, // Setting this flag and the notification is automatically cancelled when the user clicks it
+                id:         Date.now() + 'testNotice',
+                date:       seconds_from_now,
+                message:    'Trial Notice',
+                title:      'tagChief Feedback',
+                json:       JSON.stringify({'index': 1}),
+                autoCancel: true,
         });
       };
 
@@ -336,12 +327,6 @@ app.controller('AppCtrl', [
       i.then(
         function(position) {
 
-          //should get coarse position
-          // $scope.position=position;
-          // $scope.base = {
-          //   lat: position.latitude,
-          //   lon: position.longitude
-          // };
         },
         function(e) {
           console.log("Error retrieving position " + e.code + " " + e.message);
@@ -368,34 +353,64 @@ app.controller('AppCtrl', [
       // show on the map
       // you as a  markers, objects should have "lat", "lon", and "name" properties
       $scope.whoiswhere.push = {
-        "name": "Here I am",
-        "lat": $scope.base.coords.lat,
-        "lon": $scope.base.coords.lon
+        'name': 'Here I am',
+        'lat': $scope.base.coords.lat,
+        'lon': $scope.base.coords.lon
       };
       /** end geo monitor code */
 
 
 
-      $scope.openCheckInModal = function (e, location) {
+      //unregister gcm
+      // WARNING: dangerous to unregister (results in loss of tokenID)
+      $scope.unregisterPush =  function () {
+        $cordovaPush.unregister(pushConfig)
+        .then(function(result) {
+          // Success!
+        }, function(err) {
+          // Error
+        });
+      };
+
+      $scope.opencheckInPopOver = function (e, location) {
         if (e instanceof Event) {
           e.stopPropagation();
         }
+        var locationName = location.locationName || location.name;
+        var locationId = location.locationId || location._id;
          var confirmPopup = $ionicPopup.confirm({
            title: 'Check In',
-           template: 'Are you sure you want to checkin to ' + location.locationName + '?'
+           template: 'Are you sure you want to checkin to ' + locationName + '?'
          });
          confirmPopup.then(function(res) {
            if (res) {
+            // locationsService.writeCheckIntoDB(
+            //   {
+            //       'deviceId' : 'eb0af84b7417e4e1',
+            //       'locationId' : '54f208ebbebd6fd54c18fc11',
+            //       'userId' : '54e1a0ca52e960e92e78759f',
+            //       'checkInTime' : '2015-03-02T16:15:44.064Z',
+            //       'questions': appBootStrap.getDefaultFeedback()
+            //   }
+            // )
+            // .then(locationsService.pollForFeedback, function (err) {
+            //   console.log(err);
+            // })
+            // .catch(function (err) {
+            //   console.log(err);
+            // });
             locationsService.checkIntoLocation(location.locationId)
             .then(locationsService.writeCheckIntoDB)
-            .then(locationsService.pollForFeedback)
-            .then(function (timer) {
-              $scope.$on('$destroy', function () {
-                timer.cancel();
-              });
+            // .then(locationsService.pollForFeedback);
+            .then(locationsService.pollForFeedback, function (err) {
+              console.log(err);
+            })
+            .catch(function (err) {
+              console.log(err);
             });
+
             $state.transitionTo('app.tc.location', {
-              locationId: location.locationId
+              locationId: locationId
             }, {
               reload: true,
               inherit: true,
@@ -406,12 +421,46 @@ app.controller('AppCtrl', [
          });
       };
 
+      $scope.openCheckInFeedbackModal = function openCheckInFeedbackModal (checkData) {
+
+
+        $scope._feedback = checkData;
+
+        // An elaborate, custom popup
+        var myPopup = $ionicPopup.show({
+          templateUrl: 'templates/inc/feedback-popover.html',
+          title: 'tagChief Feedback Service',
+          // subTitle: 'Adds',
+          scope: $scope,
+          buttons: [
+            {
+              text: '<b><i class="icon ion-thumbsdown"></i></b>',
+              type: 'button-positive',
+              onTap: function(e) {
+
+              }
+            },
+            {
+              text: '<b><i class="icon ion-thumbsup"></i></b>',
+              type: 'button-positive',
+              onTap: function(e) {
+
+              }
+            }
+          ]
+        });
+
+        $scope.$on('$destroy', function () {
+          myPopup.remove();
+        });
+      };
+
+
       $scope.$on('app-is-requesting', function (e, data) {
         $scope.mainCfg.isRequesting = data;
       });
 
-      $scope.$on('auth-loginRequired', function(e, rejection) {
-        console.log('login');
+      $scope.$on('auth-loginRequired', function() {
         if (!$state.is('app.auth.login')) {
           $state.go('app.auth.login', {}, {
             location: true
@@ -426,8 +475,12 @@ app.controller('AppCtrl', [
         appBootStrap.strapCordovaDevice().cancel();
       });
       $scope.$on('appUI::checkInPopOver', function (e, data) {
-        $scope.openCheckInModal(e, data);
+        $scope.opencheckInPopOver(e, data);
       });
+      $scope.$on('appUI::checkInFeedbackModal', function (e, data) {
+        $scope.openCheckInFeedbackModal(data);
+      });
+
 }]);
 
 app.factory('tokenInterceptor', function ($window) {
@@ -442,26 +495,48 @@ app.factory('tokenInterceptor', function ($window) {
   };
 });
 
-  app.directive('tiltbg', ['$timeout', function ($timeout) {
-    return {
-      compile: function (ele) {
-        function resizeIBG () {
-            $(".ibg-bg", ele).css({
-              width: $(window).outerWidth(),
-              height: $(window).outerHeight()
-            });
-        }
-        $(document).ready(function () {
-           $(ele).interactive_bg({
-             strength: 35,              // Movement Strength when the cursor is moved. The higher, the faster it will reacts to your cursor. The default value is 25.
-             scale: 1.5,               // The scale in which the background will be zoomed when hovering. Change this to 1 to stop scaling. The default value is 1.05.
-             animationSpeed: "100ms",   // The time it takes for the scale to animate. This accepts CSS3 time function such as "100ms", "2.5s", etc. The default value is "100ms".
-             contain: false,             // This option will prevent the scaled object/background from spilling out of its container. Keep this true for interactive background. Set it to false if you want to make an interactive object instead of a background. The default value is true.
-             wrapContent: false         // This option let you choose whether you want everything inside to reacts to your cursor, or just the background. Toggle it to true to have every elements inside reacts the same way. The default value is false
-           });
-        });
-        $timeout(resizeIBG());
-        $(window).on('resize load orientationchange', resizeIBG);
+app.directive('tiltbg', ['$timeout', function ($timeout) {
+  return {
+    compile: function (ele) {
+      function resizeIBG () {
+          $(".ibg-bg", ele).css({
+            width: $(window).outerWidth(),
+            height: $(window).outerHeight()
+          });
       }
-    };
-  }]);
+      $(document).ready(function () {
+         $(ele).interactive_bg({
+           strength: 35,
+           scale: 1.5,
+           animationSpeed: '100ms',
+           contain: false,
+           wrapContent: false
+         });
+      });
+      // $timeout();
+      $(window).on('resize load orientationchange', resizeIBG);
+      resizeIBG();
+    }
+  };
+}]);
+
+app.directive('vegas', ['$timeout', function ($timeout) {
+  return {
+    compile: function (ele) {
+
+      $(document).ready(function () {
+        $(ele).vegas({
+            slides: [
+                { src: './img/slider/slider1.jpg' },
+                { src: './img/slider/slider2.jpg' },
+                { src: './img/slider/slider3.jpg' },
+                { src: './img/slider/slider4.jpg' },
+                { src: './img/slider/slider5.jpg' }
+            ]
+        });
+      });
+      // $timeout();
+
+    }
+  };
+}]);

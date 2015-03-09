@@ -6,27 +6,37 @@
     '$state',
     'appBootStrap',
     '$rootScope',
-    function ($http, api_config, $state, appBootStrap, $rootScope) {
-      var Messaging = this;
-      Messaging.regid = '';
-
+    '$cordovaPush',
+    'pushConfig',
+    function ($http, api_config, $state, appBootStrap, $rootScope, $cordovaPush, pushConfig) {
 
     return {
+      prepPushRequest: function (cb) {
+        console.log('trying to register push');
+        if (!this.getRegId().length) {
+          $cordovaPush.register(pushConfig);
+        }
+        $http.defaults.headers.common.GCMId =  this.getRegId();
+        cb();
+      },
       setRegId: function (regId) {
-        Messaging.regid = regId;
+        console.log('registered and setting id, %n', regId.length);
+        window.localStorage.gcmid = regId;
         return true;
       },
       getRegId: function () {
-        return Messaging.regid;
+        return window.localStorage.gcmid || '';
       },
       ping: function (deviceId, cb) {
-        $http.defaults.headers.common.GCMId =  this.getRegId();
-        $http.post('/api/v1/messaging/' + deviceId)
-        .success(function (data) {
-          cb(data);
-        })
-        .error(function (err) {
-          cb(err);
+        this.prepPushRequest(function () {
+
+          $http.post('/api/v1/messaging/' + deviceId)
+          .success(function (data) {
+            cb(data);
+          })
+          .error(function (err) {
+            cb(err);
+          });
         });
       },
       execAction: function execAction (actionName, params) {
@@ -35,13 +45,17 @@
           // appBootStrap.openOnStateChangeSuccess(actionName);
           $rootScope.$broadcast('appUI::checkInPopOver', params);
           break;
+          case 'CHECKINFEEDBACK':
+          $rootScope.$broadcast('appUI::checkInFeedbackModal', params.payload);
+          break;
           default:
           break;
         }
       },
       testMessaging: function testMessaging () {
-
-        return $http.post('/api/v1/messaging/' + appBootStrap.thisDevice.uuid+ '/test');
+        this.prepPushRequest(function () {
+          $http.post('/api/v1/messaging/' + appBootStrap.thisDevice.uuid+ '/test');
+        });
       }
     };
   }]);
@@ -130,123 +144,6 @@
       return service;
   }]);
 
-  app.factory('cordovaServices', ['$window', '$ionicPlatform', function ($window, $ionicPlatform) {
-    return {
-      filesystem: function (dataPath, cb) {
-
-        var _currentFileSystem = null;
-
-        function fail (fileError) {
-          console.log(fileError);
-        }
-
-        function directoryReaderSuccess(entries){
-            // again, Eclipse doesn't allow object inspection, thus the stringify
-            // console.log(JSON.stringify(entries));
-
-            // alphabetically sort the entries based on the entry's name
-            entries.sort(function(a,b){return (a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);});
-
-            return cb(entries);
-
-            //  start constructing the view
-            var list = '<ul>';
-            var skip = null;
-            for (var i=0;i<entries.length;i++){
-              // should we hide "system" files and directories?
-              if (true){
-                  skip = entries[i].name.indexOf('.') == 0;
-              }
-              if (!skip){
-                list += '<li><div class="rowTitle" data-action="' + (entries[i].isFile ? 'selectFile' : 'beginBrowseForFiles') + '" \
-                     data-type="' + (entries[i].isFile ? 'file':'directory') + '" \
-                     data-path="' + entries[i].fullPath + '">' + entries[i].name + '</div>\
-                     <div class="alginIconInRow"><img src="images/' + (entries[i].isFile ? 'file':'folder') + '.png"></div>\
-                     </li>';
-              }
-            }
-          // insert the list into our container
-          // document.getElementById('folderName').innerHTML = list + '</ul>';
-        }
-
-        // The requestFileSystemSuccess callback now takes the filesystem object
-        // and uses it to create a reader which allows us to get all the entries
-        // (files and folders) for the given location. On success we will pass
-        // our entry array to a function that will sort them, construct an unordered
-        // list and then insert them into the app.
-        function requestFileSystemSuccess(fileSystem){
-          // lets insert the current path into our UI
-          // document.getElementById('folderName').innerHTML = fileSystem.root.fullPath;
-          // save this location for future use
-          _currentFileSystem = fileSystem;
-          // create a directory reader
-          var directoryReader = fileSystem.root.createReader();
-          // Get a list of all the entries in the directory
-          directoryReader.readEntries(directoryReaderSuccess,fail);
-        }
-
-        $ionicPlatform.ready(function () {
-          // get local file system
-          // Request File System
-          // function beginBrowseForFiles(dataPath){
-          if (!dataPath){
-            // get the local file system and pass the result to the success callback
-            $window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, requestFileSystemSuccess, null);
-          } else {
-            // this is used to get subdirectories
-            // var path = e.target.attributes['data-path'].nodeValue;
-            $window.resolveLocalFileSystemURI(
-              dataPath,
-              function(filesystem){
-                // we must pass what the PhoneGap API doc examples call an "entry" to the reader
-                // which appears to take the form constructed below.
-                requestFileSystemSuccess({root:filesystem});
-              },
-              function(err){
-                // Eclipse doesn't let you inspect objects like Chrome does, thus the stringify
-                console.log('### ERR: filesystem.beginBrowseForFiles() -' + (JSON.stringify(err)));
-              }
-            );
-          }
-        });
-
-
-        // }
-        // beginBrowseForFiles(dataPath);
-      },
-      /**
-       * returns the file path from
-       * @param  {[type]}   uri [description]
-       * @param  {Function} cb  [description]
-       * @return {[type]}       [description]
-       */
-      returnFilePathName: function (uri, cb) {
-        window.plugins.filenamequery.getFileName(uri, function (data) {
-          var i = data.split('/');
-          cb({
-            fileName: i[i.length -1],
-            fullPath: data
-          });
-        }, function (err) {
-          cb(err);
-        });
-      },
-      getFileObject: function (uri, fileMeta, cb) {
-        window.resolveLocalFileSystemURL(uri, function (fileEntry) {
-
-          fileEntry.file(function (fileObject) {
-            //hack, should always return a file with its real filename and path
-            fileObject.name = (ionic.Platform.version() <= 4.3) ? fileObject.name : fileMeta.fileName;
-            cb(fileObject);
-          }, function (err) {
-            console.log('Error creating file object');
-          });
-        }, function (err) {
-          cb(err);
-        });
-      }
-    };
-  }]);
   app.factory('appBootStrap', [
     '$ionicModal',
     '$cordovaDevice',
@@ -264,6 +161,7 @@
           console.log(hash);
         }
       };
+
     return {
       activeModal: null,
       pendingPrompt: null,
@@ -275,31 +173,33 @@
       strapLocalNotifications: function strapLocalNotifications (pluginInstance) {
         if (pluginInstance) {
           bootHash.localNotificationsInstance = pluginInstance;
-          pluginInstance.onadd = function () {
-            console.log(arguments);
-          };
           return true;
         }
         return false;
       },
       localNotifications: function localNotifications () {
+        if (!bootHash.localNotificationsInstance) {
+          if (window.plugin) {
+            bootHash.localNotificationsInstance = window.plugin.notification.local;
+          }
+        }
         return bootHash.localNotificationsInstance;
       },
       getDefaultFeedback: function getDefaultFeedback () {
         return [
           {
             question: 'How is the service?',
-            promptAfter: '20',
+            promptAfter: '30',
             answer: false
           },
           {
             question: 'Are you having a good time?',
-            promptAfter: '20',
+            promptAfter: '60',
             answer: false
           },
           {
             question: 'How is the ambiance?',
-            promptAfter: '20',
+            promptAfter: '90',
             answer: false
           }
         ];
@@ -451,31 +351,54 @@
       maximumAge: 1000
     };
 
-    geoSrvs.checkInState = {
-
-    }
     return {
-      updateFeedback: function updateFeedback (index) {
-
+      updateFeedback: function updateFeedback (params) {
+        console.log(params);
+        return appBootStrap.db.put(params._id);
       },
       pollForFeedback: function pollForFeedback (o) {
         //find checkin record,
-        appBootStrap.db.get(o._id)
+        appBootStrap.db.get(o.id)
         .then(function (doc) {
+          console.log('found doc ', doc.questions[0].question);
+          var now = new Date().getTime();
+
           //check if feedback is required
+          // appBootStrap.localNotifications().add({
+          //   id:         o._id + '_question_' + i,
+          //   date:       seconds_from_now,
+          //   message:    doc.questions[i].question,
+          //   title:      'tagChief Feedback',
+          //   json:       JSON.stringify({
+          //     'index': i,
+          //     'eventId': o._id,
+          //     'eventName': 'CHECKINFEEDBACK'
+          //   }),
+          //   autoCancel: true,
+
+          // });
           for (var i = doc.questions.length - 1; i >= 0; i--) {
             var theQ = doc.questions[i];
             if (!theQ.answer) {
-              var now = new Date().getTime(),
-                  seconds_from_now = new Date(now +  doc.questions[i].promptAfter * 1000);
+              console.log(theQ.promptAfter);
+
+              var seconds_from_now = new Date(now +  theQ.promptAfter * 1000);
               //schedule the feedback.
-              appBootStrap.localNotifications.add({
-                id:         o._id + '_question_' + i,  // A unique id of the notification
-                date:       seconds_from_now,    // This expects a date object
-                message:    theQ.question,  // The message that is displayed
-                title:      'tagChief Feedback',  // The title of the message
-                json:       '{"index": "'+ i +'""}',  // Data to be passed through the notification
-                autoCancel: true, // Setting this flag and the notification is automatically cancelled when the user clicks it
+              console.log(theQ.question);
+              appBootStrap.localNotifications().add({
+                id:         o._id + '_question_' + i,
+                date:       seconds_from_now,
+                message:    theQ.question,
+                title:      'tagChief Feedback',
+                json:       JSON.stringify({
+                  'index': i,
+                  'eventId': o._id,
+                  'eventName': 'CHECKINFEEDBACK',
+                  'payload':  theQ
+                }),
+                autoCancel: true
+              }, function () {
+                console.log(arguments);
               });
 
             }
@@ -487,7 +410,6 @@
       writeCheckIntoDB: function writeCheckIntoDB (checkInData) {
 
         var i = {
-          _id: checkInData._id,
           locationId: checkInData.locationId,
           checkInTime: checkInData.checkInTime,
           checkOutTime: null,
@@ -596,13 +518,22 @@
         var prevLocation = self.getMyLocation();
         //if its equal, for how long has it been equal, if its changed..
         //dont bother
-        if (angular.equals({
+        // console.log(geolib.getDistance({
+        //   latitude: prevLocation.latitude,
+        //   longitude: prevLocation.longitude
+        // }, {
+        //   latitude: coords.latitude,
+        //   longitude: coords.longitude
+        // }));
+        var latlngds = geolib.getDistance({
           latitude: prevLocation.latitude,
           longitude: prevLocation.longitude
         }, {
           latitude: coords.latitude,
           longitude: coords.longitude
-        })) {
+        });
+        console.log(latlngds);
+        if (latlngds <= 2 ) {
           var momentNow = moment();
           var momentThen = moment(prevLocation.timeStamp);
           var diff = momentThen.diff(momentNow, 'seconds');

@@ -2,8 +2,24 @@
   <label class="item item-input">
     <input type="text" placeholder="Name" ng-model="tagInput.name" autofocus>
   </label>
+  <label class="item item-input item-select">
+    <div class="input-label" style="color: #B5B5B5;border: none;font-weight: 400;font-size: 15px;">
+      Category
+    </div>
+    <select placeholder="Category" ng-model="tagInput.category">
+      <option>
+        Polling Booths
+      </option>
+      <option>Hiardressing Saloons</option>
+      <option>Bars/ Lounge</option>
+      <option>Spa</option>
+      <option>Buka/ Restaurant</option>
+      <option>Hotel</option>
+      <option>ATM</option>
+    </select>
+  </label>
   <label class="item item-input">
-    <input type="text" placeholder="Category" ng-model="tagInput.category">
+    <input type="text" placeholder="Specials" ng-model="tagInput.specials">
   </label>
   <label class="item item-input">
     <textarea placeholder="Description" ng-model="tagInput.description"></textarea>

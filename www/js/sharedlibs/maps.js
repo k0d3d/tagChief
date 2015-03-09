@@ -43,24 +43,30 @@ var MapApp = angular.module('GoogleMapsInitializer', []);
 // });
 
 MapApp.factory('Initializer', function($window, $q){
-
     //Google's url for async maps initialization accepting callback function
     var asyncUrl = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCOt9IYHpYN22m7alw_HKi5y5WBgu57p4s&v=3.exp&sensor=true&callback=googleMapsInitialized',
         mapsDefer = $q.defer();
-        gMapsLoader = $.getScript(asyncUrl);
-        gMapsLoader.done(function () {
 
-        })
-        .fail(function (err) {
-          return mapsDefer.reject(err);
-        });
+    function init () {
+            var gMapsLoader = $.getScript(asyncUrl);
+            gMapsLoader.done(function () {
 
-    //Callback function - resolving promise after maps successfully loaded
-    $window.googleMapsInitialized = mapsDefer.resolve;
+            })
+            .fail(function (err) {
+              return mapsDefer.reject(err);
+            });
+
+        //Callback function - resolving promise after maps successfully loaded
+        $window.googleMapsInitialized = mapsDefer.resolve;
+
+    }
+
+    init();
 
     //Usage: Initializer.mapsInitialized.then(callback)
     return {
-        mapsInitialized : mapsDefer.promise
+        mapsInitialized : mapsDefer.promise,
+        reload: init
     };
 });
 
@@ -103,17 +109,24 @@ MapApp.directive("cityState", ['Initializer', function (Initializer) {
     link: function (scope) {
       Initializer.mapsInitialized
       .then(function () {
+        function init () {
+            var latLng = new google.maps.LatLng(scope.locationData.latitude, scope.locationData.longitude),
+              geoCoder = new google.maps.Geocoder();
 
-        var latLng = new google.maps.LatLng(scope.locationData.latitude, scope.locationData.longitude),
-          geoCoder = new google.maps.Geocoder();
+              geoCoder.geocode({
+                "latLng": latLng
+              }, function (results, status) {
+                var result = results[0];
 
-          geoCoder.geocode({
-            "latLng": latLng
-          }, function (results, status) {
-            var result = results[0];
+                scope.locationData.formatted_address = results[0].formatted_address;
+                scope.$apply();
+            });
+        }
 
-            scope.locationData.formatted_address = results[0].formatted_address;
-            scope.$apply();
+        scope.$watch('locationData', function (n) {
+            if (n) {
+                init();
+            }
         });
 
       });
@@ -174,8 +187,8 @@ MapApp.directive("appMap", [
                   scope.myLocation = new google.maps.Marker({
                       position: myLatLng,
                       map: scope.map,
-                      title: "My Location",
-                      icon: 'img/icon-marker.png'
+                      title: 'My Location',
+                      icon: 'img/u-marker.png'
                   });
 
                   google.maps.event.addDomListener($('div.map-container'), 'mousedown', function(e) {
@@ -198,6 +211,7 @@ MapApp.directive("appMap", [
                 scope.errorLoadingGmaps = true;
               });
             };
+
 
             function refreshMeMarker () {
               if (scope.myLocation) {

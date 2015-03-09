@@ -1,0 +1,19 @@
+  <ion-content class="view-content splash-first" scroll="false" data-ibg-bg="./img/backgrounds/background.jpg" tiltbg>
+    <div class="row">
+      <div class="col">
+      <div class="logobox">
+        <img src="./img/logo.png">
+        <h3>Discover, Share, Enjoy</h3>
+      </div>
+      </div>
+    </div>
+    <div class="s-c">
+      <div class="splash-doc">
+        <div class="splash-actions" ng-style="splashActionDiv">
+          <a ui-sref="app.auth.login" class="button button-assertive button-block" ng-class="{'button-full': splashImgIsP, 'button-150': !splashImgIsP}">Sign in</a>
+          <a ui-sref="app.auth.register" class="button button-dark button-block" ng-class="{'button-full': splashImgIsP, 'button-150': !splashImgIsP}">Join tagChief</a>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+

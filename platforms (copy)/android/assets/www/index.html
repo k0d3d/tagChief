@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/themes.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/fire.css" rel="stylesheet">
+    <link href="css/animation.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script src="lib/angular-http-auth/src/http-auth-interceptor.js"></script>
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="js/vendor/imgcache.js"></script>
+    <script src="js/vendor/moment.min.js"></script>
+    <!-- // <script src="js/vendor/geolib.js"></script> -->
+    <!-- // <script src="js/vendor/geolib.elevation.js"></script> -->
+    <script src="js/vendor/pouchdb-3.3.1.min.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="tcApp" class="platform-android platform-cordova platform-webview">
+    <div class="main-ctrl" ng-controller="MainCtrl">
+      <ion-nav-view name="maincontent" animation="slide-left-right"></ion-nav-view>
+      <div class="full-screen-container" ng-show="mainCfg.viewNoHeaderIsActive">
+        <ion-nav-view name="noheadercontent"></ion-nav-view>
+      </div>
+    </div>
+  <!-- your app's js -->
+  <script src="js/app.js"></script>
+  <script src="js/sharedlibs/settings.js"></script>
+  <script src="js/modules/controllers.js"></script>
+  <script src="js/modules/auth.js"></script>
+  <script src="js/sharedlibs/directives.js"></script>
+  <script src="js/sharedlibs/services.js"></script>
+  <script src="js/sharedlibs/maps.js"></script>
+  <script src="js/vendor/jquery.interactive_bg.js"></script>
+  </body>
+</html>
