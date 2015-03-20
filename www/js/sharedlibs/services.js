@@ -42,11 +42,13 @@
       execAction: function execAction (actionName, params) {
         switch (actionName) {
           case 'CHECKIN':
+          console.log('should hit CHECKIN');
           // appBootStrap.openOnStateChangeSuccess(actionName);
           $rootScope.$broadcast('appUI::checkInPopOver', params);
           break;
           case 'CHECKINFEEDBACK':
-          $rootScope.$broadcast('appUI::checkInFeedbackModal', params.payload);
+          console.log('should hit feedback');
+          $rootScope.$broadcast('appUI::checkInFeedbackModal', params);
           break;
           default:
           break;
@@ -170,21 +172,21 @@
       modals: {},
       db: null,
 
-      strapLocalNotifications: function strapLocalNotifications (pluginInstance) {
-        if (pluginInstance) {
-          bootHash.localNotificationsInstance = pluginInstance;
-          return true;
-        }
-        return false;
-      },
-      localNotifications: function localNotifications () {
-        if (!bootHash.localNotificationsInstance) {
-          if (window.plugin) {
-            bootHash.localNotificationsInstance = window.plugin.notification.local;
-          }
-        }
-        return bootHash.localNotificationsInstance;
-      },
+      // strapLocalNotifications: function strapLocalNotifications (pluginInstance) {
+      //   if (pluginInstance) {
+      //     bootHash.localNotificationsInstance = pluginInstance;
+      //     return true;
+      //   }
+      //   return false;
+      // },
+      // localNotifications: function localNotifications () {
+      //   if (!bootHash.localNotificationsInstance) {
+      //     if (window.plugin) {
+      //       bootHash.localNotificationsInstance = window.plugin.notification.local;
+      //     }
+      //   }
+      //   return bootHash.localNotificationsInstance;
+      // },
       getDefaultFeedback: function getDefaultFeedback () {
         return [
           {
@@ -337,7 +339,8 @@
     '$rootScope',
     'appBootStrap',
     'Messaging',
-    function ($http, $cordovaGeolocation, Q, $rootScope, appBootStrap, Messaging) {
+    '$interpolate',
+    function ($http, $cordovaGeolocation, Q, $rootScope, appBootStrap, Messaging, $interpolate) {
     var geoSrvs = this;
     geoSrvs.myLocation = {
       longitude : 0,
@@ -363,20 +366,6 @@
           console.log('found doc ', doc.questions[0].question);
           var now = new Date().getTime();
 
-          //check if feedback is required
-          // appBootStrap.localNotifications().add({
-          //   id:         o._id + '_question_' + i,
-          //   date:       seconds_from_now,
-          //   message:    doc.questions[i].question,
-          //   title:      'tagChief Feedback',
-          //   json:       JSON.stringify({
-          //     'index': i,
-          //     'eventId': o._id,
-          //     'eventName': 'CHECKINFEEDBACK'
-          //   }),
-          //   autoCancel: true,
-
-          // });
           for (var i = doc.questions.length - 1; i >= 0; i--) {
             var theQ = doc.questions[i];
             if (!theQ.answer) {
@@ -385,7 +374,7 @@
               var seconds_from_now = new Date(now +  theQ.promptAfter * 1000);
               //schedule the feedback.
               console.log(theQ.question);
-              appBootStrap.localNotifications().add({
+              window.plugin.notification.local.add({
                 id:         o._id + '_question_' + i,
                 date:       seconds_from_now,
                 message:    theQ.question,
@@ -410,7 +399,7 @@
       writeCheckIntoDB: function writeCheckIntoDB (checkInData) {
 
         var i = {
-          locationId: checkInData.locationId,
+          locationId: checkInData.locationId || checkInData._id,
           checkInTime: checkInData.checkInTime,
           checkOutTime: null,
           questions: appBootStrap.getDefaultFeedback()
@@ -468,20 +457,51 @@
       },
       pingUserLocation: function (params) {
         params = params || {};
+        var q = Q.defer();
+
+
         var self = this;
         $http.defaults.headers.common.GCMId =  Messaging.getRegId();
-        return  $http.post('/api/v1/hereiam', {
+        $http.post('/api/v1/hereiam', {
           coords: self.getMyLocation(),
           shouldPromptCheckIn: params.shouldPromptCheckIn,
           deviceId: appBootStrap.thisDevice.uuid
+        })
+        .then(function (l_data) {
+          if (l_data.data) {
+            var seconds_from_now = new Date();
+            //schedule the feedback.
+            window.plugin.notification.local.add({
+              id:         l_data.data._id + '_question_',
+              date:       seconds_from_now,
+              message:    'You might want to check in',
+              title:      $interpolate('You are in {{name}}')(l_data.data),
+              // title:      "Hi Chrp",
+              json:       JSON.stringify({
+                // 'index': i,
+                // 'eventId': l_data.data._id,
+                'eventName': 'CHECKIN',
+                // 'payload':  l_data.data
+              }),
+              autoCancel: true
+            }, function () {
+              console.log(arguments);
+            });
+          } else {
+            return q.reject();
+          }
+          // $rootScope.$broadcast('appUI::checkInPopOver', l_data.);
         });
+
+
+        return q.promise;
       },
       addLocation: function (locationData) {
         var self = this;
         locationData.lon = self.getMyLocation().longitude;
         locationData.lat = self.getMyLocation().latitude;
         if (locationData.lon && locationData.lat) {
-          return $http.post('/api/v1/locations',  locationData);
+          return $http.post('/api/v1/locations',  JSON.stringify(locationData));
         } else {
           return false;
         }
@@ -532,7 +552,7 @@
           latitude: coords.latitude,
           longitude: coords.longitude
         });
-        console.log(latlngds);
+        // console.log(latlngds);
         if (latlngds <= 2 ) {
           var momentNow = moment();
           var momentThen = moment(prevLocation.timeStamp);
@@ -541,7 +561,7 @@
           //if the user has been in d same location for the below amount of time.
           //and he hasnt checked into this location.
           //trigger a push
-          if ((diff > -60 && diff < -55) && !geoSrvs.myLocation.hasCheckedIn) {
+          if ((diff > -61 && diff < -54) && !geoSrvs.myLocation.hasCheckedIn) {
             console.log('TRIGGERED');
             $rootScope.$broadcast('locationsService::userisSitting', prevLocation);
             //reset the timeStamp so we can start comparing
@@ -549,12 +569,13 @@
             geoSrvs.myLocation.timeStamp = null;
             geoSrvs.myLocation.hasCheckedIn = true;
             self.pingUserLocation({shouldPromptCheckIn: true});
+
           }
-          console.log('%s has passed since u sat down', diff);
+          // console.log('%s has passed since u sat down', diff);
         } else {
           geoSrvs.myLocation.timeStamp = null;
           geoSrvs.myLocation.hasCheckedIn = false;
-          console.log('You are moving u bastard, sit down');
+          // console.log('You are moving u bastard, sit down');
         }
       }
     };

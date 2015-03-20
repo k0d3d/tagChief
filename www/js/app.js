@@ -147,9 +147,6 @@ app.run([
 
 
     appBootStrap.strapCordovaDevice();
-    if (window.plugin) {
-      appBootStrap.strapLocalNotifications(window.plugin.notification.local);
-    }
 
 
     //init db
@@ -253,10 +250,14 @@ app.controller('AppCtrl', [
       // we just need to register our onclick handlers.
       if (window.plugin) {
         window.plugin.notification.local.onclick = function (id, state, json) {
-          Messaging.execAction(JSON.parse(json).eventName, JSON.parse(json));
+          console.log('clicked');
+          if (json) {
+            Messaging.execAction(JSON.parse(json).eventName, JSON.parse(json).payload);
+          }
         };
         window.plugin.notification.local.onadd = function () {
-          console.log(arguments);
+          console.log('added');
+          // console.log(arguments);
         };
       }
 
@@ -313,7 +314,7 @@ app.controller('AppCtrl', [
       $scope.testLocalNotifications = function testLocalNotifications() {
         var now                  = new Date().getTime(),
             seconds_from_now = new Date(now + 5*1000);
-        appBootStrap.localNotifications().add({
+        window.plugin.notification.local.add({
                 id:         Date.now() + 'testNotice',
                 date:       seconds_from_now,
                 message:    'Trial Notice',
@@ -341,7 +342,6 @@ app.controller('AppCtrl', [
           console.log("Error retrieving position " + e.code + " " + e.message);
         },
         function(position) {
-          console.log(position);
 
           // $scope.base.coords.lat =  position.coords.latitude;
           // $scope.base.coords.lon =  position.coords.longitude;
@@ -384,25 +384,14 @@ app.controller('AppCtrl', [
          });
          confirmPopup.then(function(res) {
            if (res) {
-            // locationsService.writeCheckIntoDB(
-            //   {
-            //       'deviceId' : 'eb0af84b7417e4e1',
-            //       'locationId' : '54f208ebbebd6fd54c18fc11',
-            //       'userId' : '54e1a0ca52e960e92e78759f',
-            //       'checkInTime' : '2015-03-02T16:15:44.064Z',
-            //       'questions': appBootStrap.getDefaultFeedback()
-            //   }
-            // )
-            // .then(locationsService.pollForFeedback, function (err) {
-            //   console.log(err);
-            // })
-            // .catch(function (err) {
-            //   console.log(err);
-            // });
+
             locationsService.checkIntoLocation(location.locationId)
             .then(locationsService.writeCheckIntoDB)
             // .then(locationsService.pollForFeedback);
-            .then(locationsService.pollForFeedback, function (err) {
+            .then(function (writnDoc) {
+              console.log(writnDoc);
+              locationsService.pollForFeedback(writnDoc);
+            }, function (err) {
               console.log(err);
             })
             .catch(function (err) {

@@ -251,12 +251,11 @@ button.is-loading-btn {
 }
 
 .desc-box {
-  width: 300px;
+  width: 90%;
   top: 60px;
   text-align: center;
-  margin-left: -150px;
-  left: 50%;
-  position: absolute;
+  margin: 0 auto;
+  position: relative;
 }
 
 .talk-well {

@@ -144,7 +144,8 @@ MapApp.directive("appMap", [
     'Initializer',
     '$interval',
     'locationsService',
-    function ($window, $timeout, Initializer, $interval, locationsService) {
+    '$q',
+    function ($window, $timeout, Initializer, $interval, locationsService, Q) {
     return {
         restrict: "E",
         replace: true,
@@ -165,8 +166,11 @@ MapApp.directive("appMap", [
         link: function (scope, element, attrs) {
             scope.center = {};
             scope.isLoadingGmaps = true;
+            var currentMarkers = [];
 
             scope.createMap = function createMap() {
+              var q = Q.defer();
+
               Initializer.mapsInitialized
               .then(function(){
                   var myLatLng = new google.maps.LatLng(scope.center.lat, scope.center.lon);
@@ -207,9 +211,11 @@ MapApp.directive("appMap", [
                   $(document).on('click', '.open-tag-dialog-btn', function(e) {
                     scope.tagPopOver();
                   });
+                  q.resolve();
               }, function (err) {
                 scope.errorLoadingGmaps = true;
               });
+              return q.promise;
             };
 
 
@@ -255,13 +261,52 @@ MapApp.directive("appMap", [
                 function(position) {
                     scope.center.lat = locationsService.getMyLocation().latitude;
                     scope.center.lon = locationsService.getMyLocation().longitude;
-                    scope.createMap();
+                    scope.createMap()
+                    .then(function (){
+                      //load user added / tagged / check-in locations / or load locations wit the users interest
+                      locationsService.locationProximity({
+                        loadPerRequest: 20
+                      })
+                      .then(function(d) {
+                        scope.markers = d.data;
+                        updateMarkers();
+                      }, function (err) {
+                        if (err instanceof Error) {
+                           if (err.message === 'NoLocationData') {
+                              // alert('Location not found');
+                           }
+                        }
+                        // alert('other error occured');
+                        scope.$broadcast('scroll.refreshComplete');
+                        console.log(err);
+                      });
+                    });
                 },
                 function(e) {
                   scope.errorLoadingGmaps = true;
                   console.log("Error retrieving position " + e.code + " " + e.message);
                 }
             );
+
+            function updateMarkers() {
+              if (scope.map) {
+                for (var i = 0; i < scope.markers.length; i++) {
+                  var m = scope.markers[i];
+
+                  var loc = new google.maps.LatLng(m.latitude, m.longitude);
+
+                  var mm = new google.maps.Marker({
+                    position: loc,
+                    map: scope.map,
+                    icon: 'img/icon-marker.png',
+                    title: m.name
+                  });
+                  //console.log("map: make marker for " + m.name);
+                  // google.maps.event.addListener(mm, 'click', markerCb(mm, m, loc));
+                  currentMarkers.push(mm);
+                  }
+                }
+              }
 
 
             // Info window trigger function
