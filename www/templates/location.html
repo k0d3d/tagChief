@@ -1,5 +1,5 @@
 
-<ion-content class="has-header view-content" scroll="true" ng-init="$scope.$parent.mainCfg.title = 'Location Page'">
+<ion-content class="has-header view-content" scroll="true">
   <!-- User Profile Header -->
   <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
   <div class="location-profile content-header content-header-media">
@@ -7,7 +7,7 @@
           <div class="img-rounded" style="background-image : url('./img/placeholders/avatars/sample-location-avi.jpg')">
           </div>
           <div class="header-body">
-            <h1>{{::locationData.name | toStartCase}}</h1>
+            <h1>{{locationData.name | toStartCase}}</h1>
             <p city-state="locationData">{{locationData.formatted_address}}</p>
           </div>
       </div>
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col">
+      <div class="col stb" stretch-to-bottom>
         <div class="list">
           <label class="item item-input">
             <span class="input-label">Info</span>

@@ -27,7 +27,14 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       views: {
         'maincontent@' : {
           templateUrl: 'templates/app.html',
-          controller: 'AppCtrl'
+          controller: 'AppCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'tagChief'
+              };
+            }
+          }
         }
       }
     })
@@ -36,7 +43,14 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       views: {
         'mapContent@app.tc' :{
           templateUrl: 'templates/home.html',
-          controller: 'HomeCtrl'
+          controller: 'HomeCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'My Location'
+              };
+            }
+          }
         }
       }
     })
@@ -45,7 +59,14 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       views: {
         'locationContent@app.tc' :{
           templateUrl: 'templates/locations.html',
-          controller: 'LocationCtrl'
+          controller: 'LocationCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'Near-by Locations'
+              };
+            }
+          }
         }
       },
     })
@@ -54,7 +75,14 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       views: {
         'locationContent@app.tc' :{
           templateUrl: 'templates/location.html',
-          controller: 'ViewLocationCtrl'
+          controller: 'ViewLocationCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'Location Profile'
+              };
+            }
+          }
         }
       }
     })
@@ -173,13 +201,8 @@ app.controller('MainCtrl', [
   '$rootScope',
   function ($scope, $state, $stateParams, $window, $rootScope) {
       $scope.mainCfg = {
-        viewNoHeaderIsActive: true,
-        title: 'tagChief'
+        viewNoHeaderIsActive: true
       };
-
-      $scope.$watch('mainCfg', function (n) {
-        console.log(n);
-      });
 
       $rootScope.$on('$stateChangeStart',
       function(event, toState){
@@ -218,6 +241,7 @@ app.controller('AppCtrl', [
   '$ionicPopup',
   'pushConfig',
   '$cordovaPush',
+  'pageProperties',
   function (
     $scope,
     $state,
@@ -234,12 +258,14 @@ app.controller('AppCtrl', [
     $ionicModal,
     $ionicPopup,
     pushConfig,
-    $cordovaPush
+    $cordovaPush,
+    pageProperties
     ) {
       // if thr no no auth..token in app local storage, treat d user as a first time user
       if (!$window.localStorage.authorizationToken) {
           return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
       }
+      $scope.$parent.mainCfg.pageTitle = pageProperties.title;
       // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
       //     console.log(error);
       //     evt.preventDefault();

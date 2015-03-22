@@ -14,6 +14,7 @@ app.controller('HomeCtrl', [
   'appBootStrap',
   'locationsService',
   '$cordovaToast',
+  'pageProperties',
   function(
     $scope,
     $ionicModal,
@@ -25,10 +26,13 @@ app.controller('HomeCtrl', [
     $cordovaDevice,
     appBootStrap,
     locationsService,
-    $cordovaToast
+    $cordovaToast,
+    pageProperties
     ) {
 
-  $scope.$parent.mainCfg.title = 'My Location';
+  $scope.$on('$ionicView.enter', function(){
+    $scope.$parent.mainCfg.pageTitle = pageProperties.title;
+  });
 
   $scope.viewParams = {
     isLoadingGmaps: true
@@ -99,8 +103,11 @@ app.controller('LocationCtrl', [
   '$stateParams',
   '$ionicPopup',
   'appBootStrap',
-  function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap) {
-  $scope.$parent.mainCfg.title = 'Near-by Location';
+  'pageProperties',
+  function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap, pageProperties) {
+    $scope.$on('$ionicView.enter', function(){
+      $scope.$parent.mainCfg.pageTitle = pageProperties.title;
+    });
   $scope.locationQueryParams = {
     loadPerRequest: 20
   };
@@ -196,8 +203,11 @@ app.controller('ViewLocationCtrl', [
   '$stateParams',
   '$ionicPopup',
   'appBootStrap',
-  function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap) {
-    $scope.mainCfg.title = 'Location Page';
+  'pageProperties',
+  function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap, pageProperties) {
+    $scope.$on('$ionicView.enter', function(){
+      $scope.$parent.mainCfg.pageTitle = pageProperties.title;
+    });
     locationsService.fetchLocationData($stateParams.locationId)
     .then(function (viewLocationData) {
       $scope.locationData = viewLocationData.data;
@@ -231,5 +241,33 @@ app.filter('toStartCase', function () {
     return _.startCase(str);
   };
 });
+
+app.directive('stretchToBottom', ['$timeout', function ($timeout) {
+  return {
+    link: function (scope, tEle) {
+      function onLoad (e) {
+        var
+          //get position y
+          a = $(tEle).offset().top,
+          //get element height
+          b = $(tEle).height(),
+          //get height of bottom bar
+          c = $('.tabs-bottom .tabs').height(),
+          //get window size
+          d = $(window).height(),
+          //e = subtract a+b+c - d
+          e = d - (a + c);
+        //use e + b as element height
+        $(tEle).height(e + 'px');
+      }
+      $(window).on('orientationchange resize ready', tEle, onLoad);
+      // scope.$on('$ionicView.loaded', function(){
+      //   // Any thing you can think of
+      //   onLoad();
+      // });
+      $timeout(onLoad);
+    }
+  };
+}]);
 
 })();
