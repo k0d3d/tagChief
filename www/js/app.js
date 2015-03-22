@@ -12,7 +12,8 @@ var app = angular.module('tcApp', [
   'GoogleMapsInitializer',
   'auth'
   ]);
-app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_config) {
+
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_config, $ionicConfigProvider) {
   $stateProvider
 
     .state('app', {
@@ -33,7 +34,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
     .state('app.tc.home', {
       url: '/home',
       views: {
-        'viewContent@app.tc' :{
+        'mapContent@app.tc' :{
           templateUrl: 'templates/home.html',
           controller: 'HomeCtrl'
         }
@@ -42,7 +43,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
     .state('app.tc.locations', {
       url: '/locations',
       views: {
-        'viewContent@app.tc' :{
+        'locationContent@app.tc' :{
           templateUrl: 'templates/locations.html',
           controller: 'LocationCtrl'
         }
@@ -51,7 +52,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
     .state('app.tc.location', {
       url: '/location/:locationId/popoverCheckin/:popoverCheckin',
       views: {
-        'viewContent@app.tc' :{
+        'locationContent@app.tc' :{
           templateUrl: 'templates/location.html',
           controller: 'ViewLocationCtrl'
         }
@@ -60,7 +61,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
     .state('app.tc.me', {
       url: '/me/achievements',
       views: {
-        'viewContent@app.tc' :{
+        'accountContent@app.tc' :{
           templateUrl: 'templates/me-achievements.html',
           controller: 'FilesCtrl'
         }
@@ -69,7 +70,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
     .state('app.account', {
       url: '/account',
       views: {
-        'menuContent' :{
+        'accountContent' :{
           templateUrl: 'templates/account.html',
           // controller: 'PlaylistsCtrl'
         }
@@ -92,7 +93,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       }
     };
   }]);
- $httpProvider.interceptors.push(['$q', 'api_config', '$rootScope', function ($q, api_config, $rootScope) {
+  $httpProvider.interceptors.push(['$q', 'api_config', '$rootScope', function ($q, api_config, $rootScope) {
       return {
           'request': function (config) {
             $rootScope.$broadcast('app-is-requesting', true);
@@ -124,6 +125,8 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       };
   }]);
 
+  $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.navBar.alignTitle('center');
 });
 
 
@@ -170,8 +173,13 @@ app.controller('MainCtrl', [
   '$rootScope',
   function ($scope, $state, $stateParams, $window, $rootScope) {
       $scope.mainCfg = {
-        viewNoHeaderIsActive: true
+        viewNoHeaderIsActive: true,
+        title: 'tagChief'
       };
+
+      $scope.$watch('mainCfg', function (n) {
+        console.log(n);
+      });
 
       $rootScope.$on('$stateChangeStart',
       function(event, toState){
@@ -521,11 +529,25 @@ app.directive('vegas', ['$timeout', function ($timeout) {
                 { src: './img/slider/slider3.jpg' },
                 { src: './img/slider/slider4.jpg' },
                 { src: './img/slider/slider5.jpg' }
-            ]
+            ],
+            transition: [ 'fade', 'zoomOut', 'swirlLeft', 'blur2' ],
+            overlay: '/lib/vegas/dist/overlays/02.png',
+            timer: false,
+            preload: true
         });
       });
       // $timeout();
 
+    }
+  };
+}]);
+
+app.directive('srctobg', [function () {
+  return {
+    compile: function (tEle, tAttr) {
+      $(tEle).css({
+        'background-image': tAttr.src
+      });
     }
   };
 }]);

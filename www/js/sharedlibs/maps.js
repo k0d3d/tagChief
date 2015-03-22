@@ -226,7 +226,7 @@ MapApp.directive("appMap", [
                 var resetMapMarker = $timeout( function(){
                     // console.log("na here sure pass");
                     scope.myLocation.setPosition( new google.maps.LatLng(scope.center.lat, scope.center.lon) );
-                    scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
+                    // scope.map.panTo( new google.maps.LatLng( scope.center.lat, scope.center.lon ) );
 
                 }, 1500 );
                 scope.$on('$destroy', function () {
@@ -301,6 +301,15 @@ MapApp.directive("appMap", [
                     icon: 'img/icon-marker.png',
                     title: m.name
                   });
+
+                  var infowindow = new google.maps.InfoWindow({
+                    content: '<button class="button button-positive button-clear button-small">'+ m.name +'</button>'
+                  });
+
+                  $(document).on('click', mm, function(e) {
+                    infowindow.open(scope.map, mm);
+                  });
+
                   //console.log("map: make marker for " + m.name);
                   // google.maps.event.addListener(mm, 'click', markerCb(mm, m, loc));
                   currentMarkers.push(mm);

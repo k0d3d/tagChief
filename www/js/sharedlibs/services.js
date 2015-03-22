@@ -306,15 +306,17 @@
                         })
                             .success(function(data) {
                                 $window.localStorage.authorizationToken = 'Bearer ' + data.access_token;
+                                browserRef.close();
                                 deferred.resolve(data);
                             })
                             .error(function() {
+                              browserRef.close();
                                 deferred.reject('Problem authenticating');
                             })
                             .finally(function() {
                                 setTimeout(function() {
                                     browserRef.close();
-                                }, 10);
+                                }, 1);
                             });
                     }
                 });

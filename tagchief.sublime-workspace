@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"marg",
+				"margin-bottom"
+			],
+			[
+				"col",
+				"col-33"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"text",
+				"text-decoration"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"p",
+				"padding"
+			],
+			[
+				"acti",
+				"activity"
+			],
+			[
+				"class",
+				"class=〔attribute〕"
+			],
+			[
 				"curr",
 				"currentMarkers〔variable〕"
 			],
@@ -244,10 +276,6 @@
 				"prevLocation"
 			],
 			[
-				"p",
-				"pouchdb-3.3.1.min.js"
-			],
-			[
 				"ge",
 				"geolib.elevation.js"
 			],
@@ -444,10 +472,6 @@
 				"margin"
 			],
 			[
-				"text",
-				"text-align"
-			],
-			[
 				"paddin",
 				"padding"
 			],
@@ -472,10 +496,6 @@
 				"ng-click"
 			],
 			[
-				"col",
-				"col-md-2"
-			],
-			[
 				"margin-",
 				"margin-top:   (property)"
 			],
@@ -494,68 +514,32 @@
 			[
 				"ng-",
 				"ng-flow-standalone.js"
-			],
-			[
-				"fo",
-				"font-awesome.css"
-			],
-			[
-				"b",
-				"bootstrap.css"
-			],
-			[
-				"s",
-				"dist/"
-			],
-			[
-				"project",
-				"project_name"
-			],
-			[
-				"service",
-				"service_name"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "www/js/app.js",
-			"settings":
-			{
-				"buffer_size": 15519,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/sharedlibs/services.js",
-			"settings":
-			{
-				"buffer_size": 21020,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
-			"settings":
-			{
-				"buffer_size": 378,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/sharedlibs/settings.js",
-			"settings":
-			{
-				"buffer_size": 631,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "www/css/style.css",
 			"settings":
 			{
-				"buffer_size": 3892,
+				"buffer_size": 8325,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/location.html",
+			"settings":
+			{
+				"buffer_size": 3007,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/app.js",
+			"settings":
+			{
+				"buffer_size": 16116,
 				"line_ending": "Unix"
 			}
 		},
@@ -563,15 +547,55 @@
 			"file": "www/js/modules/controllers.js",
 			"settings":
 			{
-				"buffer_size": 5747,
+				"buffer_size": 6127,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "www/templates/inc/checkin-modal.html",
+			"file": "www/templates/locations.html",
 			"settings":
 			{
-				"buffer_size": 422,
+				"buffer_size": 1591,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/app.html",
+			"settings":
+			{
+				"buffer_size": 1949,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/sharedlibs/maps.js",
+			"settings":
+			{
+				"buffer_size": 14516,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/home.html",
+			"settings":
+			{
+				"buffer_size": 771,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/sharedlibs/services.js",
+			"settings":
+			{
+				"buffer_size": 21121,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/index.html",
+			"settings":
+			{
+				"buffer_size": 2375,
 				"line_ending": "Unix"
 			}
 		}
@@ -676,36 +700,48 @@
 	},
 	"expanded_folders":
 	[
-		"/home/kingkoded/FedProjects/tagChief-node"
+		"/home/kingkoded/FedProjects/tagchief",
+		"/home/kingkoded/FedProjects/tagchief/www",
+		"/home/kingkoded/FedProjects/tagchief/www/js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs",
+		"/home/kingkoded/FedProjects/tagchief/www/templates"
 	],
 	"file_history":
 	[
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
+		"/home/kingkoded/FedProjects/tagchief/www/lib/ionic/js/ionic.bundle.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/app___.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/register.html",
+		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/login.html",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/splash-first.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/checkin-modal.html",
+		"/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js",
 		"/home/kingkoded/FedProjects/tagchief/www/index.html",
-		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/splash-first.html",
 		"/home/kingkoded/.cache/.fr-Qoe2GR/BackgroundSlideshow/css/component.css",
 		"/home/kingkoded/.cache/.fr-RSJBIg/BackgroundSlideshow/index.html",
 		"/home/kingkoded/www/Swiper-3.0.4/demos/21-autoplay.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/feedback-popover.html",
 		"/home/kingkoded/Downloads/imei.txt",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
 		"/home/kingkoded/FedProjects/tagchief/config.xml",
 		"/home/kingkoded/FedProjects/tagchief/plugins/android.json",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/tag-popover.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/location.html",
 		"/home/kingkoded/www/gazuka/index.html",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/email-templates/fatal-error.jade",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
 		"/home/kingkoded/FedProjects/tagChief-node/models/oauth2.js",
 		"/home/kingkoded/FedProjects/tagChief-node/server.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-concat/docs/concat-options.md",
@@ -726,10 +762,8 @@
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-autoprefixer/node_modules/autoprefixer-core/node_modules/caniuse-db/region-usage-json/UY.json",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/jade/node_modules/mkdirp/test/umask_sync.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/user/locations.js",
-		"/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
 		"/home/kingkoded/FedProjects/tagChief-node/models/device.js",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/oauth-server/oauth-server.js",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
 		"/home/kingkoded/FedProjects/tagChief-node/config/default.json",
 		"/home/kingkoded/FedProjects/tagChief-node/views/layouts/email-layout.jade",
 		"/home/kingkoded/FedProjects/tagChief-node/public/style.css",
@@ -758,15 +792,12 @@
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/test/settings.gradle",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/settings.gradle",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/angular-ui-router/src/stateDirectives.js",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/checkin-modal.html",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/ParsedURL.js",
 		"/home/kingkoded/FedProjects/tagChief-node/Procfile",
 		"/home/kingkoded/FedProjects/tagchief/www/__index.html",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/framework/test/org/apache/cordova/PreferenceSetTest.java",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/cordova/lib/start-emulator",
 		"/home/kingkoded/FedProjects/tagChief-node/package.json",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/login.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/register.html",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/users.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/full-screen.html",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/jquery/src/var/hasOwn.js",
@@ -805,9 +836,7 @@
 		"/home/kingkoded/FedProjects/tagChief-node/lib/event_register.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/email/mailer.js",
 		"/home/kingkoded/FedProjects/tagchief/www_tmpl/prod-settings.js",
-		"/home/kingkoded/FedProjects/tagChief-node/README.md",
-		"/home/kingkoded/FedProjects/tagchief/hooks/after_plugin_add/010_register_plugin.js",
-		"/home/kingkoded/FedProjects/tagChief-node/node_modules/mongoose/examples/replicasets/person.js"
+		"/home/kingkoded/FedProjects/tagChief-node/README.md"
 	],
 	"find":
 	{
@@ -850,6 +879,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			".score-bar",
+			".round-icon",
+			"round-icon",
+			"ound-icon",
+			"oauth",
+			"filing",
+			" item-floating-label",
 			"appBootStrap.localNotifications()",
 			"window.plugin.notification",
 			"appBootStrap.localNotifications()",
@@ -970,14 +1006,7 @@
 			"isDocumentUri",
 			"$o",
 			"Local",
-			"WebIntent",
-			"webintent",
-			"WebIntent",
-			"appgyver",
-			"FileNameQuery",
-			"Echo",
-			"com",
-			"org.ixit.filechooser"
+			"WebIntent"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1039,146 +1068,72 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/js/app.js",
+					"file": "www/css/style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 15519,
+						"buffer_size": 8325,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7295,
-								7295
+								2226,
+								2226
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
+							"WordCountSyntax": "css",
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3079.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "www/js/sharedlibs/services.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 21020,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17458,
-								17458
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 5745.0,
+						"translation.y": 1727.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
+					"buffer": 1,
+					"file": "www/templates/location.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 378,
+						"buffer_size": 3007,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								585,
+								585
 							]
 						],
 						"settings":
 						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "json",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "www/js/sharedlibs/settings.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 631,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								258,
-								258
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "html",
 							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1190,61 +1145,27 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "www/css/style.css",
+					"buffer": 2,
+					"file": "www/js/app.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3892,
+						"buffer_size": 16116,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3760,
-								3760
-							]
-						],
-						"settings":
-						{
-							"WordCountSyntax": "css",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 2808.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "www/js/modules/controllers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5747,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2791,
-								2791
+								15277,
+								15277
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
 							"WordCountSyntax": "javascript",
+							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
@@ -1254,32 +1175,71 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1287.0,
+						"translation.y": 6669.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "www/templates/inc/checkin-modal.html",
+					"buffer": 3,
+					"file": "www/js/modules/controllers.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 422,
+						"buffer_size": 6127,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								6040,
+								6040
 							]
 						],
 						"settings":
 						{
+							"WordCountShouldRun": false,
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 2626.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "www/templates/locations.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1591,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								743,
+								743
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
 							"WordCountSyntax": "html",
+							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
@@ -1293,6 +1253,190 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/templates/app.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1949,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								109,
+								109
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "html",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "www/js/sharedlibs/maps.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14516,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8237,
+								8237
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2506.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "www/templates/home.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 771,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								189,
+								189
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "html",
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "www/js/sharedlibs/services.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21121,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11182,
+								11182
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3728.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "www/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2375,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1047,
+								1047
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "html",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 39.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
 					"type": "text"
 				}
 			]

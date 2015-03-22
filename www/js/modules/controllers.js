@@ -13,6 +13,7 @@ app.controller('HomeCtrl', [
   '$cordovaDevice',
   'appBootStrap',
   'locationsService',
+  '$cordovaToast',
   function(
     $scope,
     $ionicModal,
@@ -23,8 +24,11 @@ app.controller('HomeCtrl', [
     Messaging,
     $cordovaDevice,
     appBootStrap,
-    locationsService
+    locationsService,
+    $cordovaToast
     ) {
+
+  $scope.$parent.mainCfg.title = 'My Location';
 
   $scope.viewParams = {
     isLoadingGmaps: true
@@ -65,6 +69,7 @@ app.controller('HomeCtrl', [
             } else {
               locationsService.addLocation($scope.tagInput)
               .then(function () {
+                $cordovaToast.showShortBottom('You have successfully tagged this location');
                 myPopup.close();
               }, function () {
                 $scope.tagInput.errors = {
@@ -95,7 +100,7 @@ app.controller('LocationCtrl', [
   '$ionicPopup',
   'appBootStrap',
   function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap) {
-
+  $scope.$parent.mainCfg.title = 'Near-by Location';
   $scope.locationQueryParams = {
     loadPerRequest: 20
   };
@@ -192,6 +197,7 @@ app.controller('ViewLocationCtrl', [
   '$ionicPopup',
   'appBootStrap',
   function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap) {
+    $scope.mainCfg.title = 'Location Page';
     locationsService.fetchLocationData($stateParams.locationId)
     .then(function (viewLocationData) {
       $scope.locationData = viewLocationData.data;
@@ -218,7 +224,12 @@ app.filter('moment', function(){
       return m.fromNow();
     }
   };
-})
-;
+});
+
+app.filter('toStartCase', function () {
+  return function (str) {
+    return _.startCase(str);
+  };
+});
 
 })();

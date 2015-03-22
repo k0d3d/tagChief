@@ -1,37 +1,40 @@
 
 
-  <ion-content class="reg-form animation-fadeInQuickInv" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
-    <img src="img/backgrounds/login_full_bg.jpg" alt="Login Full Background" class="full-bg">
+  <ion-content class="reg-form animation-fadeInQuickInv auth-content" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
     <div id="login-container" class="animation-fadeIn">
                 <!-- Login Title -->
                 <div class="login-title text-center">
-                    <h1><img src="img/logo.png"></h1>
+                    <div class="auth-logo-div">
+                      <img src="img/logo.png">
+                    </div>
+                    <h4>Discover, Share, Enjoy</h4>
                 </div>
                 <!-- END Login Title -->
 
                 <!-- Login Block -->
                 <div class="block push-bit">
+                    <h4>JOIN tagChief</h4>
                     <!-- Login Form -->
-                    <div class="list">
-                      <label class="item item-input item-floating-label">
-                        <span class="input-label">Email</span>
-                        <input type="email" placeholder="Email" ng-model="form.email" required autofocus>
+                    <div class="list list-inset">
+                      <label class="item item-input">
+                        <i class="icon ion-at placeholder-icon"></i>
+                        <input type="email" placeholder="Email" ng-model="form.email" required>
                       </label>
-                      <label class="item item-input item-floating-label">
-                        <span class="input-label">Mobile Number</span>
-                        <input type="text" placeholder="Mobile Number" ng-model="form.phoneNumber" required>
+                      <label class="item item-input">
+                        <i class="icon ion-android-call placeholder-icon"></i>
+                        <input type="text" placeholder="Mobile Number" ng-model="form.phoneNumber">
                       </label>
-                      <label class="item item-input item-floating-label">
-                        <span class="input-label">Password</span>
+                      <label class="item item-input">
+                        <i class="icon ion-key placeholder-icon"></i>
                         <input type="password" placeholder="Password" ng-model="form.password" required>
                       </label>
+                      <button type="submit" class="button button-block" ng-click="RegisterBtn(form)">Join</button>
                     </div>
                     <div class="form-group form-actions">
                         <div class="col-xs-12 text-right">
-                          <button type="submit" class="button button-block button-clear button-assertive" ng-click="RegisterBtn(form)" >Register</button>
                           <div class="button-bar">
-                            <a type="submit" class="button button-clear button-dark" ui-sref="app.auth.login">Login</a>
-                            <a type="submit" class="button button-clear button-dark" ui-sref="app.auth.forgotpw">Forgot Password?</a>
+                            <a type="submit" class="button button-clear button-stable" ui-sref="app.auth.login">Login</a>
+                            <a type="submit" class="button button-clear button-stable" ui-sref="app.auth.forgotpw">Forgot Password?</a>
                           </div>
                         </div>
                     </div>
