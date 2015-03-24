@@ -1,5 +1,32 @@
 (function () {
   var app = angular.module('services', []);
+  app.factory('appUpdates', [
+    'Messaging',
+    'appBootStrap',
+    function (Messaging, appBootStrap) {
+    var AU = this;
+    AU.updateBank = [];
+    return {
+      addUpdate: function addUpdate (params) {
+        AU.updateBank.push(_.extend({dateAdded: Date.now()}, params));
+      },
+      getUpdates: function getUpdates () {
+        return AU.updateBank;
+      },
+      testLocalNotification: function testLocalNotification () {
+        var now                  = new Date().getTime(),
+            seconds_from_now = new Date(now + 5*1000);
+        cordova.plugins.notification.local.schedule({
+          id:         Date.now(),
+          // at:       seconds_from_now,
+          text:    'Trial Notice',
+          title:      'tagChief Feedback',
+          data:       JSON.stringify({'index': 1, 'message': 'Test Notice'}),
+          smallicon: 'file://img/res/android/icon/drawable-mdpi-icon.png'
+        });
+      }
+    };
+  }]);
   app.factory('Messaging', [
     '$http',
     'api_config',
@@ -42,12 +69,10 @@
       execAction: function execAction (actionName, params) {
         switch (actionName) {
           case 'CHECKIN':
-          console.log('should hit CHECKIN');
           // appBootStrap.openOnStateChangeSuccess(actionName);
           $rootScope.$broadcast('appUI::checkInPopOver', params);
           break;
           case 'CHECKINFEEDBACK':
-          console.log('should hit feedback');
           $rootScope.$broadcast('appUI::checkInFeedbackModal', params);
           break;
           default:
@@ -130,17 +155,20 @@
             delete $window.localStorage.authorizationToken;
           });
         },
-        logout: function(user) {
-          $http.delete('/api/v1/users/auth', {})
-          // $http.delete(api_config.CONSUMER_API_URL + '/api/v1/users/auth', {})
-          .finally(function(data) {
+        logout: function() {
+          return $http.delete('/api/v1/users/auth', {})
+          .then(function () {
             delete $http.defaults.headers.common.Authorization;
-            delete $window.localStorage.authorizationToken;
-            $rootScope.$broadcast('event:auth-logout-complete');
           });
         },
         loginCancelled: function() {
           authService.loginCancelled();
+        },
+        putUserInfo: function putUserInfo (form) {
+          return $http.put('/api/v2/users', form);
+        },
+        getThisUser: function getThisUser () {
+          return $http.get('/api/v2/users');
         }
       };
       return service;
@@ -156,13 +184,6 @@
     '$ionicPopover',
     '$timeout',
     function ($ionicModal, $cordovaDevice, $http, api_config, $q, $window, $ionicPopover, $timeout) {
-      var bootHash = this;
-      bootHash.localNotificationsInstance = null;
-      bootHash.mockNotificationsInstance = {
-        add: function (hash) {
-          console.log(hash);
-        }
-      };
 
     return {
       activeModal: null,
@@ -171,6 +192,9 @@
       isRequesting: false,
       modals: {},
       db: null,
+      isBrowser: function () {
+        return ionic.Platform.platforms.indexOf("browser") > -1;
+      },
 
       // strapLocalNotifications: function strapLocalNotifications (pluginInstance) {
       //   if (pluginInstance) {
@@ -182,7 +206,7 @@
       // localNotifications: function localNotifications () {
       //   if (!bootHash.localNotificationsInstance) {
       //     if (window.plugin) {
-      //       bootHash.localNotificationsInstance = window.plugin.notification.local;
+      //       bootHash.localNotificationsInstance = cordova.plugins.notification.local;
       //     }
       //   }
       //   return bootHash.localNotificationsInstance;
@@ -342,7 +366,8 @@
     'appBootStrap',
     'Messaging',
     '$interpolate',
-    function ($http, $cordovaGeolocation, Q, $rootScope, appBootStrap, Messaging, $interpolate) {
+    'feedback',
+    function ($http, $cordovaGeolocation, Q, $rootScope, appBootStrap, Messaging, $interpolate, feedback) {
     var geoSrvs = this;
     geoSrvs.myLocation = {
       longitude : 0,
@@ -365,46 +390,44 @@
         //find checkin record,
         appBootStrap.db.get(o.id)
         .then(function (doc) {
-          console.log('found doc ', doc.questions[0].question);
-          var now = new Date().getTime();
+          var now = new Date().getTime(), poll = [];
 
           for (var i = doc.questions.length - 1; i >= 0; i--) {
             var theQ = doc.questions[i];
             if (!theQ.answer) {
-              console.log(theQ.promptAfter);
-
               var seconds_from_now = new Date(now +  theQ.promptAfter * 1000);
-              //schedule the feedback.
-              console.log(theQ.question);
-              window.plugin.notification.local.add({
-                id:         o._id + '_question_' + i,
-                date:       seconds_from_now,
-                message:    theQ.question,
+              poll.push({
+                id:       parseInt('' + now + i),
+                at:       seconds_from_now,
+                text:     theQ.question,
                 title:      'tagChief Feedback',
-                json:       JSON.stringify({
+                smallicon: 'file://img/res/android/icon/drawable-mdpi-icon.png',
+                data:       JSON.stringify({
                   'index': i,
                   'eventId': o._id,
                   'eventName': 'CHECKINFEEDBACK',
                   'payload':  theQ
                 }),
-                autoCancel: true
-              }, function () {
-                console.log(arguments);
               });
-
+              console.log(parseInt('' + now + i));
             }
           }
+          cordova.plugins.notification.local.schedule(poll, function () {
+              console.log(arguments);
+          });
         });
         //set the timer for when feedback will be asked
         //timer should be cancelled
       },
       writeCheckIntoDB: function writeCheckIntoDB (checkInData) {
-
+        var ct = (_.indexOf(_.keys(feedback), checkInData.data.locationId.category) > -1) ?
+                  checkInData.data.locationId.category : 'default';
         var i = {
-          locationId: checkInData.locationId || checkInData._id,
-          checkInTime: checkInData.checkInTime,
+          locationId: checkInData.data.locationId._id || checkInData.data._id,
+          checkInId: checkInData.data._id,
+          checkInTime: checkInData.data.checkInTime,
           checkOutTime: null,
-          questions: appBootStrap.getDefaultFeedback()
+          questions: feedback[ct]
         };
         return appBootStrap.db.post(i);
       },
@@ -470,24 +493,24 @@
           deviceId: appBootStrap.thisDevice.uuid
         })
         .then(function (l_data) {
+          console.log(l_data);
           if (l_data.data) {
-            var seconds_from_now = new Date();
+            var seconds_from_now = new Date().getTime();
             //schedule the feedback.
-            window.plugin.notification.local.add({
-              id:         l_data.data._id + '_question_',
-              date:       seconds_from_now,
-              message:    'You might want to check in',
+            cordova.plugins.notification.local.schedule({
+              id:         seconds_from_now,
+              date:       new Date(),
+              text:    'You might want to check in',
               title:      $interpolate('You are in {{name}}')(l_data.data),
+              smallicon: 'file://img/res/android/icon/drawable-mdpi-icon.png',
               // title:      "Hi Chrp",
-              json:       JSON.stringify({
+              data:       JSON.stringify({
                 // 'index': i,
-                // 'eventId': l_data.data._id,
+                'eventId': seconds_from_now,
                 'eventName': 'CHECKIN',
-                // 'payload':  l_data.data
-              }),
-              autoCancel: true
+                'payload':  l_data.data
+              })
             }, function () {
-              console.log(arguments);
             });
           } else {
             return q.reject();

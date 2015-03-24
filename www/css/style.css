@@ -63,7 +63,8 @@ a:hover.home-cta {
 
 .view-content {
   /*background-color: #f2eceb;*/
-  background-color: #aa0023;
+  /*background-color: #aa0023;*/
+  background-color: #fff;
   /*background-color: #F5B0A4;*/
 }
 
@@ -502,4 +503,15 @@ button.is-loading-btn {
 
 .content-header-media {
   height: 156px;
+}
+
+.location-feed .item-complex .item-content {
+  padding: 12px 61px 12px 125px;
+}
+
+.notification-feed .media-action-score {
+  max-width: 60px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }

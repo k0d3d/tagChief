@@ -145,7 +145,8 @@ MapApp.directive("appMap", [
     '$interval',
     'locationsService',
     '$q',
-    function ($window, $timeout, Initializer, $interval, locationsService, Q) {
+    '$state',
+    function ($window, $timeout, Initializer, $interval, locationsService, Q, $state) {
     return {
         restrict: "E",
         replace: true,
@@ -168,6 +169,9 @@ MapApp.directive("appMap", [
             scope.isLoadingGmaps = true;
             var currentMarkers = [];
 
+            scope.reloadState = function () {
+              // $state.reload();
+            };
             scope.createMap = function createMap() {
               var q = Q.defer();
 
@@ -238,7 +242,7 @@ MapApp.directive("appMap", [
             var mapRefresh = $interval(function () {
                     scope.center.lat = locationsService.getMyLocation().latitude;
                     scope.center.lon = locationsService.getMyLocation().longitude;
-                    refreshMeMarker();
+                    // refreshMeMarker();
             }, 10000);
 
             // angular.element(document).ready(createMap());
@@ -302,13 +306,13 @@ MapApp.directive("appMap", [
                     title: m.name
                   });
 
-                  var infowindow = new google.maps.InfoWindow({
-                    content: '<button class="button button-positive button-clear button-small">'+ m.name +'</button>'
-                  });
+                  // var infowindow = new google.maps.InfoWindow({
+                  //   content: '<button class="button button-positive button-clear button-small">'+ m.name +'</button>'
+                  // });
 
-                  $(document).on('click', mm, function(e) {
-                    infowindow.open(scope.map, mm);
-                  });
+                  // $(document).on('click', mm, function(e) {
+                  //   infowindow.open(scope.map, mm);
+                  // });
 
                   //console.log("map: make marker for " + m.name);
                   // google.maps.event.addListener(mm, 'click', markerCb(mm, m, loc));

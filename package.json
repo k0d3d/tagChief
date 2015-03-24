@@ -23,6 +23,7 @@
     "org.apache.cordova.geolocation",
     "https://github.com/phonegap-build/PushPlugin.git",
     "org.apache.cordova.inappbrowser",
-    "https://github.com/katzer/cordova-plugin-local-notifications"
+    "https://github.com/katzer/cordova-plugin-local-notifications",
+    "nl.x-services.plugins.toast"
   ]
 }
