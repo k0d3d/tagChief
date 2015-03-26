@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"userI",
+				"userInfo"
+			],
+			[
+				"cord",
+				"cordovaToast"
+			],
+			[
+				"user",
+				"userData"
+			],
+			[
 				"font",
 				"font-size: 〔property〕"
 			],
@@ -388,10 +400,6 @@
 				"saveUserLastLocation〔function〕"
 			],
 			[
-				"user",
-				"user.js"
-			],
-			[
 				"last",
 				"lastSeenAt"
 			],
@@ -422,10 +430,6 @@
 			[
 				"build",
 				"build_env"
-			],
-			[
-				"cord",
-				"cordovaDevice"
 			],
 			[
 				"ta",
@@ -510,15 +514,69 @@
 			[
 				"template",
 				"templateService"
-			],
-			[
-				"current",
-				"current_user_can"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/kingkoded/FedProjects/tagChief-node/models/user.js",
+			"settings":
+			{
+				"buffer_size": 33633,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/sharedlibs/services.js",
+			"settings":
+			{
+				"buffer_size": 22246,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+			"settings":
+			{
+				"buffer_size": 4625,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/js/app.js",
+			"settings":
+			{
+				"buffer_size": 17936,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Searching 22 files for \"$scope.$watch\"\n\n0 matches across 0 files\n\n\nSearching 22 files for \"$watch\"\n\n/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js:\n  124          }\n  125  \n  126:         scope.$watch('locationData', function (n) {\n  127              if (n) {\n  128                  init();\n  ...\n  247  \n  248              // angular.element(document).ready(createMap());\n  249:             // var mapRefresh = scope.$watch(locationsService.getMyLocation,\n  250              //     function (coords, oldValue) {\n  251              //         console.log('coords');\n\n2 matches in 1 file\n",
+			"settings":
+			{
+				"buffer_size": 603,
+				"line_ending": "Unix",
+				"name": "Find Results",
+				"scratch": true
+			}
+		},
+		{
+			"file": "www/js/sharedlibs/maps.js",
+			"settings":
+			{
+				"buffer_size": 14654,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "www/templates/auth/login.html",
+			"settings":
+			{
+				"buffer_size": 2104,
+				"line_ending": "Unix"
+			}
+		},
 		{
 			"file": "www/css/style.css",
 			"settings":
@@ -528,77 +586,10 @@
 			}
 		},
 		{
-			"file": "www/templates/updates.html",
-			"settings":
-			{
-				"buffer_size": 1533,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "<ion-content class=\"has-header view-content\" style=\"margin-top: 44px;\" scroll=\"true\" >\n    <div class=\"row \">\n      <div id=\"folderName\" class=\"col\">\n        <div class=\"col-box\">\n          <div class=\"list list-inset\">\n            <label class=\"item item-input\">\n              <i class=\"icon ion-at placeholder-icon\"></i>\n              <input type=\"email\" placeholder=\"Email\" ng-model=\"form.firstname\" required>\n            </label>\n            <label class=\"item item-input\">\n              <i class=\"icon ion-at placeholder-icon\"></i>\n              <input type=\"email\" placeholder=\"Email\" ng-model=\"form.lastname\" required>\n            </label>\n            <label class=\"item item-input\">\n              <i class=\"icon ion-at placeholder-icon\"></i>\n              <input type=\"email\" placeholder=\"Email\" ng-model=\"form.email\" required>\n            </label>\n            <label class=\"item item-input\">\n              <i class=\"icon ion-android-call placeholder-icon\"></i>\n              <input type=\"text\" placeholder=\"Mobile Number\" ng-model=\"form.phoneNumber\">\n            </label>\n            <button type=\"submit\" class=\"button button-block\" ng-click=\"RegisterBtn(form)\">Join</button>\n          </div>\n          <p style=\"text-align: center\"></p>\n          <button class=\"button button-positive button-block button-small icon ion-plus\" ng-click=\"accountPopup()\">\n            Edit Profile.\n          </button>\n          <button class=\"button button-positive button-block button-small icon ion-plus\" ng-click=\"doLogout()\">\n            Logout\n          </button>\n        </div>\n      </div>\n    </div>\n  </ion-content>\n",
 			"file": "www/templates/account.html",
-			"file_size": 722,
-			"file_write_time": 130716578508221787,
 			"settings":
 			{
-				"buffer_size": 1617,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/kingkoded/FedProjects/tagChief-node/models/user.js",
-			"settings":
-			{
-				"buffer_size": 32264,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/app.js",
-			"settings":
-			{
-				"buffer_size": 17540,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/modules/controllers.js",
-			"settings":
-			{
-				"buffer_size": 8751,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/modules/auth.js",
-			"settings":
-			{
-				"buffer_size": 4123,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/sharedlibs/services.js",
-			"settings":
-			{
-				"buffer_size": 22078,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/templates/auth/register.html",
-			"settings":
-			{
-				"buffer_size": 2335,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "www/js/sharedlibs/maps.js",
-			"settings":
-			{
-				"buffer_size": 14654,
+				"buffer_size": 1549,
 				"line_ending": "Unix"
 			}
 		}
@@ -707,8 +698,6 @@
 		"/home/kingkoded/FedProjects/tagchief/www",
 		"/home/kingkoded/FedProjects/tagchief/www/js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs",
-		"/home/kingkoded/FedProjects/tagchief/www/templates",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/auth",
 		"/home/kingkoded/FedProjects/tagChief-node",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers",
 		"/home/kingkoded/FedProjects/tagChief-node/models",
@@ -716,13 +705,21 @@
 	],
 	"file_history":
 	[
-		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
 		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/settings.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/users.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/updates.html",
+		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
+		"/home/kingkoded/FedProjects/tagChief-node/models/user/user.js",
+		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
+		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js",
+		"/home/kingkoded/FedProjects/tagchief/www/templates/app.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/locations.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/tag-popover.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/home.html",
-		"/home/kingkoded/FedProjects/tagchief/www/templates/updates.html",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/test/settings.gradle",
 		"/home/kingkoded/FedProjects/tagchief/platforms (copy)/android/settings.gradle",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/settings.gradle",
@@ -736,10 +733,7 @@
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/maps-holder.html",
 		"/home/kingkoded/FedProjects/tagchief/.jshintrc",
 		"/home/kingkoded/FedProjects/tagchief/plugins/android.json",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/services.js",
 		"/home/kingkoded/FedProjects/tagchief/www/index.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/sharedlibs/maps.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/modules/controllers.js",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/ionic/js/ionic.bundle.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/app___.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/forgotpw.html",
@@ -747,7 +741,6 @@
 		"/home/kingkoded/FedProjects/tagchief/www/css/style.css",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/auth/login.html",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/splash-first.html",
-		"/home/kingkoded/FedProjects/tagchief/www/js/app.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/checkin-modal.html",
 		"/home/kingkoded/FedProjects/tagChief-node/i18n/en.json",
 		"/home/kingkoded/.cache/.fr-Qoe2GR/BackgroundSlideshow/css/component.css",
@@ -756,7 +749,6 @@
 		"/home/kingkoded/FedProjects/tagchief/www/templates/inc/feedback-popover.html",
 		"/home/kingkoded/Downloads/imei.txt",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/api-v1.js",
-		"/home/kingkoded/FedProjects/tagchief/www/js/modules/auth.js",
 		"/home/kingkoded/www/gazuka/index.html",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/auth/passport.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/email-templates/fatal-error.jade",
@@ -770,7 +762,6 @@
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/pushes.js",
 		"/home/kingkoded/FedProjects/tagChief-node/controllers/routes.js",
 		"/home/kingkoded/FedProjects/tagchief/platforms/android/src/com/eigenvalue/tagchief/mobile/MainActivity.java",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user.js",
 		"/home/kingkoded/FedProjects/tagChief-node/views/email-templates/user-email-verification.jade",
 		"/home/kingkoded/FedProjects/tagChief-node/views/email-templates/user-auth-failure.jade",
 		"/home/kingkoded/FedProjects/tagchief/node_modules/gulp-sass/node_modules/node-sass/libsass/utf8_string.cpp",
@@ -793,7 +784,6 @@
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-node-inspector/node_modules/node-inspector/front-end/HeapSnapshotLoader.js",
 		"/home/kingkoded/FedProjects/tagChief-node/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
 		"/home/kingkoded/FedProjects/tagChief-node/config/errors.json",
-		"/home/kingkoded/FedProjects/tagChief-node/models/user/user.js",
 		"/home/kingkoded/FedProjects/tagChief-node/models/media/media.js",
 		"/home/kingkoded/FedProjects/tagchief/www/js/vendor/gmaps-tooltip.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/gcm.js",
@@ -808,7 +798,6 @@
 		"/home/kingkoded/FedProjects/tagchief/www/__index.html",
 		"/home/kingkoded/FedProjects/tagchief/engine/cordova-android-c0.5.5/framework/test/org/apache/cordova/PreferenceSetTest.java",
 		"/home/kingkoded/FedProjects/tagChief-node/package.json",
-		"/home/kingkoded/FedProjects/tagChief-node/controllers/users.js",
 		"/home/kingkoded/FedProjects/tagchief/www/templates/full-screen.html",
 		"/home/kingkoded/FedProjects/tagchief/www/lib/jquery/src/var/hasOwn.js",
 		"/home/kingkoded/FedProjects/tagChief-node/lib/hash.js",
@@ -854,6 +843,7 @@
 		"height": 90.0,
 		"where_history":
 		[
+			"/home/kingkoded/FedProjects/tagchief/www/js",
 			"/home/kingkoded/FedProjects/tagchief/www",
 			"/home/kingkoded/FedProjects/tagChief-node/lib",
 			"/home/kingkoded/FedProjects/tagChief-node/controllers",
@@ -886,6 +876,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$watch",
+			"$scope.$watch",
+			".post",
+			"JSON",
+			"viewNoHeaderIsActive",
 			".media-action-score",
 			"openCheckInFeedbackModal",
 			".schedule",
@@ -1008,12 +1003,7 @@
 			"media ",
 			"body",
 			"src=\"/",
-			"src=\"img",
-			"btn",
-			"btn-xs",
-			"class=\"media\"",
-			"<i class=\"fa fa-angle-right\"></i>",
-			"btn"
+			"src=\"img"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1076,65 +1066,267 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "www/css/style.css",
+					"file": "/home/kingkoded/FedProjects/tagChief-node/models/user.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8543,
+						"buffer_size": 33633,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8436,
-								8436
+								3237,
+								3237
+							]
+						],
+						"settings":
+						{
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"history_list_is_closing": true,
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"sftp_duplicate_views": 0,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1336.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "www/js/sharedlibs/services.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 22246,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1894,
+								1894
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": false,
-							"WordCountSyntax": "css",
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 6140.0,
+						"translation.y": 478.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "www/templates/updates.html",
+					"buffer": 2,
+					"file": "/home/kingkoded/FedProjects/tagChief-node/controllers/locations.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1533,
+						"buffer_size": 4625,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1082,
-								1082
+								129,
+								129
+							]
+						],
+						"settings":
+						{
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "www/js/app.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17936,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10049,
+								10049
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"WordCountSyntax": "javascript",
+							"auto_complete": false,
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3998.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 603,
+						"regions":
+						{
+							"match":
+							{
+								"flags": 112,
+								"regions":
+								[
+									[
+										210,
+										216
+									],
+									[
+										434,
+										440
+									]
+								],
+								"scope": ""
+							}
+						},
+						"selection":
+						[
+							[
+								148,
+								148
 							]
 						],
 						"settings":
 						{
 							"WordCountShouldRun": true,
+							"WordCountSyntax": "find results.hidden-tmlanguage",
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"detect_indentation": false,
+							"incomplete_sync": null,
+							"line_numbers": false,
+							"output_tag": 2,
+							"result_base_dir": "",
+							"result_file_regex": "^([A-Za-z\\\\/<].*):$",
+							"result_line_regex": "^ +([0-9]+):",
+							"scroll_past_end": true,
+							"syntax": "Packages/Default/Find Results.hidden-tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 52.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "www/js/sharedlibs/maps.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14654,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"WordCountShouldRun": false,
+							"WordCountSyntax": "javascript",
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2301.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "www/templates/auth/login.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2104,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
 							"WordCountSyntax": "html",
 							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
@@ -1153,25 +1345,59 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "www/templates/account.html",
+					"buffer": 7,
+					"file": "www/css/style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1617,
+						"buffer_size": 8543,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								624,
-								624
+								8436,
+								8436
 							]
 						],
 						"settings":
 						{
-							"WordCountShouldRun": true,
+							"WordCountSyntax": "css",
+							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6105.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "www/templates/account.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1549,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								664,
+								664
+							]
+						],
+						"settings":
+						{
 							"WordCountSyntax": "html",
 							"auto_complete": false,
 							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
@@ -1187,264 +1413,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/kingkoded/FedProjects/tagChief-node/models/user.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 32264,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								32153,
-								32153
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 13514.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "www/js/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 17540,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17181,
-								17181
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 7134.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "www/js/modules/controllers.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 8751,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								657,
-								657
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 78.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "www/js/modules/auth.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4123,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								796,
-								796
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 78.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "www/js/sharedlibs/services.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 22078,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5758,
-								5758
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1872.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "www/templates/auth/register.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 2335,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1681,
-								716
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": true,
-							"WordCountSyntax": "html",
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "www/js/sharedlibs/maps.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 14654,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6038,
-								6038
-							]
-						],
-						"settings":
-						{
-							"WordCountShouldRun": false,
-							"WordCountSyntax": "javascript",
-							"auto_complete": false,
-							"color_scheme": "Packages/User/Color Highlighter/themes/base16-ocean.dark (SL).tmTheme",
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1911.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
 					"type": "text"
 				}
 			]

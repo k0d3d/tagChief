@@ -4,8 +4,8 @@ var config_data = {
     'app_name': 'TagChief Mobile'
   },
   'api_config': {
-    // 'CONSUMER_API_URL': 'https://stark-cliffs-8842.herokuapp.com'
-    'CONSUMER_API_URL': 'http://192.168.1.3:3000'
+    'CONSUMER_API_URL': 'https://stark-cliffs-8842.herokuapp.com'
+    // 'CONSUMER_API_URL': 'http://192.168.1.3:3000'
     // 'CONSUMER_API_URL': 'http://192.168.43.27:3000'
     // 'CONSUMER_API_URL': 'http://192.168.43.184:3000'
     // 'CONSUMER_API_URL': 'http://192.168.42.16:3000'

@@ -2,9 +2,24 @@
     <div class="row ">
       <div id="folderName" class="col">
         <div class="col-box">
-            <p class="large-icon rounded-profile-thumb">
-              <i class="icon ion-android-person"></i>
-            </p>
+          <div class="list list-inset">
+            <label class="item item-input">
+              <i class="icon ion-at placeholder-icon"></i>
+              <input type="email" placeholder="First Name" ng-model="userData.firstname" readonly>
+            </label>
+            <label class="item item-input">
+              <i class="icon ion-at placeholder-icon"></i>
+              <input type="email" placeholder="Last Name" ng-model="userData.lastname" readonly >
+            </label>
+            <label class="item item-input">
+              <i class="icon ion-at placeholder-icon"></i>
+              <input type="email" placeholder="Email" ng-model="userData.email" readonly >
+            </label>
+            <label class="item item-input">
+              <i class="icon ion-android-call placeholder-icon"></i>
+              <input type="text" placeholder="Mobile Number" ng-model="userData.phoneNumber" readonly >
+            </label>
+          </div>
           <p style="text-align: center"></p>
           <button class="button button-positive button-block button-small icon ion-plus" ng-click="accountPopup()">
             Edit Profile.

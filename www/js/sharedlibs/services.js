@@ -95,11 +95,15 @@
     function($rootScope, $http, api_config, $window, appBootStrap) {
       var service = {
         register: function (user, cb) {
-          $http.post('/api/v1/users', {
-          // $http.post(api_config.CONSUMER_API_URL + '/api/users', {
-            email: encodeURI(user.email),
-            phoneNumber: user.phoneNumber,
-            password: user.password
+          $http({
+            method: 'POST',
+            url: '/api/v1/users',
+            data: {
+            // $http.post(api_config.CONSUMER_API_URL + '/api/users', {
+              email: encodeURI(user.email),
+              phoneNumber: user.phoneNumber,
+              password: user.password
+            }
           })
           .success(function (data, status) {
             cb(data);
@@ -165,10 +169,10 @@
           authService.loginCancelled();
         },
         putUserInfo: function putUserInfo (form) {
-          return $http.put('/api/v2/users', form);
+          return $http.put('/api/v1/users', form);
         },
         getThisUser: function getThisUser () {
-          return $http.get('/api/v2/users');
+          return $http.get('/api/v1/users');
         }
       };
       return service;
@@ -487,10 +491,14 @@
 
         var self = this;
         $http.defaults.headers.common.GCMId =  Messaging.getRegId();
-        $http.post('/api/v1/hereiam', {
-          coords: self.getMyLocation(),
-          shouldPromptCheckIn: params.shouldPromptCheckIn,
-          deviceId: appBootStrap.thisDevice.uuid
+        $http({
+            method: 'POST',
+            url: '/api/v1/hereiam',
+            data: {
+              coords: self.getMyLocation(),
+              shouldPromptCheckIn: params.shouldPromptCheckIn,
+              deviceId: appBootStrap.thisDevice.uuid
+            }
         })
         .then(function (l_data) {
           console.log(l_data);

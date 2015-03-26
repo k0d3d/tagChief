@@ -19,7 +19,7 @@ app.controller('AccountCtrl', [
   });
 
   $scope.uiElements = {};
-  $scope.userData  = userData;
+  $scope.userData  = userData.data;
   $scope.accountPopup = function () {
     $scope.subTitle = '';
     // An elaborate, custom popup
@@ -69,9 +69,6 @@ app.controller('AccountCtrl', [
 
   $scope.doLogout = function () {
     AuthenticationService.logout()
-    .then(function () {
-      $state.go('app.auth.welcome');
-    })
     .finally(function() {
       delete $window.localStorage.authorizationToken;
       delete $window.localStorage.userId;

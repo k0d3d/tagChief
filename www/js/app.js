@@ -107,7 +107,12 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       views: {
         'accountContent' :{
           templateUrl: 'templates/account.html',
-          controller: 'AccountCtrl'
+          controller: 'AccountCtrl',
+          resolve: {
+            userData: function (AuthenticationService) {
+              return AuthenticationService.getThisUser();
+            }
+          }
         }
       }
     });
@@ -250,6 +255,9 @@ app.controller('MainCtrl', [
         }
       };
 
+      if (!$window.localStorage.authorizationToken) {
+          return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
+      }
 
 
       $rootScope.$on('$stateChangeStart',
@@ -313,13 +321,13 @@ app.controller('AppCtrl', [
     appUpdates,
     $ionicPlatform
     ) {
-
+      // if thr no no auth..token in app local storage, treat d user as a first time user
+      if (!$window.localStorage.authorizationToken) {
+          return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
+      }
       $ionicPlatform.ready(function () {
-        // if thr no no auth..token in app local storage, treat d user as a first time user
-        if (!$window.localStorage.authorizationToken) {
-            return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
-        }
-        $scope.$parent.mainCfg.pageTitle = pageProperties.title;
+
+        $scope.$parent.mainCfg.pageTitle = 'My Location';
         // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
         //     console.log(error);
         //     evt.preventDefault();
@@ -503,7 +511,8 @@ app.controller('AppCtrl', [
           }
         });
         $scope.$on('event:auth-logout-complete', function() {
-          $state.go('app.tc.home', {}, {reload: true, inherit: false});
+          $scope.$parent.mainCfg.viewNoHeaderIsActive = true;
+          $state.go('app.auth.welcome', {}, {reload: true, inherit: false});
         });
         $scope.$on('$destroy', function() {
           watch.clearWatch();
