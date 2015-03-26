@@ -1,30 +1,32 @@
-
-
-  <ion-content class="login-form" scroll="false" has-header="false" padding="false"  ng-init="isLogin = true">
-    <img src="img/backgrounds/login_full_bg.jpg" alt="Login Full Background" class="full-bg animation-pulseSlow">
+  <ion-content class="login-form auth-content" scroll="false" has-header="false" padding="false"  ng-init="isLogin = true">
     <div id="login-container" class="animation-fadeIn">
                 <!-- Login Title -->
                 <div class="login-title text-center">
-                    <h1><img src="img/logo.png"></h1>
+                    <div class="auth-logo-div">
+                      <img src="img/logo.png">
+                    </div>
+                    <h4>Discover, Share, Enjoy</h4>
                 </div>
                 <!-- END Login Title -->
 
                 <!-- Login Block -->
                 <div class="block push-bit">
+                    <h4>LOGIN</h4>
                     <!-- Login Form -->
-                    <div class="list">
-                      <label class="item item-input item-floating-label">
-                        <span class="input-label"> Email</span>
-                        <input type="text" placeholder="Email" ng-model="form.email" required autofocus>
+                    <div class="list list-inset">
+                      <label class="item item-input">
+                        <i class="icon ion-at placeholder-icon"></i>
+                        <input type="text" placeholder="Email" ng-model="form.email" required>
                       </label>
-                      <label class="item item-input item-floating-label">
-                        <span class="input-label">Password</span>
+                      <label class="item item-input">
+                        <i class="icon ion-key placeholder-icon"></i>
                         <input type="password" placeholder="Password" ng-model="form.password" required>
                       </label>
+                        <button type="submit" class="button button-block" ng-click="loginBtn(form)" ng-disabled="(form.email.length == 0) || (form.password.length == 0) ">Login</button>
                     </div>
                     <div class="form-group form-actions">
                         <div class="col-xs-12 text-right">
-                          <button type="submit" class="button button-block button-clear button-assertive" ng-click="loginBtn(form)" ng-disabled="(form.email.length == 0) || (form.password.length == 0) ">Login</button>
+
                           <div class="button-bar">
                             <a type="submit" class="button button-clear button-stable" ui-sref="app.auth.register">Join tagChief</a>
                             <a type="submit" class="button button-clear button-stable" ui-sref="app.auth.forgotpw">Forgot Password?</a>

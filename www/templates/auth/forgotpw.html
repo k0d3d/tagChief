@@ -1,11 +1,13 @@
 
 
-  <ion-content class="login-form animation-fadeInQuickInv" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
-    <img src="img/backgrounds/login_full_bg.jpg" alt="Login Full Background" class="full-bg animation-pulseSlow">
+  <ion-content class="login-form animation-fadeInQuickInv auth-content" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
     <div id="login-container" class="animation-fadeIn">
                 <!-- Login Title -->
                 <div class="login-title text-center">
-                    <h1><img src="img/logo.png"></h1>
+                    <div class="auth-logo-div">
+                      <img src="img/logo.png">
+                    </div>
+                    <h4>Discover, Share, Enjoy</h4>
                 </div>
                 <!-- END Login Title -->
 
@@ -13,14 +15,14 @@
                 <div class="block push-bit">
                     <!-- Login Form -->
                     <div class="list">
-                      <label class="item item-input item-floating-label">
-                        <span class="input-label">Username / Email / Phone Number</span>
+                      <label class="item item-input">
+                        <i class="icon ion-at placeholder-icon"></i>
                         <input type="text" placeholder="Username / Email / Phone Number" autofocus required>
                       </label>
                     </div>
+                    <button type="submit" class="button button-block" >Request Password</button>
                     <div class="form-group form-actions">
                         <div class="col-xs-12 text-right">
-                          <button type="submit" class="button button-block button-clear button-assertive">Request Password</button>
                           <div class="button-bar">
                             <a type="submit" class="button button-clear button-dark" ui-sref="app.auth.login">Login</a>
                             <a type="submit" class="button button-clear button-dark" ui-sref="app.auth.register">Register</a>

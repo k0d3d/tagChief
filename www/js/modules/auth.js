@@ -126,8 +126,8 @@
 
     $scope.$on('event:auth-loginConfirmed', function() {
       console.log('login confirmed');
-      $scope.mainCfg.viewNoHeaderIsActive = false;
-      $scope.email = $scope.passport = null;
+      $scope.$parent.mainCfg.viewNoHeaderIsActive = false;
+      $scope.email = $scope.password = '';
       $state.go('app.tc.home', {}, {
         location: true,
         reload: true
@@ -152,8 +152,4 @@
     });
 
   }]);
-  app.controller('LogoutCtrl', function($scope, AuthenticationService, $window) {
-      AuthenticationService.logout();
-      delete $window.sessionStorage.authorizationToken;
-  });
 })();

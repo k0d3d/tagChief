@@ -1,0 +1,34 @@
+<ion-content class="has-header view-content" style="margin-top: 44px;" scroll="true" >
+      <ion-refresher
+        pulling-text="Pull to refresh..."
+        on-refresh="refreshUpdates({pulled: true})">
+      </ion-refresher>
+      <div class="no-content no-list-locations" ng-hide="updatesFeed.length > 0">
+        <h3>No updates to show</h3>
+      </div>
+      <ion-list class="notification-feed" can-swipe="false">
+          <!-- Check in -->
+          <ion-item class="item-avatar" ng-repeat="l in updatesFeed | orderBy:'-dateTriggered'" ng-show="updatesFeed.length > 0" ng-click="triggerAction(l.dataObj.eventName, l.dataObj.payload)">
+              <img src="./img/placeholders/avatars/sample-location-avi.jpg" alt="Avatar" img-cache>
+              <div class="media-body">
+                  <p class="push-bit">
+                       <strong>
+                          <a href="#">
+                            {{l.text}}
+                          </a>
+                        </strong>
+                        <span style="font-size: 12px; display: block">{{l.title}}</span>
+                        <span class="text-muted">
+                          <small>at </small>
+                          <a href="javascript:void(0)" style="color: #1bbae1; font-size: 12px">
+                            {{l.dateTriggered | date: 'medium'}}
+                          </a>
+                        </span>
+                      <strong>
+                  </p>
+
+              </div>
+          </ion-item>
+
+      </ion-list>
+</ion-content>

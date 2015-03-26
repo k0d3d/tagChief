@@ -1,5 +1,32 @@
 (function () {
   var app = angular.module('services', []);
+  app.factory('appUpdates', [
+    'Messaging',
+    'appBootStrap',
+    function (Messaging, appBootStrap) {
+    var AU = this;
+    AU.updateBank = [];
+    return {
+      addUpdate: function addUpdate (params) {
+        AU.updateBank.push(_.extend({dateAdded: Date.now()}, params));
+      },
+      getUpdates: function getUpdates () {
+        return AU.updateBank;
+      },
+      testLocalNotification: function testLocalNotification () {
+        var now                  = new Date().getTime(),
+            seconds_from_now = new Date(now + 5*1000);
+        cordova.plugins.notification.local.schedule({
+          id:         Date.now(),
+          // at:       seconds_from_now,
+          text:    'Trial Notice',
+          title:      'tagChief Feedback',
+          data:       JSON.stringify({'index': 1, 'message': 'Test Notice'}),
+          smallicon: 'file://img/res/android/icon/drawable-mdpi-icon.png'
+        });
+      }
+    };
+  }]);
   app.factory('Messaging', [
     '$http',
     'api_config',
@@ -46,7 +73,7 @@
           $rootScope.$broadcast('appUI::checkInPopOver', params);
           break;
           case 'CHECKINFEEDBACK':
-          $rootScope.$broadcast('appUI::checkInFeedbackModal', params.payload);
+          $rootScope.$broadcast('appUI::checkInFeedbackModal', params);
           break;
           default:
           break;
@@ -68,11 +95,15 @@
     function($rootScope, $http, api_config, $window, appBootStrap) {
       var service = {
         register: function (user, cb) {
-          $http.post('/api/v1/users', {
-          // $http.post(api_config.CONSUMER_API_URL + '/api/users', {
-            email: encodeURI(user.email),
-            phoneNumber: user.phoneNumber,
-            password: user.password
+          $http({
+            method: 'POST',
+            url: '/api/v1/users',
+            data: {
+            // $http.post(api_config.CONSUMER_API_URL + '/api/users', {
+              email: encodeURI(user.email),
+              phoneNumber: user.phoneNumber,
+              password: user.password
+            }
           })
           .success(function (data, status) {
             cb(data);
@@ -128,17 +159,20 @@
             delete $window.localStorage.authorizationToken;
           });
         },
-        logout: function(user) {
-          $http.delete('/api/v1/users/auth', {})
-          // $http.delete(api_config.CONSUMER_API_URL + '/api/v1/users/auth', {})
-          .finally(function(data) {
+        logout: function() {
+          return $http.delete('/api/v1/users/auth', {})
+          .then(function () {
             delete $http.defaults.headers.common.Authorization;
-            delete $window.localStorage.authorizationToken;
-            $rootScope.$broadcast('event:auth-logout-complete');
           });
         },
         loginCancelled: function() {
           authService.loginCancelled();
+        },
+        putUserInfo: function putUserInfo (form) {
+          return $http.put('/api/v1/users', form);
+        },
+        getThisUser: function getThisUser () {
+          return $http.get('/api/v1/users');
         }
       };
       return service;
@@ -154,13 +188,6 @@
     '$ionicPopover',
     '$timeout',
     function ($ionicModal, $cordovaDevice, $http, api_config, $q, $window, $ionicPopover, $timeout) {
-      var bootHash = this;
-      bootHash.localNotificationsInstance = null;
-      bootHash.mockNotificationsInstance = {
-        add: function (hash) {
-          console.log(hash);
-        }
-      };
 
     return {
       activeModal: null,
@@ -169,22 +196,25 @@
       isRequesting: false,
       modals: {},
       db: null,
+      isBrowser: function () {
+        return ionic.Platform.platforms.indexOf("browser") > -1;
+      },
 
-      strapLocalNotifications: function strapLocalNotifications (pluginInstance) {
-        if (pluginInstance) {
-          bootHash.localNotificationsInstance = pluginInstance;
-          return true;
-        }
-        return false;
-      },
-      localNotifications: function localNotifications () {
-        if (!bootHash.localNotificationsInstance) {
-          if (window.plugin) {
-            bootHash.localNotificationsInstance = window.plugin.notification.local;
-          }
-        }
-        return bootHash.localNotificationsInstance;
-      },
+      // strapLocalNotifications: function strapLocalNotifications (pluginInstance) {
+      //   if (pluginInstance) {
+      //     bootHash.localNotificationsInstance = pluginInstance;
+      //     return true;
+      //   }
+      //   return false;
+      // },
+      // localNotifications: function localNotifications () {
+      //   if (!bootHash.localNotificationsInstance) {
+      //     if (window.plugin) {
+      //       bootHash.localNotificationsInstance = cordova.plugins.notification.local;
+      //     }
+      //   }
+      //   return bootHash.localNotificationsInstance;
+      // },
       getDefaultFeedback: function getDefaultFeedback () {
         return [
           {
@@ -304,15 +334,17 @@
                         })
                             .success(function(data) {
                                 $window.localStorage.authorizationToken = 'Bearer ' + data.access_token;
+                                browserRef.close();
                                 deferred.resolve(data);
                             })
                             .error(function() {
+                              browserRef.close();
                                 deferred.reject('Problem authenticating');
                             })
                             .finally(function() {
                                 setTimeout(function() {
                                     browserRef.close();
-                                }, 10);
+                                }, 1);
                             });
                     }
                 });
@@ -337,7 +369,9 @@
     '$rootScope',
     'appBootStrap',
     'Messaging',
-    function ($http, $cordovaGeolocation, Q, $rootScope, appBootStrap, Messaging) {
+    '$interpolate',
+    'feedback',
+    function ($http, $cordovaGeolocation, Q, $rootScope, appBootStrap, Messaging, $interpolate, feedback) {
     var geoSrvs = this;
     geoSrvs.myLocation = {
       longitude : 0,
@@ -360,60 +394,44 @@
         //find checkin record,
         appBootStrap.db.get(o.id)
         .then(function (doc) {
-          console.log('found doc ', doc.questions[0].question);
-          var now = new Date().getTime();
+          var now = new Date().getTime(), poll = [];
 
-          //check if feedback is required
-          // appBootStrap.localNotifications().add({
-          //   id:         o._id + '_question_' + i,
-          //   date:       seconds_from_now,
-          //   message:    doc.questions[i].question,
-          //   title:      'tagChief Feedback',
-          //   json:       JSON.stringify({
-          //     'index': i,
-          //     'eventId': o._id,
-          //     'eventName': 'CHECKINFEEDBACK'
-          //   }),
-          //   autoCancel: true,
-
-          // });
           for (var i = doc.questions.length - 1; i >= 0; i--) {
             var theQ = doc.questions[i];
             if (!theQ.answer) {
-              console.log(theQ.promptAfter);
-
               var seconds_from_now = new Date(now +  theQ.promptAfter * 1000);
-              //schedule the feedback.
-              console.log(theQ.question);
-              appBootStrap.localNotifications().add({
-                id:         o._id + '_question_' + i,
-                date:       seconds_from_now,
-                message:    theQ.question,
+              poll.push({
+                id:       parseInt('' + now + i),
+                at:       seconds_from_now,
+                text:     theQ.question,
                 title:      'tagChief Feedback',
-                json:       JSON.stringify({
+                smallicon: 'file://img/res/android/icon/drawable-mdpi-icon.png',
+                data:       JSON.stringify({
                   'index': i,
                   'eventId': o._id,
                   'eventName': 'CHECKINFEEDBACK',
                   'payload':  theQ
                 }),
-                autoCancel: true
-              }, function () {
-                console.log(arguments);
               });
-
+              console.log(parseInt('' + now + i));
             }
           }
+          cordova.plugins.notification.local.schedule(poll, function () {
+              console.log(arguments);
+          });
         });
         //set the timer for when feedback will be asked
         //timer should be cancelled
       },
       writeCheckIntoDB: function writeCheckIntoDB (checkInData) {
-
+        var ct = (_.indexOf(_.keys(feedback), checkInData.data.locationId.category) > -1) ?
+                  checkInData.data.locationId.category : 'default';
         var i = {
-          locationId: checkInData.locationId,
-          checkInTime: checkInData.checkInTime,
+          locationId: checkInData.data.locationId._id || checkInData.data._id,
+          checkInId: checkInData.data._id,
+          checkInTime: checkInData.data.checkInTime,
           checkOutTime: null,
-          questions: appBootStrap.getDefaultFeedback()
+          questions: feedback[ct]
         };
         return appBootStrap.db.post(i);
       },
@@ -468,20 +486,55 @@
       },
       pingUserLocation: function (params) {
         params = params || {};
+        var q = Q.defer();
+
+
         var self = this;
         $http.defaults.headers.common.GCMId =  Messaging.getRegId();
-        return  $http.post('/api/v1/hereiam', {
-          coords: self.getMyLocation(),
-          shouldPromptCheckIn: params.shouldPromptCheckIn,
-          deviceId: appBootStrap.thisDevice.uuid
+        $http({
+            method: 'POST',
+            url: '/api/v1/hereiam',
+            data: {
+              coords: self.getMyLocation(),
+              shouldPromptCheckIn: params.shouldPromptCheckIn,
+              deviceId: appBootStrap.thisDevice.uuid
+            }
+        })
+        .then(function (l_data) {
+          console.log(l_data);
+          if (l_data.data) {
+            var seconds_from_now = new Date().getTime();
+            //schedule the feedback.
+            cordova.plugins.notification.local.schedule({
+              id:         seconds_from_now,
+              date:       new Date(),
+              text:    'You might want to check in',
+              title:      $interpolate('You are in {{name}}')(l_data.data),
+              smallicon: 'file://img/res/android/icon/drawable-mdpi-icon.png',
+              // title:      "Hi Chrp",
+              data:       JSON.stringify({
+                // 'index': i,
+                'eventId': seconds_from_now,
+                'eventName': 'CHECKIN',
+                'payload':  l_data.data
+              })
+            }, function () {
+            });
+          } else {
+            return q.reject();
+          }
+          // $rootScope.$broadcast('appUI::checkInPopOver', l_data.);
         });
+
+
+        return q.promise;
       },
       addLocation: function (locationData) {
         var self = this;
         locationData.lon = self.getMyLocation().longitude;
         locationData.lat = self.getMyLocation().latitude;
         if (locationData.lon && locationData.lat) {
-          return $http.post('/api/v1/locations',  locationData);
+          return $http.post('/api/v1/locations',  JSON.stringify(locationData));
         } else {
           return false;
         }
@@ -532,7 +585,7 @@
           latitude: coords.latitude,
           longitude: coords.longitude
         });
-        console.log(latlngds);
+        // console.log(latlngds);
         if (latlngds <= 2 ) {
           var momentNow = moment();
           var momentThen = moment(prevLocation.timeStamp);
@@ -541,7 +594,7 @@
           //if the user has been in d same location for the below amount of time.
           //and he hasnt checked into this location.
           //trigger a push
-          if ((diff > -60 && diff < -55) && !geoSrvs.myLocation.hasCheckedIn) {
+          if ((diff > -61 && diff < -54) && !geoSrvs.myLocation.hasCheckedIn) {
             console.log('TRIGGERED');
             $rootScope.$broadcast('locationsService::userisSitting', prevLocation);
             //reset the timeStamp so we can start comparing
@@ -549,12 +602,13 @@
             geoSrvs.myLocation.timeStamp = null;
             geoSrvs.myLocation.hasCheckedIn = true;
             self.pingUserLocation({shouldPromptCheckIn: true});
+
           }
-          console.log('%s has passed since u sat down', diff);
+          // console.log('%s has passed since u sat down', diff);
         } else {
           geoSrvs.myLocation.timeStamp = null;
           geoSrvs.myLocation.hasCheckedIn = false;
-          console.log('You are moving u bastard, sit down');
+          // console.log('You are moving u bastard, sit down');
         }
       }
     };

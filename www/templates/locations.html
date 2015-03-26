@@ -1,4 +1,4 @@
-<ion-content class="has-header view-content" style="margin-top: 44px;" scroll="true">
+<ion-content class="has-header view-content" style="margin-top: 44px;" scroll="true" >
       <ion-refresher
         pulling-text="Pull to refresh..."
         on-refresh="loadLocations({pulled: true})">
@@ -9,19 +9,27 @@
       <ion-list class="location-feed" can-swipe="false">
           <!-- Check in -->
           <ion-item class="item-avatar" ng-repeat="l in locationFeed" ng-show="locationFeed.length > 0" ui-sref="app.tc.location({locationId: l._id})">
-              <img src="./img/placeholders/avatars/avatar3.jpg" alt="Avatar" class="img-circle" img-cache>
+              <img src="./img/placeholders/avatars/sample-location-avi.jpg" alt="Avatar" img-cache>
               <div class="media-body">
                   <p class="push-bit">
-                      <span class="text-muted pull-right">
-                          <span class="text-success" data-toggle="tooltip" title="From Mobile"><i class="fa fa-mobile"></i></span>
-                      </span>
-                      <strong><a href="#">{{l.name}}</a> on tagChief since <a href="#">{{l.dateAdded}}r</a>.</strong>
+                      <strong><a href="#">{{::l.name | toStartCase}}</a> </strong>
                   </p>
-                  <div id="gmap-checkin" class="gmap push"></div>
-                  <p>
-                      <a class="button button-small button-default" ng-click="opencheckInPopOver($event, l)">Check In</a>
-                      <a class="button button-small button-default"><i class="fa fa-share-square-o"></i> Share</a>
+                  <p class="tagged-by-alt-text">
+                    tagged by @tagChief
                   </p>
+                  <p class="tagged-by-alt-text">
+                    {{::l.category}}
+                  </p>
+              </div>
+              <div class="media-action-score">
+                      <a class="button-block">
+                        <i class="fa fa-star-o icon-assertive"></i>
+                        <span class="icon-assertive">0</span>
+                      </a>
+                      <a class="button-block">
+                        <i class="icon ion-checkmark icon-default"></i>
+                        <span class="icon-default">0</span>
+                      </a>
               </div>
           </ion-item>
 

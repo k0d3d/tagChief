@@ -12,7 +12,8 @@ var app = angular.module('tcApp', [
   'GoogleMapsInitializer',
   'auth'
   ]);
-app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_config) {
+
+app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_config, $ionicConfigProvider) {
   $stateProvider
 
     .state('app', {
@@ -26,52 +27,92 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       views: {
         'maincontent@' : {
           templateUrl: 'templates/app.html',
-          controller: 'AppCtrl'
+          controller: 'AppCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'tagChief'
+              };
+            }
+          }
         }
       }
     })
     .state('app.tc.home', {
       url: '/home',
       views: {
-        'viewContent@app.tc' :{
+        'mapContent@app.tc' :{
           templateUrl: 'templates/home.html',
-          controller: 'HomeCtrl'
+          controller: 'HomeCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'My Location'
+              };
+            }
+          }
         }
       }
     })
     .state('app.tc.locations', {
       url: '/locations',
       views: {
-        'viewContent@app.tc' :{
+        'locationContent@app.tc' :{
           templateUrl: 'templates/locations.html',
-          controller: 'LocationCtrl'
+          controller: 'LocationCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'Near-by Locations'
+              };
+            }
+          }
         }
       },
     })
     .state('app.tc.location', {
-      url: '/location/:locationId/popoverCheckin/:popoverCheckin',
+      url: '/location/:locationId',
       views: {
-        'viewContent@app.tc' :{
+        'locationContent@app.tc' :{
           templateUrl: 'templates/location.html',
-          controller: 'ViewLocationCtrl'
+          controller: 'ViewLocationCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'Location Profile'
+              };
+            }
+          }
         }
       }
     })
-    .state('app.tc.me', {
-      url: '/me/achievements',
+    .state('app.tc.updates', {
+      url: '/updates',
       views: {
-        'viewContent@app.tc' :{
-          templateUrl: 'templates/me-achievements.html',
-          controller: 'FilesCtrl'
+        'notificationsContent@app.tc' :{
+          templateUrl: 'templates/updates.html',
+          controller: 'UpdatesCtrl',
+          resolve: {
+            pageProperties : function () {
+              return {
+                title: 'Notifications'
+              };
+            }
+          }
         }
       }
     })
-    .state('app.account', {
+    .state('app.tc.account', {
       url: '/account',
       views: {
-        'menuContent' :{
+        'accountContent' :{
           templateUrl: 'templates/account.html',
-          // controller: 'PlaylistsCtrl'
+          controller: 'AccountCtrl',
+          resolve: {
+            userData: function (AuthenticationService) {
+              return AuthenticationService.getThisUser();
+            }
+          }
         }
       }
     });
@@ -92,7 +133,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       }
     };
   }]);
- $httpProvider.interceptors.push(['$q', 'api_config', '$rootScope', function ($q, api_config, $rootScope) {
+  $httpProvider.interceptors.push(['$q', 'api_config', '$rootScope', function ($q, api_config, $rootScope) {
       return {
           'request': function (config) {
             $rootScope.$broadcast('app-is-requesting', true);
@@ -124,6 +165,8 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       };
   }]);
 
+  $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.navBar.alignTitle('center');
 });
 
 
@@ -147,9 +190,6 @@ app.run([
 
 
     appBootStrap.strapCordovaDevice();
-    if (window.plugin) {
-      appBootStrap.strapLocalNotifications(window.plugin.notification.local);
-    }
 
 
     //init db
@@ -171,10 +211,54 @@ app.controller('MainCtrl', [
   '$stateParams',
   '$window',
   '$rootScope',
-  function ($scope, $state, $stateParams, $window, $rootScope) {
+  'locationsService',
+  '$ionicPopup',
+  function ($scope, $state, $stateParams, $window, $rootScope, locationsService, $ionicPopup) {
       $scope.mainCfg = {
-        viewNoHeaderIsActive: true
+        viewNoHeaderIsActive: true,
+        opencheckInPopOver : function (e, location) {
+          if (e instanceof Event) {
+            e.stopPropagation();
+          }
+          var locationName = location.locationName || location.name;
+          var locationId = location.locationId || location._id;
+           var confirmPopup = $ionicPopup.confirm({
+             title: 'Check In',
+             template: 'Are you sure you want to checkin to ' + locationName + '?'
+           });
+           confirmPopup.then(function(res) {
+             if (res) {
+
+              locationsService.checkIntoLocation(locationId)
+              .then(locationsService.writeCheckIntoDB)
+              // .then(locationsService.pollForFeedback);
+              .then(function (writnDoc) {
+                console.log(writnDoc);
+                locationsService.pollForFeedback(writnDoc);
+              }, function (err) {
+                console.log(err);
+              })
+              .catch(function (err) {
+                console.log(err);
+              });
+
+              $state.transitionTo('app.tc.location', {
+                locationId: locationId
+              }, {
+                reload: true,
+                inherit: true,
+                notify: true
+              });
+               // console.log('You are sure');
+             }
+           });
+        }
       };
+
+      if (!$window.localStorage.authorizationToken) {
+          return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
+      }
+
 
       $rootScope.$on('$stateChangeStart',
       function(event, toState){
@@ -213,6 +297,9 @@ app.controller('AppCtrl', [
   '$ionicPopup',
   'pushConfig',
   '$cordovaPush',
+  'pageProperties',
+  'appUpdates',
+  '$ionicPlatform',
   function (
     $scope,
     $state,
@@ -229,258 +316,219 @@ app.controller('AppCtrl', [
     $ionicModal,
     $ionicPopup,
     pushConfig,
-    $cordovaPush
+    $cordovaPush,
+    pageProperties,
+    appUpdates,
+    $ionicPlatform
     ) {
       // if thr no no auth..token in app local storage, treat d user as a first time user
       if (!$window.localStorage.authorizationToken) {
           return $state.transitionTo('app.auth.welcome', $stateParams, { reload: true, inherit: true, notify: true });
       }
-      // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
-      //     console.log(error);
-      //     evt.preventDefault();
-      // });
-      //but this isnt a bearer token
-      // if ($window.localStorage.authorizationToken.split(" ")[0] !== 'Bearer') {
-      //     $state.go('app.auth.login', {}, {
-      //       location: true
-      //     });
-      //   return false;
-      //     // return (fromState.name.indexOf("app.auth") > -1 ) ? false : $state.go('app.auth.login');
-      // }
-      //
-      // By now we should have an instance of our local
-      // notifcation plugin on the appBootstrap Service.
-      // we just need to register our onclick handlers.
-      if (window.plugin) {
-        window.plugin.notification.local.onclick = function (id, state, json) {
-          Messaging.execAction(JSON.parse(json).eventName, JSON.parse(json));
-        };
-        window.plugin.notification.local.onadd = function () {
-          console.log(arguments);
-        };
-      }
+      $ionicPlatform.ready(function () {
 
-
-      $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
-        switch(notification.event) {
-          case 'registered':
-            if (notification.regid.length > 0 ) {
-              Messaging.setRegId(notification.regid);
-              // window.localStorage.gcmid = notification.regid;
-              Messaging.ping($cordovaDevice.getUUID(), function (d) {
-                // console.log(d);
-              });
+        $scope.$parent.mainCfg.pageTitle = 'My Location';
+        // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
+        //     console.log(error);
+        //     evt.preventDefault();
+        // });
+        //but this isnt a bearer token
+        // if ($window.localStorage.authorizationToken.split(" ")[0] !== 'Bearer') {
+        //     $state.go('app.auth.login', {}, {
+        //       location: true
+        //     });
+        //   return false;
+        //     // return (fromState.name.indexOf("app.auth") > -1 ) ? false : $state.go('app.auth.login');
+        // }
+        //
+        // By now we should have an instance of our local
+        // notifcation plugin on the appBootstrap Service.
+        // we just need to register our onclick handlers.
+        if (!appBootStrap.isBrowser()) {
+          cordova.plugins.notification.local.on('click', function (notification) {
+            console.log('clicked');
+            if (notification.data) {
+              Messaging.execAction(JSON.parse(notification.data).eventName, JSON.parse(notification.data).payload);
             }
-            break;
-
-          case 'message':
-            // console.log(notification);
-            // this is the actual push notification. its format depends on the data model from the push server
-            // alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
-            Messaging.execAction(notification.payload.execAction, notification.payload);
-            break;
-
-          case 'error':
-            alert('GCM error = ' + notification.msg);
-            break;
-
-          default:
-            alert('An unknown GCM event has occurred');
-            break;
-        }
-      });
-
-      $scope.testPing = function () {
-        return locationsService.pingUserLocation({shouldPromptCheckIn: true});
-      };
-
-      $scope.testCheckIn = function () {
-        Messaging.execAction('CHECKIN', {locationId: '54dfde529b18357e313d2aa8', locationName: 'HoneyHome'});
-      };
-
-      $scope.testGCM = function () {
-        Messaging.testMessaging();
-      };
-      /**  Start Geo postioning code / monitor */
-      $scope.whoiswhere = [];
-      $scope.base = {
-        coords:  {
-          lat: 0,
-          lon: 0
-        }
-      };
-
-      $scope.testLocalNotifications = function testLocalNotifications() {
-        var now                  = new Date().getTime(),
-            seconds_from_now = new Date(now + 5*1000);
-        appBootStrap.localNotifications().add({
-                id:         Date.now() + 'testNotice',
-                date:       seconds_from_now,
-                message:    'Trial Notice',
-                title:      'tagChief Feedback',
-                json:       JSON.stringify({'index': 1}),
-                autoCancel: true,
-        });
-      };
-
-      var i = locationsService.geoLocationInit();
-      i.then(
-        function(position) {
-
-        },
-        function(e) {
-          console.log("Error retrieving position " + e.code + " " + e.message);
-        }
-      );
-
-      var watch = locationsService.watchPosition();
-      watch.then(
-        null,
-        function(e) {
-          // error
-          console.log("Error retrieving position " + e.code + " " + e.message);
-        },
-        function(position) {
-          console.log(position);
-
-          // $scope.base.coords.lat =  position.coords.latitude;
-          // $scope.base.coords.lon =  position.coords.longitude;
-
-          locationsService.deviceIsSitting(position.coords);
-          locationsService.setMyLocation(position.coords);
-      });
-
-      // show on the map
-      // you as a  markers, objects should have "lat", "lon", and "name" properties
-      $scope.whoiswhere.push = {
-        'name': 'Here I am',
-        'lat': $scope.base.coords.lat,
-        'lon': $scope.base.coords.lon
-      };
-      /** end geo monitor code */
-
-
-
-      //unregister gcm
-      // WARNING: dangerous to unregister (results in loss of tokenID)
-      $scope.unregisterPush =  function () {
-        $cordovaPush.unregister(pushConfig)
-        .then(function(result) {
-          // Success!
-        }, function(err) {
-          // Error
-        });
-      };
-
-      $scope.opencheckInPopOver = function (e, location) {
-        if (e instanceof Event) {
-          e.stopPropagation();
-        }
-        var locationName = location.locationName || location.name;
-        var locationId = location.locationId || location._id;
-         var confirmPopup = $ionicPopup.confirm({
-           title: 'Check In',
-           template: 'Are you sure you want to checkin to ' + locationName + '?'
-         });
-         confirmPopup.then(function(res) {
-           if (res) {
-            // locationsService.writeCheckIntoDB(
-            //   {
-            //       'deviceId' : 'eb0af84b7417e4e1',
-            //       'locationId' : '54f208ebbebd6fd54c18fc11',
-            //       'userId' : '54e1a0ca52e960e92e78759f',
-            //       'checkInTime' : '2015-03-02T16:15:44.064Z',
-            //       'questions': appBootStrap.getDefaultFeedback()
-            //   }
-            // )
-            // .then(locationsService.pollForFeedback, function (err) {
-            //   console.log(err);
-            // })
-            // .catch(function (err) {
-            //   console.log(err);
-            // });
-            locationsService.checkIntoLocation(location.locationId)
-            .then(locationsService.writeCheckIntoDB)
-            // .then(locationsService.pollForFeedback);
-            .then(locationsService.pollForFeedback, function (err) {
-              console.log(err);
-            })
-            .catch(function (err) {
-              console.log(err);
+          });
+          cordova.plugins.notification.local.on('schedule', function () {
+            console.log('added');
+            // console.log(arguments);
+          });
+          cordova.plugins.notification.local.on('trigger', function (notification) {
+            // console.log(arguments);
+            var dataObj = JSON.parse(notification.data);
+            appUpdates.addUpdate({
+              dateTriggered: Date.now(),
+              notificationId: notification.id,
+              dataObj: dataObj,
+              title: notification.title,
+              text: notification.text,
+              dateScheduled: notification.at
             });
-
-            $state.transitionTo('app.tc.location', {
-              locationId: locationId
-            }, {
-              reload: true,
-              inherit: true,
-              notify: true
-            });
-             // console.log('You are sure');
-           }
-         });
-      };
-
-      $scope.openCheckInFeedbackModal = function openCheckInFeedbackModal (checkData) {
-
-
-        $scope._feedback = checkData;
-
-        // An elaborate, custom popup
-        var myPopup = $ionicPopup.show({
-          templateUrl: 'templates/inc/feedback-popover.html',
-          title: 'tagChief Feedback Service',
-          // subTitle: 'Adds',
-          scope: $scope,
-          buttons: [
-            {
-              text: '<b><i class="icon ion-thumbsdown"></i></b>',
-              type: 'button-positive',
-              onTap: function(e) {
-
-              }
-            },
-            {
-              text: '<b><i class="icon ion-thumbsup"></i></b>',
-              type: 'button-positive',
-              onTap: function(e) {
-
-              }
-            }
-          ]
-        });
-
-        $scope.$on('$destroy', function () {
-          myPopup.remove();
-        });
-      };
-
-
-      $scope.$on('app-is-requesting', function (e, data) {
-        $scope.mainCfg.isRequesting = data;
-      });
-
-      $scope.$on('auth-loginRequired', function() {
-        if (!$state.is('app.auth.login')) {
-          $state.go('app.auth.login', {}, {
-            location: true
           });
         }
-      });
-      $scope.$on('event:auth-logout-complete', function() {
-        $state.go('app.tc.home', {}, {reload: true, inherit: false});
-      });
-      $scope.$on('$destroy', function() {
-        watch.clearWatch();
-        appBootStrap.strapCordovaDevice().cancel();
-      });
-      $scope.$on('appUI::checkInPopOver', function (e, data) {
-        $scope.opencheckInPopOver(e, data);
-      });
-      $scope.$on('appUI::checkInFeedbackModal', function (e, data) {
-        $scope.openCheckInFeedbackModal(data);
-      });
 
+
+        $rootScope.$on('$cordovaPush:notificationReceived', function(event, notification) {
+          switch(notification.event) {
+            case 'registered':
+              if (notification.regid.length > 0 ) {
+                Messaging.setRegId(notification.regid);
+                // window.localStorage.gcmid = notification.regid;
+                Messaging.ping($cordovaDevice.getUUID(), function (d) {
+                  // console.log(d);
+                });
+              }
+              break;
+
+            case 'message':
+              // console.log(notification);
+              // this is the actual push notification. its format depends on the data model from the push server
+              // alert('message = ' + notification.message + ' msgCount = ' + notification.msgcnt);
+              Messaging.execAction(notification.payload.execAction, notification.payload);
+              break;
+
+            case 'error':
+              alert('GCM error = ' + notification.msg);
+              break;
+
+            default:
+              alert('An unknown GCM event has occurred');
+              break;
+          }
+        });
+
+        $scope.testPing = function () {
+          return locationsService.pingUserLocation({shouldPromptCheckIn: true});
+        };
+
+        $scope.testCheckIn = function () {
+          Messaging.execAction('CHECKIN', {locationId: '54dfde529b18357e313d2aa8', locationName: 'HoneyHome'});
+        };
+
+        $scope.testGCM = function () {
+          Messaging.testMessaging();
+        };
+        /**  Start Geo postioning code / monitor */
+        $scope.whoiswhere = [];
+        $scope.base = {
+          coords:  {
+            lat: 0,
+            lon: 0
+          }
+        };
+
+        $scope.testLocalNotifications = function testLocalNotifications() {
+          appUpdates.testLocalNotification();
+        };
+
+
+        var watch = locationsService.watchPosition();
+        watch.then(
+          null,
+          function(e) {
+            // error
+            console.log("Error retrieving position " + e.code + " " + e.message);
+          },
+          function(position) {
+
+            // $scope.base.coords.lat =  position.coords.latitude;
+            // $scope.base.coords.lon =  position.coords.longitude;
+
+            locationsService.deviceIsSitting(position.coords);
+            locationsService.setMyLocation(position.coords);
+        });
+
+        // show on the map
+        // you as a  markers, objects should have "lat", "lon", and "name" properties
+        $scope.whoiswhere.push = {
+          'name': 'Here I am',
+          'lat': $scope.base.coords.lat,
+          'lon': $scope.base.coords.lon
+        };
+        /** end geo monitor code */
+
+
+
+        //unregister gcm
+        // WARNING: dangerous to unregister (results in loss of tokenID)
+        $scope.unregisterPush =  function () {
+          $cordovaPush.unregister(pushConfig)
+          .then(function(result) {
+            // Success!
+          }, function(err) {
+            // Error
+          });
+        };
+
+
+
+        $scope.openCheckInFeedbackModal = function openCheckInFeedbackModal (checkData) {
+
+
+          $scope._feedback = checkData;
+
+          // An elaborate, custom popup
+          var myPopup = $ionicPopup.show({
+            templateUrl: 'templates/inc/feedback-popover.html',
+            title: 'tagChief Feedback Service',
+            // subTitle: 'Adds',
+            scope: $scope,
+            buttons: [
+              {
+                text: '<b><i class="fa fa-thumbs-o-down"></i></b>',
+                type: 'button-positive',
+                onTap: function(e) {
+
+                }
+              },
+              {
+                text: '<b><i class="fa fa-thumbs-o-up"></i></b>',
+                type: 'button-positive',
+                onTap: function(e) {
+
+                }
+              }
+            ]
+          });
+
+          $scope.$on('$destroy', function () {
+            myPopup.remove();
+          });
+        };
+
+
+        $scope.$on('app-is-requesting', function (e, data) {
+          $scope.mainCfg.isRequesting = data;
+        });
+
+        $scope.$on('auth-loginRequired', function() {
+          if (!$state.is('app.auth.login')) {
+            $state.go('app.auth.login', {}, {
+              location: true
+            });
+          }
+        });
+        $scope.$on('event:auth-logout-complete', function() {
+          $scope.$parent.mainCfg.viewNoHeaderIsActive = true;
+          $state.go('app.auth.welcome', {}, {reload: true, inherit: false});
+        });
+        $scope.$on('$destroy', function() {
+          watch.clearWatch();
+          appBootStrap.strapCordovaDevice().cancel();
+        });
+        $scope.$on('appUI::checkInPopOver', function (e, data) {
+          $scope.$parent.mainCfg.opencheckInPopOver(e, data);
+        });
+        $scope.$on('appUI::checkInFeedbackModal', function (e, data) {
+          if ($state.is('app.tc.updates')) {
+            $scope.openCheckInFeedbackModal(data);
+          } else {
+            $state.go('app.tc.updates', {reload: true});
+          }
+        });
+      });
 }]);
 
 app.factory('tokenInterceptor', function ($window) {
@@ -532,11 +580,25 @@ app.directive('vegas', ['$timeout', function ($timeout) {
                 { src: './img/slider/slider3.jpg' },
                 { src: './img/slider/slider4.jpg' },
                 { src: './img/slider/slider5.jpg' }
-            ]
+            ],
+            transition: [ 'fade', 'slideRight2'],
+            overlay: '/lib/vegas/dist/overlays/02.png',
+            timer: false,
+            preload: true
         });
       });
       // $timeout();
 
+    }
+  };
+}]);
+
+app.directive('srctobg', [function () {
+  return {
+    compile: function (tEle, tAttr) {
+      $(tEle).css({
+        'background-image': tAttr.src
+      });
     }
   };
 }]);
