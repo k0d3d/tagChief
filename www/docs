@@ -1,0 +1,8 @@
+the list of updates has to be saved in localstorage.
+
+when  an item is clicked on updates.html, the triggerAction method on the $scope is executed. passing in the notification data ,
+as an argument, this object / hash contains, eventId, eventName, and the specific question to ask as the payload property.
+the same data is passed to openCheckInFeedbackModal() scope method which pops open the modal to collect feedback.
+its se
+
+x501a

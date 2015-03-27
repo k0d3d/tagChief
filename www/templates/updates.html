@@ -1,4 +1,4 @@
-<ion-content class="has-header view-content" style="margin-top: 44px;" scroll="true" >
+88<ion-content class="has-header view-content" style="margin-top: 44px;" scroll="true" >
       <ion-refresher
         pulling-text="Pull to refresh..."
         on-refresh="refreshUpdates({pulled: true})">
@@ -6,9 +6,9 @@
       <div class="no-content no-list-locations" ng-hide="updatesFeed.length > 0">
         <h3>No updates to show</h3>
       </div>
-      <ion-list class="notification-feed" can-swipe="false">
+      <ion-list class="notification-feed" can-swipe="false"  ng-show="updatesFeed.length > 0">
           <!-- Check in -->
-          <ion-item class="item-avatar" ng-repeat="l in updatesFeed | orderBy:'-dateTriggered'" ng-show="updatesFeed.length > 0" ng-click="triggerAction(l.dataObj.eventName, l.dataObj.payload)">
+          <ion-item class="item-avatar" ng-repeat="l in updatesFeed | orderBy:'-dateTriggered'" ng-click="triggerAction(l.dataObj)" ng-hide="l.isAnswered">
               <img src="./img/placeholders/avatars/sample-location-avi.jpg" alt="Avatar" img-cache>
               <div class="media-body">
                   <p class="push-bit">

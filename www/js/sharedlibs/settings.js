@@ -4,8 +4,8 @@ var config_data = {
     'app_name': 'TagChief Mobile'
   },
   'api_config': {
-    'CONSUMER_API_URL': 'https://stark-cliffs-8842.herokuapp.com'
-    // 'CONSUMER_API_URL': 'http://192.168.1.3:3000'
+    // 'CONSUMER_API_URL': 'https://stark-cliffs-8842.herokuapp.com'
+    'CONSUMER_API_URL': 'http://192.168.1.2:3000'
     // 'CONSUMER_API_URL': 'http://192.168.43.27:3000'
     // 'CONSUMER_API_URL': 'http://192.168.43.184:3000'
     // 'CONSUMER_API_URL': 'http://192.168.42.16:3000'
@@ -19,43 +19,53 @@ var config_data = {
     'pollbooth' : [
       {
         question: 'Has inec officials arrived?',
-        promptAfter: 30
+        promptAfter: 30,
+        id: 'FPB1'
       },
       {
         question: 'Has election materials arrive?',
-        promptAfter: 60
+        promptAfter: 30,
+        id: 'FPB2'
       },
       {
         question: 'Has authentication started?',
-        promptAfter: 90
+        promptAfter: 30,
+        id: 'FPB3'
       },
       {
         question: 'Has authentication ended?',
-        promptAfter: 120
+        promptAfter: 30,
+        id: 'FPB4'
       },
       {
         question: 'Has voting started?',
-        promptAfter: 150
+        promptAfter: 30,
+        id: 'FPB5'
       },
       {
         question: 'Has voting ended?',
-        promptAfter: 180
+        promptAfter: 30,
+        id: 'FPB6'
       },
       {
         question: 'Any violence?',
-        promptAfter: 210
+        promptAfter: 30,
+        id: 'FPB7'
       },
       {
         question: 'Any suspicious activity?',
-        promptAfter: 240
+        promptAfter: 30,
+        id: 'FPB8'
       },
       {
         question: 'Who do you think will win?',
-        promptAfter: 270
+        promptAfter: 30,
+        id: 'FPB9'
       },
       {
         question: 'Polls results announced?',
-        promptAfter: 300
+        promptAfter: 30,
+        id: 'FPB10'
       }
     ],
     'atm': [
@@ -65,11 +75,11 @@ var config_data = {
       },
       {
         question: 'is the location well lit?',
-        promptAfter: 40
+        promptAfter: 30
       },
       {
         question: 'Is the machine working well?',
-        promptAfter: 50
+        promptAfter: 30
       },
     ],
     'default': [

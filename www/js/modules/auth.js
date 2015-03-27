@@ -84,7 +84,12 @@
       if (form.email.length == 0 || form.password.length == 0) {
         return false;
       }
-      AuthenticationService.login(form);
+      $scope.form.isRequesting = true;
+      AuthenticationService.login(form)
+      .finally(function () {
+        $scope.form.isRequesting = false;
+
+      });
     };
     $scope.RegisterBtn = function(form) {
       if (form.email.length == 0 || form.password.length == 0 || form.phoneNumber.length == 0) {

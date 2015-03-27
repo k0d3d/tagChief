@@ -1,8 +1,8 @@
 <p>
-  {{::_feedback.question}}
+  {{::_feedback.payload.question}}
 </p>
-<div class="list">
+<div class="list" ng-init="_feedback.payload.answer = _feedback.payload.answer || ''">
   <label class="item">
-      <textarea placeholder="Comment" autofocus></textarea>
+      <textarea placeholder="Comment" autofocus ng-model="_feedback.payload.answer"></textarea>
   </label>
 </div>

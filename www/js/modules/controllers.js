@@ -216,48 +216,6 @@ app.controller('LocationCtrl', [
   $scope.loadLocations();
 
 
-      // $scope.opencheckInPopOver = function (e, location) {
-      //   e.stopPropagation();
-      //   // if (e instanceof Event) {
-      //   // }
-      //   var locationName = location.locationName || location.name;
-      //   var locationId = location.locationId || location._id;
-      //    var confirmPopup = $ionicPopup.confirm({
-      //      title: 'Check In',
-      //      template: 'Are you sure you want to checkin to ' + locationName + '?'
-      //    });
-      //    confirmPopup.then(function(res) {
-      //      if (res) {
-      //       locationsService.writeCheckIntoDB(
-      //         {
-      //             'deviceId' : 'eb0af84b7417e4e1',
-      //             'locationId' : '54f208ebbebd6fd54c18fc11',
-      //             'userId' : '54e1a0ca52e960e92e78759f',
-      //             'checkInTime' : '2015-03-02T16:15:44.064Z',
-      //             'questions': appBootStrap.getDefaultFeedback()
-      //         }
-      //       )
-      //       .then(locationsService.pollForFeedback, function (err) {
-      //         console.log(err);
-      //       })
-      //       .catch(function (err) {
-      //         console.log(err);
-      //       });
-      //       // locationsService.checkIntoLocation(location.locationId)
-      //       // .then(locationsService.writeCheckIntoDB)
-      //       // .then(locationsService.pollForFeedback);
-
-      //       $state.transitionTo('app.tc.location', {
-      //         locationId: locationId
-      //       }, {
-      //         reload: true,
-      //         inherit: true,
-      //         notify: true
-      //       });
-      //        // console.log('You are sure');
-      //      }
-      //    });
-      // };
 
 
   //if there is a prompt to be launched on entry to this state,
@@ -294,9 +252,20 @@ app.controller('UpdatesCtrl', [
     });
 
 
-    $scope.triggerAction = function (actionName, dataParams) {
-      Messaging.execAction(actionName, dataParams);
+    $scope.triggerAction = function (i, t) {
+      var triggerData = t.dataObj;
+      triggerData.dateTriggered = t.dateTriggered;
+      triggerData.listIndex = i;
+      Messaging.execAction(triggerData.eventName, triggerData);
     };
+
+    $scope.$on('appEvent::updateSaved', function (e, data) {
+      appBootStrap.db.get(data.doc._id)
+      .then(function (doc) {
+        console.log(doc);
+        locationsService.updateCheckIn(doc);
+      });
+    });
 
     $scope.refreshUpdates = function () {
       $scope.updatesFeed = appUpdates.getUpdates();

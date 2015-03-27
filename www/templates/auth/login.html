@@ -22,7 +22,7 @@
                         <i class="icon ion-key placeholder-icon"></i>
                         <input type="password" placeholder="Password" ng-model="form.password" required>
                       </label>
-                        <button type="submit" class="button button-block" ng-click="loginBtn(form)" ng-disabled="(form.email.length == 0) || (form.password.length == 0) ">Login</button>
+                        <button type="submit" class="button button-block" ng-click="loginBtn(form)" ng-disabled="(form.email.length == 0) || (form.password.length == 0) || form.isRequesting">Login</button>
                     </div>
                     <div class="form-group form-actions">
                         <div class="col-xs-12 text-right">

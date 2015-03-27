@@ -71,7 +71,7 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
       },
     })
     .state('app.tc.location', {
-      url: '/location/:locationId',
+      url: '/locations/:locationId',
       views: {
         'locationContent@app.tc' :{
           templateUrl: 'templates/location.html',
@@ -178,7 +178,6 @@ app.run([
   'pushConfig',
   function($ionicPlatform, $cordovaPush, appBootStrap, api_config, pushConfig) {
   $ionicPlatform.ready(function() {
-    console.log('heloo');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -213,13 +212,61 @@ app.controller('MainCtrl', [
   '$rootScope',
   'locationsService',
   '$ionicPopup',
-  function ($scope, $state, $stateParams, $window, $rootScope, locationsService, $ionicPopup) {
+  '$timeout',
+  function ($scope, $state, $stateParams, $window, $rootScope, locationsService, $ionicPopup, $timeout) {
+      function callForPolls (doc) {
+        var t;
+        locationsService.pollForFeedback(doc)
+        .then(function (rcur) {
+          if (!rcur) {
+            t = $timeout(function () {
+              callForPolls(doc);
+            }, 60000);
+          } else {
+            if (t) t.cancel();
+          }
+        });
+      }
       $scope.mainCfg = {
         viewNoHeaderIsActive: true,
+        openCheckInFeedbackModal : function openCheckInFeedbackModal (checkData) {
+
+          $scope._feedback = checkData;
+
+          // An elaborate, custom popup
+          var myPopup = $ionicPopup.show({
+            templateUrl: 'templates/inc/feedback-popover.html',
+            title: 'tagChief Feedback Service',
+            // subTitle: 'Adds',
+            scope: $scope,
+            buttons: [
+              {
+                text: '<b><i class="fa fa-thumbs-o-down"></i></b>',
+                type: 'button-calm',
+                onTap: function() {
+                  locationsService.updateFeedback($scope._feedback, false);
+                }
+              },
+              {
+                text: '<b><i class="fa fa-thumbs-o-up"></i></b>',
+                type: 'button-positive',
+                onTap: function() {
+                  locationsService.updateFeedback($scope._feedback, true);
+                }
+              }
+            ]
+          });
+
+          $scope.$on('$destroy', function () {
+            myPopup.remove();
+          });
+        },
         opencheckInPopOver : function (e, location) {
           if (e instanceof Event) {
             e.stopPropagation();
           }
+          //fix for notification page trigger or local notification trigger
+          location = location.payload || location;
           var locationName = location.locationName || location.name;
           var locationId = location.locationId || location._id;
            var confirmPopup = $ionicPopup.confirm({
@@ -233,21 +280,18 @@ app.controller('MainCtrl', [
               .then(locationsService.writeCheckIntoDB)
               // .then(locationsService.pollForFeedback);
               .then(function (writnDoc) {
-                console.log(writnDoc);
-                locationsService.pollForFeedback(writnDoc);
+                $state.transitionTo('app.tc.location', {
+                  locationId: locationId
+                }, {
+                  notify: true
+                });
+
+                callForPolls(writnDoc);
               }, function (err) {
                 console.log(err);
               })
               .catch(function (err) {
                 console.log(err);
-              });
-
-              $state.transitionTo('app.tc.location', {
-                locationId: locationId
-              }, {
-                reload: true,
-                inherit: true,
-                notify: true
               });
                // console.log('You are sure');
              }
@@ -297,6 +341,7 @@ app.controller('AppCtrl', [
   '$ionicPopup',
   'pushConfig',
   '$cordovaPush',
+  '$cordovaToast',
   'pageProperties',
   'appUpdates',
   '$ionicPlatform',
@@ -317,6 +362,7 @@ app.controller('AppCtrl', [
     $ionicPopup,
     pushConfig,
     $cordovaPush,
+    $cordovaToast,
     pageProperties,
     appUpdates,
     $ionicPlatform
@@ -328,27 +374,12 @@ app.controller('AppCtrl', [
       $ionicPlatform.ready(function () {
 
         $scope.$parent.mainCfg.pageTitle = 'My Location';
-        // $rootScope.$on('$stateChangeError', function (evt, toState, toParams, fromState, fromParams, error) {
-        //     console.log(error);
-        //     evt.preventDefault();
-        // });
-        //but this isnt a bearer token
-        // if ($window.localStorage.authorizationToken.split(" ")[0] !== 'Bearer') {
-        //     $state.go('app.auth.login', {}, {
-        //       location: true
-        //     });
-        //   return false;
-        //     // return (fromState.name.indexOf("app.auth") > -1 ) ? false : $state.go('app.auth.login');
-        // }
-        //
-        // By now we should have an instance of our local
-        // notifcation plugin on the appBootstrap Service.
-        // we just need to register our onclick handlers.
+
         if (!appBootStrap.isBrowser()) {
           cordova.plugins.notification.local.on('click', function (notification) {
             console.log('clicked');
             if (notification.data) {
-              Messaging.execAction(JSON.parse(notification.data).eventName, JSON.parse(notification.data).payload);
+              Messaging.execAction(JSON.parse(notification.data).eventName, JSON.parse(notification.data));
             }
           });
           cordova.plugins.notification.local.on('schedule', function () {
@@ -464,41 +495,6 @@ app.controller('AppCtrl', [
 
 
 
-        $scope.openCheckInFeedbackModal = function openCheckInFeedbackModal (checkData) {
-
-
-          $scope._feedback = checkData;
-
-          // An elaborate, custom popup
-          var myPopup = $ionicPopup.show({
-            templateUrl: 'templates/inc/feedback-popover.html',
-            title: 'tagChief Feedback Service',
-            // subTitle: 'Adds',
-            scope: $scope,
-            buttons: [
-              {
-                text: '<b><i class="fa fa-thumbs-o-down"></i></b>',
-                type: 'button-positive',
-                onTap: function(e) {
-
-                }
-              },
-              {
-                text: '<b><i class="fa fa-thumbs-o-up"></i></b>',
-                type: 'button-positive',
-                onTap: function(e) {
-
-                }
-              }
-            ]
-          });
-
-          $scope.$on('$destroy', function () {
-            myPopup.remove();
-          });
-        };
-
-
         $scope.$on('app-is-requesting', function (e, data) {
           $scope.mainCfg.isRequesting = data;
         });
@@ -523,9 +519,14 @@ app.controller('AppCtrl', [
         });
         $scope.$on('appUI::checkInFeedbackModal', function (e, data) {
           if ($state.is('app.tc.updates')) {
-            $scope.openCheckInFeedbackModal(data);
+            $scope.$parent.mainCfg.openCheckInFeedbackModal(data);
           } else {
             $state.go('app.tc.updates', {reload: true});
+          }
+        });
+        $scope.$on('appEvent::updateSaved', function (e, data) {
+          if (!appBootStrap.isBrowser()) {
+            $cordovaToast.showShortBottom(data.message);
           }
         });
       });
