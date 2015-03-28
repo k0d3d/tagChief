@@ -8,7 +8,7 @@
       </div>
       <ion-list class="notification-feed" can-swipe="false"  ng-show="updatesFeed.length > 0">
           <!-- Check in -->
-          <ion-item class="item-avatar" ng-repeat="l in updatesFeed | orderBy:'-dateTriggered'" ng-click="triggerAction(l.dataObj)" ng-hide="l.isAnswered">
+          <ion-item class="item-avatar" ng-repeat="l in updatesFeed | orderBy:'-dateTriggered'" ng-click="triggerAction($index, l)" ng-hide="l.isAnswered">
               <img src="./img/placeholders/avatars/sample-location-avi.jpg" alt="Avatar" img-cache>
               <div class="media-body">
                   <p class="push-bit">

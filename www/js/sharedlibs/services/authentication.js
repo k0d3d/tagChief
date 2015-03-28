@@ -7,6 +7,17 @@
     'appBootStrap',
     function($rootScope, $http, api_config, $window, appBootStrap) {
       var service = {
+        resetPW: function resetPW (form) {
+          return $http({
+            url: '/api/v1/users',
+            method: 'PATCH',
+            params: 'action=resetPW',
+            data: {
+              email: form.email,
+              deviceId: appBootStrap.thisDevice.uuid
+            }
+          });
+        },
         register: function (user, cb) {
           $http({
             method: 'POST',

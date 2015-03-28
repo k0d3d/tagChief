@@ -129,6 +129,25 @@
       });
     };
 
+    $scope.resetPW = function (form) {
+      AuthenticationService.resetPW(form)
+      .then(function () {
+        // An alert dialog
+         $ionicPopup.alert({
+         title: 'Successful!',
+         template: 'tagChief sent a new password to your email.'
+        });
+
+        $scope.form.isRequesting = false;
+      }, function () {
+        // An alert dialog
+        $ionicPopup.alert({
+         title: 'Sorry!',
+         template: 'tagChief could not reset your password right now. Please try again later.'
+        });
+      });
+    };
+
     $scope.$on('event:auth-loginConfirmed', function() {
       console.log('login confirmed');
       $scope.$parent.mainCfg.viewNoHeaderIsActive = false;

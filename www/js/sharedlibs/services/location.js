@@ -48,6 +48,7 @@
           newDocument.timeUpdated = Date.now();
           newDocument.answer = params.payload.answer;
           newDocument.decision = truthy;
+          newDocument.dateTriggered = params.dateTriggered;
 
           //if there is an existing answer array
           if (doc.questions[indexOfNextQ].answers) {
@@ -221,24 +222,36 @@
               // build: true
             })
             .then(function (searchedDocs) {
-              console.log(searchedDocs);
-            });
-            var seconds_from_now = new Date().getTime();
-            //schedule the feedback.
-            cordova.plugins.notification.local.schedule({
-              id:         seconds_from_now,
-              date:       new Date(),
-              text:    'You might want to check in',
-              title:      $interpolate('You are in {{name}}')(l_data.data),
-              smallicon: 'file://img/res/android/icon/drawable-mdpi-icon.png',
-              // title:      "Hi Chrp",
-              data:       JSON.stringify({
-                // 'index': i,
-                'eventId': seconds_from_now,
-                'eventName': 'CHECKIN',
-                'payload':  l_data.data
-              })
-            }, function () {
+              var timeLimit = moment().subtract(12, 'hours'), foundMatch = false;
+              for (var i = 0; i < searchedDocs.rows.length; i++) {
+                var doc = searchedDocs.rows[i];
+
+                if (moment(doc.doc.checkInTime).isAfter(timeLimit)) {
+                  foundMatch = i;
+                  break;
+                }
+              }
+
+              if (!foundMatch) {
+
+                var seconds_from_now = new Date().getTime();
+                //schedule the feedback.
+                cordova.plugins.notification.local.schedule({
+                  id:         seconds_from_now,
+                  date:       new Date(),
+                  text:    'You might want to check in',
+                  title:      $interpolate('You are in {{name}}')(l_data.data),
+                  smallicon: 'file://img/res/android/icon/drawable-mdpi-icon.png',
+                  // title:      "Hi Chrp",
+                  data:       JSON.stringify({
+                    // 'index': i,
+                    'eventId': seconds_from_now,
+                    'eventName': 'CHECKIN',
+                    'payload':  l_data.data
+                  })
+                }, function () {
+                });
+              }
             });
           } else {
             return q.reject();
