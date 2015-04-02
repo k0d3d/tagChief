@@ -140,11 +140,15 @@
         });
 
         $scope.form.isRequesting = false;
-      }, function () {
+      }, function (err) {
+        var msg = 'tagChief could not reset your password right now. Please try again later.';
+        if (err.status === 404) {
+          msg = 'This account is not registered on tagChief.';
+        }
         // An alert dialog
         $ionicPopup.alert({
          title: 'Sorry!',
-         template: 'tagChief could not reset your password right now. Please try again later.'
+         template: msg
         });
       });
     };
