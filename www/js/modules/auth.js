@@ -86,9 +86,10 @@
       }
       $scope.form.isRequesting = true;
       AuthenticationService.login(form)
-      .finally(function () {
+      .then(function () {
         $scope.form.isRequesting = false;
-
+      }, function () {
+        $scope.form.isRequesting = false;
       });
     };
     $scope.RegisterBtn = function(form) {

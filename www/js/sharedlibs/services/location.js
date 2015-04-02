@@ -26,7 +26,6 @@
       //holds the
       timers: [],
       updateFeedback: function updateFeedback (params, truthy) {
-        console.log(params);
         // find checkinu5
         return appBootStrap.db.get(params.eventId)
         .then(function (doc) {
