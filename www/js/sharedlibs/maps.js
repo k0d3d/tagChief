@@ -146,8 +146,10 @@ MapApp.directive("appMap", [
     'locationsService',
     '$q',
     '$state',
-    function ($window, $timeout, Initializer, $interval, locationsService, Q, $state) {
+    '$rootScope',
+    function ($window, $timeout, Initializer, $interval, locationsService, Q, $state, $rootScope) {
     return {
+        transclude: 'element',
         restrict: "E",
         replace: true,
         templateUrl: "templates/inc/maps-holder.html",
@@ -164,14 +166,11 @@ MapApp.directive("appMap", [
             errorLoadingGmaps: "="
         },
         controller: 'HomeCtrl',
-        link: function (scope, element, attrs) {
+        link: function (scope, element, attr, ctrl, transclude) {
             scope.center = {};
             scope.isLoadingGmaps = true;
-            var currentMarkers = [];
+            var currentMarkers = [], mapEle;
 
-            scope.reloadState = function () {
-              // $state.reload();
-            };
             scope.createMap = function createMap() {
               var q = Q.defer();
 
@@ -222,6 +221,35 @@ MapApp.directive("appMap", [
               return q.promise;
             };
 
+            var mapLoader = function () {
+              if (mapEle) {
+                mapEle.remove();
+                mapEle = null;
+              }
+              transclude(function (clone) {
+                element.parent().append(clone);
+                mapEle = clone;
+                scope.createMap();
+                //load user added / tagged / check-in locations / or load locations wit the users interest
+                locationsService.locationProximity({
+                  loadPerRequest: 20
+                })
+                .then(function(d) {
+                  scope.markers = d.data;
+                  updateMarkers();
+                }, function (err) {
+                  if (err instanceof Error) {
+                     if (err.message === 'NoLocationData') {
+                        // alert('Location not found');
+                     }
+                  }
+                  // alert('other error occured');
+                  scope.$broadcast('scroll.refreshComplete');
+                  console.log(err);
+                });
+              });
+            };
+
 
             function refreshMeMarker () {
               if (scope.myLocation) {
@@ -255,6 +283,7 @@ MapApp.directive("appMap", [
             // );
 
 
+            $rootScope.$on('appEvent::reloadMap', mapLoader);
 
             scope.$on('$destroy', function () {
               mapRefresh.cancel();

@@ -86,9 +86,10 @@
       }
       $scope.form.isRequesting = true;
       AuthenticationService.login(form)
-      .finally(function () {
+      .then(function () {
         $scope.form.isRequesting = false;
-
+      }, function () {
+        $scope.form.isRequesting = false;
       });
     };
     $scope.RegisterBtn = function(form) {
@@ -126,6 +127,29 @@
     $scope.goBack = function () {
       $state.go('app.tc.home', [], {
         location: true
+      });
+    };
+
+    $scope.resetPW = function (form) {
+      AuthenticationService.resetPW(form)
+      .then(function () {
+        // An alert dialog
+         $ionicPopup.alert({
+         title: 'Successful!',
+         template: 'tagChief sent a new password to your email.'
+        });
+
+        $scope.form.isRequesting = false;
+      }, function (err) {
+        var msg = 'tagChief could not reset your password right now. Please try again later.';
+        if (err.status === 404) {
+          msg = 'This account is not registered on tagChief.';
+        }
+        // An alert dialog
+        $ionicPopup.alert({
+         title: 'Sorry!',
+         template: msg
+        });
       });
     };
 

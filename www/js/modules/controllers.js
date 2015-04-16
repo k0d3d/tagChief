@@ -8,18 +8,22 @@ app.controller('AccountCtrl', [
   '$scope',
   '$rootScope',
   '$window',
-  'userData',
   'appBootStrap',
   '$cordovaToast',
   '$ionicPopup',
-  function (AuthenticationService, $state, $scope, $rootScope, $window, userData, appBootStrap, $cordovaToast, $ionicPopup) {
+  '$http',
+  function (AuthenticationService, $state, $scope, $rootScope, $window, appBootStrap, $cordovaToast, $ionicPopup, $http) {
 
   $scope.$on('$ionicView.enter', function(){
     $scope.$parent.mainCfg.pageTitle = 'My Account';
   });
 
   $scope.uiElements = {};
-  $scope.userData  = userData.data;
+  AuthenticationService.getThisUser()
+  .then(function (user){
+    $scope.userData  = user.data;
+  } );
+
   $scope.accountPopup = function () {
     $scope.subTitle = '';
     // An elaborate, custom popup
@@ -69,10 +73,14 @@ app.controller('AccountCtrl', [
 
   $scope.doLogout = function () {
     AuthenticationService.logout()
-    .finally(function() {
-      delete $window.localStorage.authorizationToken;
-      delete $window.localStorage.userId;
-      $rootScope.$broadcast('event:auth-logout-complete');
+    .then(function() {
+      appBootStrap.db.destroy()
+      .then(function () {
+        delete $http.defaults.headers.common.Authorization;
+        delete $window.localStorage.authorizationToken;
+        delete $window.localStorage.userId;
+        $rootScope.$broadcast('event:auth-logout-complete');
+      });
     });
   };
 }]);
@@ -89,6 +97,7 @@ app.controller('HomeCtrl', [
   'appBootStrap',
   'locationsService',
   '$cordovaToast',
+  '$rootScope',
   function(
     $scope,
     $ionicModal,
@@ -100,7 +109,8 @@ app.controller('HomeCtrl', [
     $cordovaDevice,
     appBootStrap,
     locationsService,
-    $cordovaToast
+    $cordovaToast,
+    $rootScope
     ) {
 
   $scope.$on('$ionicView.enter', function(){
@@ -163,7 +173,11 @@ app.controller('HomeCtrl', [
     $scope.$on('$destroy', function () {
       myPopup.remove();
     });
+  };
 
+  $scope.reloadMap = function () {
+
+    $rootScope.$broadcast('appEvent::reloadMap');
   };
 }]);
 
@@ -175,7 +189,8 @@ app.controller('LocationCtrl', [
   '$ionicPopup',
   'appBootStrap',
   'pageProperties',
-  function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap, pageProperties) {
+  '$rootScope',
+  function ($scope, locationsService, $state, $stateParams, $ionicPopup, appBootStrap, pageProperties, $rootScope) {
     $scope.$on('$ionicView.enter', function(){
       $scope.$parent.mainCfg.pageTitle = pageProperties.title;
     });
@@ -214,6 +229,12 @@ app.controller('LocationCtrl', [
 
   //init
   $scope.loadLocations();
+
+  $scope.popCheckIn = function (e, location) {
+    event.stopImmediatePropagation();
+    $rootScope.$broadcast('appUI::checkInPopOver', location);
+    return false;
+  };
 
 
 
@@ -257,6 +278,10 @@ app.controller('UpdatesCtrl', [
       triggerData.dateTriggered = t.dateTriggered;
       triggerData.listIndex = i;
       Messaging.execAction(triggerData.eventName, triggerData);
+    };
+
+    $scope.removeItem = function (i) {
+      $scope.updatesFeed.splice(i, 1);
     };
 
     $scope.$on('appEvent::updateSaved', function (e, data) {

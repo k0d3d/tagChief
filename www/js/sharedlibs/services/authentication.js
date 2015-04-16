@@ -5,8 +5,18 @@
     'api_config',
     '$window',
     'appBootStrap',
-    function($rootScope, $http, api_config, $window, appBootStrap) {
+    '$q',
+    function($rootScope, $http, api_config, $window, appBootStrap, Q) {
       var service = {
+        resetPW: function resetPW (form) {
+          return $http({
+            url: '/api/v1/users/auth',
+            method: 'PATCH',
+            data: {
+              email: form.email,
+            }
+          });
+        },
         register: function (user, cb) {
           $http({
             method: 'POST',
@@ -26,6 +36,7 @@
           });
         },
         login: function(user) {
+          var q = Q.defer();
           var authHeaderString = 'Basic ' + btoa(encodeURIComponent(user.email) + ':' + user.password);
           // console.log(atob(authHeaderString));
           $http.defaults.headers.common.Authorization =  authHeaderString;
@@ -51,15 +62,17 @@
             .then(function (isClient) {
               if (isClient.data) {
                 appBootStrap.clientOAuth(isClient.data.clientKey, isClient.data.clientSecret, user)
-                .then(function (token) {
+                .then(function () {
                   $rootScope.$broadcast('event:auth-loginConfirmed', status);
+                  q.resolve();
                 });
               } else {
                 appBootStrap.clientAuthenticationCreate()
                 .then (function (client) {
                   appBootStrap.clientOAuth(client.data.clientKey, client.data.clientSecret, user)
-                  .then(function (token) {
+                  .then(function () {
                     $rootScope.$broadcast('event:auth-loginConfirmed', status);
+                    q.resolve();
                   });
                 });
               }
@@ -70,13 +83,13 @@
           .error(function (data, status) {
             $rootScope.$broadcast('event:auth-login-failed', status);
             delete $window.localStorage.authorizationToken;
+            q.reject(data);
           });
+
+          return q.promise;
         },
         logout: function() {
-          return $http.delete('/api/v1/users/auth', {})
-          .then(function () {
-            delete $http.defaults.headers.common.Authorization;
-          });
+          return $http.delete('/api/v1/users/auth', {});
         },
         loginCancelled: function() {
           authService.loginCancelled();

@@ -108,11 +108,11 @@ app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_confi
         'accountContent' :{
           templateUrl: 'templates/account.html',
           controller: 'AccountCtrl',
-          resolve: {
-            userData: function (AuthenticationService) {
-              return AuthenticationService.getThisUser();
-            }
-          }
+          // resolve: {
+          //   userData: function (AuthenticationService) {
+          //     return AuthenticationService.getThisUser();
+          //   }
+          // }
         }
       }
     });
@@ -583,7 +583,7 @@ app.directive('vegas', ['$timeout', function ($timeout) {
                 { src: './img/slider/slider5.jpg' }
             ],
             transition: [ 'fade', 'slideRight2'],
-            overlay: '/lib/vegas/dist/overlays/02.png',
+            overlay: './lib/vegas/dist/overlays/02.png',
             timer: false,
             preload: true
         });

@@ -1,6 +1,6 @@
 
 
-  <ion-content class="login-form animation-fadeInQuickInv auth-content" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
+  <ion-content class="login-form auth-content" scroll="false" has-header="false" padding="false" id="login-modal" ng-init="isLogin = true">
     <div id="login-container" class="animation-fadeIn">
                 <!-- Login Title -->
                 <div class="login-title text-center">
@@ -14,13 +14,13 @@
                 <!-- Login Block -->
                 <div class="block push-bit">
                     <!-- Login Form -->
-                    <div class="list">
+                    <div class="list list-inset">
                       <label class="item item-input">
                         <i class="icon ion-at placeholder-icon"></i>
-                        <input type="text" placeholder="Username / Email / Phone Number" autofocus required>
+                        <input type="text" placeholder="Your email or phone number" ng-model="form.email" required>
                       </label>
+                      <button type="submit" class="button button-block" ng-click="resetPW(form)" ng-disabled="(form.email.length == 0) || form.isRequesting">Request Password</button>
                     </div>
-                    <button type="submit" class="button button-block" >Request Password</button>
                     <div class="form-group form-actions">
                         <div class="col-xs-12 text-right">
                           <div class="button-bar">
