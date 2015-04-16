@@ -11,7 +11,8 @@ app.controller('AccountCtrl', [
   'appBootStrap',
   '$cordovaToast',
   '$ionicPopup',
-  function (AuthenticationService, $state, $scope, $rootScope, $window, appBootStrap, $cordovaToast, $ionicPopup) {
+  '$http',
+  function (AuthenticationService, $state, $scope, $rootScope, $window, appBootStrap, $cordovaToast, $ionicPopup, $http) {
 
   $scope.$on('$ionicView.enter', function(){
     $scope.$parent.mainCfg.pageTitle = 'My Account';
@@ -75,7 +76,7 @@ app.controller('AccountCtrl', [
     .then(function() {
       appBootStrap.db.destroy()
       .then(function () {
-
+        delete $http.defaults.headers.common.Authorization;
         delete $window.localStorage.authorizationToken;
         delete $window.localStorage.userId;
         $rootScope.$broadcast('event:auth-logout-complete');
@@ -96,6 +97,7 @@ app.controller('HomeCtrl', [
   'appBootStrap',
   'locationsService',
   '$cordovaToast',
+  '$rootScope',
   function(
     $scope,
     $ionicModal,
@@ -107,7 +109,8 @@ app.controller('HomeCtrl', [
     $cordovaDevice,
     appBootStrap,
     locationsService,
-    $cordovaToast
+    $cordovaToast,
+    $rootScope
     ) {
 
   $scope.$on('$ionicView.enter', function(){
@@ -170,7 +173,11 @@ app.controller('HomeCtrl', [
     $scope.$on('$destroy', function () {
       myPopup.remove();
     });
+  };
 
+  $scope.reloadMap = function () {
+
+    $rootScope.$broadcast('appEvent::reloadMap');
   };
 }]);
 
@@ -224,7 +231,7 @@ app.controller('LocationCtrl', [
   $scope.loadLocations();
 
   $scope.popCheckIn = function (e, location) {
-    e.stopPropagation();
+    event.stopImmediatePropagation();
     $rootScope.$broadcast('appUI::checkInPopOver', location);
     return false;
   };

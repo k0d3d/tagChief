@@ -89,10 +89,7 @@
           return q.promise;
         },
         logout: function() {
-          return $http.delete('/api/v1/users/auth', {})
-          .then(function () {
-            delete $http.defaults.headers.common.Authorization;
-          });
+          return $http.delete('/api/v1/users/auth', {});
         },
         loginCancelled: function() {
           authService.loginCancelled();

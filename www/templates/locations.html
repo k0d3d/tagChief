@@ -15,11 +15,11 @@
                       <strong><a href="#">{{::l.name | toStartCase}}</a> </strong>
                   </p>
                   <p class="tagged-by-alt-text">
-                    {{::l.category}}
+                    {{::l.category | uppercase}}
                   </p>
-                  <p class="tagged-by-alt-text pull-right">
-                    <button class="button button-clear button-positive button-small" ng-click="popCheckIn($event, {payload: l})">Check-in</button>
-                  </p>
+              </div>
+              <div class="checkin-action-btn">
+                <button class="button button-outline button-dark button-small" ng-click="popCheckIn($event, {payload: l})">Check-in</button>
               </div>
               <div class="media-action-score">
                       <a class="button-block">

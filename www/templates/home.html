@@ -7,10 +7,17 @@
         </app-map>
       </div>
       <div class="item home-tag-item" ng-hide="viewParams.isLoadingGmaps || viewParams.errorLoadingGmaps">
-          <button class="button button-assertive button-full home-cta" href="#" ng-click="tagPopOver()">
-            <i class="fa fa-map-marker fa-3x"></i>
-            Tag Here
-          </button>
+          <div class="button-bar">
+            <button class="button button-assertive button-full home-cta" href="#" ng-click="tagPopOver()">
+              <i class="fa fa-map-marker fa-1x"></i>
+              Tag Here
+            </button>
+            <button class="button button-assertive button-full home-cta" href="#" ng-click="reloadMap()">
+              <i class="fa fa-refresh fa-1x"></i>
+              Reload Map
+            </button>
+
+          </div>
     </div>
 
     </div>
