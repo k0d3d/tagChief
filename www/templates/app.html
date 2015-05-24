@@ -22,19 +22,19 @@
           </div>
       </ion-nav-bar>
       <ion-tabs class="tabs-striped tabs-background-dark tabs-color-stable tabs-icon-only tabs-bottom">
-          <ion-tab title="Map" icon-on="ion-map" icon-off="ion-map" href="#/app/tc/home">
+          <ion-tab title="Map" icon-on="ion-map" icon-off="ion-map" href="#/app/tc/home" analytics-on="click" analytics-event="MapView">
             <ion-nav-view name="mapContent" animation="slide-left-right"></ion-nav-view>
           </ion-tab>
 
-          <ion-tab title="Nearby Locations" icon-on="ion-location" icon-off="ion-location" href="#/app/tc/locations">
+          <ion-tab title="Nearby Locations" icon-on="ion-location" icon-off="ion-location" href="#/app/tc/locations" analytics-on="click" analytics-event="LocationView">
             <ion-nav-view name="locationContent" animation="slide-left-right"></ion-nav-view>
           </ion-tab>
 
-          <ion-tab title="Notifications" icon-on="ion-android-notifications-none" icon-off="ion-android-notifications-none" href="#/app/tc/updates">
+          <ion-tab title="Notifications" icon-on="ion-android-notifications-none" icon-off="ion-android-notifications-none" href="#/app/tc/updates" analytics-on="click" analytics-event="UpdatesView">
             <ion-nav-view name="notificationsContent" animation="slide-left-right"></ion-nav-view>
           </ion-tab>
 
-          <ion-tab title="My Account" icon-on="ion-person" icon-off="ion-person"href="#/app/tc/account">
+          <ion-tab title="My Account" icon-on="ion-person" icon-off="ion-person"href="#/app/tc/account" analytics-on="click" analytics-event="AccountView">
             <ion-nav-view name="accountContent" animation="slide-left-right"></ion-nav-view>
           </ion-tab>
       </ion-tabs>

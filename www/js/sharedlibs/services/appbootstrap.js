@@ -97,14 +97,15 @@
 
         // });
       },
-      clientAuthenticationCreate: function (cb) {
+      clientAuthenticationCreate: function (userEmail) {
         var
             // self = this,
             deviceName = $cordovaDevice.getModel() || 'Unknown Device',
             deviceId = $cordovaDevice.getUUID();
             return $http.post('/api/v1/clients', {
               name: deviceName,
-              deviceId: deviceId
+              deviceId: deviceId,
+              email: userEmail
             });
         // .success(function (data) {
         //   cb (data);
@@ -126,9 +127,9 @@
           console.log('device client reg failed');
         });
       },
-      clientAuthenticationSave: function () {
+      // clientAuthenticationSave: function () {
 
-      },
+      // },
       clientOAuth: function(clientId, clientSecret, user) {
         var deferred = $q.defer();
         if(window.cordova) {

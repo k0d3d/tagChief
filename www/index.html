@@ -35,11 +35,13 @@
     <script src="js/vendor/geolib.elevation.js"></script>
     <script src="js/vendor/pouchdb-3.3.1.min.js"></script>
     <script src="js/vendor/pouchdb.quick-search.min.js"></script>
+    <script src="js/vendor/angulartics.min.js"></script>
+    <script src="js/vendor/angulartics-ga-cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="tcApp">
+  <body>
     <div class="main-ctrl" ng-controller="MainCtrl">
       <ion-nav-view name="maincontent" animation="slide-left-right"></ion-nav-view>
       <div class="full-screen-container" ng-show="mainCfg.viewNoHeaderIsActive">
@@ -60,6 +62,10 @@
   <script src="js/sharedlibs/services/messaging.js"></script>
   <script src="js/sharedlibs/maps.js"></script>
   <script src="lib/vegas/dist/vegas.min.js"></script>
-
+  <script type="text/javascript">
+    document.addEventListener('deviceready', function onDeviceReady () {
+      angular.bootstrap(document, ['tcApp']);
+    }, false);
+  </script>
   </body>
 </html>

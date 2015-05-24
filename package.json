@@ -19,11 +19,11 @@
     "https://github.com/brodysoft/Cordova-SQLitePlugin.git",
     "de.appplant.cordova.plugin.local-notification",
     "com.ionic.keyboard",
-    "org.apache.cordova.console",
     "org.apache.cordova.geolocation",
     "https://github.com/phonegap-build/PushPlugin.git",
     "org.apache.cordova.inappbrowser",
     "https://github.com/katzer/cordova-plugin-local-notifications",
-    "nl.x-services.plugins.toast"
+    "nl.x-services.plugins.toast",
+    "https://github.com/danwilson/google-analytics-plugin.git"
   ]
 }

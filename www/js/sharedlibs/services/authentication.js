@@ -67,7 +67,7 @@
                   q.resolve();
                 });
               } else {
-                appBootStrap.clientAuthenticationCreate()
+                appBootStrap.clientAuthenticationCreate(user.email)
                 .then (function (client) {
                   appBootStrap.clientOAuth(client.data.clientKey, client.data.clientSecret, user)
                   .then(function () {

@@ -2,12 +2,16 @@
 	"folders":
 	[
 		{
-			"follow_symlinks": true,
 			"path": "."
 		},
 		{
-			"follow_symlinks": true,
-			"path": "/home/kingkoded/FedProjects/tagChief-node"
+			"path": "/home/integrabuntu/Projects/tagchief-node"
+		},
+		{
+			"path": "/home/integrabuntu/Projects/tagchief-mon"
+		},
+		{
+			"path": "/home/integrabuntu/Downloads/Templates/proui"
 		}
 	]
 }

@@ -10,7 +10,9 @@ var app = angular.module('tcApp', [
   'tcApp.config',
   'services',
   'GoogleMapsInitializer',
-  'auth'
+  'auth',
+  'angulartics',
+  'angulartics.google.analytics.cordova'
   ]);
 
 app.config(function($stateProvider, $urlRouterProvider, $httpProvider, api_config, $ionicConfigProvider) {
@@ -199,7 +201,8 @@ app.run([
       $cordovaPush.register(pushConfig);
     }
 
-
+    window.analytics.startTrackerWithId('UA-63333853-1');
+    window.analytics.debugMode();
   });
 
 }]);
@@ -213,7 +216,10 @@ app.controller('MainCtrl', [
   'locationsService',
   '$ionicPopup',
   '$timeout',
-  function ($scope, $state, $stateParams, $window, $rootScope, locationsService, $ionicPopup, $timeout) {
+  '$analytics',
+  function ($scope, $state, $stateParams, $window, $rootScope, locationsService, $ionicPopup, $timeout, $analytics) {
+      $analytics.eventTrack('MainCtrlLoaded');
+      window.analytics.trackView('Home Screen');
       function callForPolls (doc) {
         var t;
         locationsService.pollForFeedback(doc)
