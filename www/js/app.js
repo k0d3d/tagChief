@@ -180,6 +180,7 @@ app.run([
   'pushConfig',
   function($ionicPlatform, $cordovaPush, appBootStrap, api_config, pushConfig) {
   $ionicPlatform.ready(function() {
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -220,6 +221,7 @@ app.controller('MainCtrl', [
   function ($scope, $state, $stateParams, $window, $rootScope, locationsService, $ionicPopup, $timeout, $analytics) {
       $analytics.eventTrack('MainCtrlLoaded');
       window.analytics.trackView('Home Screen');
+
       function callForPolls (doc) {
         var t;
         locationsService.pollForFeedback(doc)

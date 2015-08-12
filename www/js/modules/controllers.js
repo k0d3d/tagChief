@@ -81,6 +81,13 @@ app.controller('AccountCtrl', [
         delete $window.localStorage.userId;
         $rootScope.$broadcast('event:auth-logout-complete');
       });
+    }, function (err) {
+      if (err.status === 401) {
+        delete $http.defaults.headers.common.Authorization;
+        delete $window.localStorage.authorizationToken;
+        delete $window.localStorage.userId;
+        $rootScope.$broadcast('event:auth-logout-complete');
+      }
     });
   };
 }]);
@@ -232,7 +239,11 @@ app.controller('LocationCtrl', [
 
   $scope.popCheckIn = function (e, location) {
     event.stopImmediatePropagation();
-    $rootScope.$broadcast('appUI::checkInPopOver', location);
+    if (!$scope.$parent.mainCfg) {
+      $rootScope.$broadcast('appUI::checkInPopOver', location);
+    } else {
+      $scope.$parent.mainCfg.opencheckInPopOver(e, location);
+    }
     return false;
   };
 
